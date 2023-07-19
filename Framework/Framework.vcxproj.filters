@@ -40,6 +40,7 @@
     <ClCompile Include="Systems\Text.cpp" />
     <ClCompile Include="Utilities\Grid.cpp" />
     <ClCompile Include="Geomatries\Star.cpp" />
+    <ClCompile Include="Geomatries\Dmd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Systems\Graphics.h" />
@@ -85,5 +86,6 @@
     <ClInclude Include="Systems\Text.h" />
     <ClInclude Include="Utilities\Grid.h" />
     <ClInclude Include="Geomatries\Star.h" />
+    <ClInclude Include="Geomatries\Dmd.h" />
   </ItemGroup>
 </Project>

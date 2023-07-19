@@ -15,6 +15,7 @@
     <ClInclude Include="UI\HUD.h" />
     <ClInclude Include="Demos\09_TileMapDemo.h" />
     <ClInclude Include="Demos\01_StarDemo.h" />
+    <ClInclude Include="Demos\02_Dmd_Texture_Demo.cpp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp" />
@@ -30,5 +31,6 @@
     <ClCompile Include="UI\HUD.cpp" />
     <ClCompile Include="Demos\09_TileMapDemo.cpp" />
     <ClCompile Include="Demos\01_StarDemo.cpp" />
+    <ClCompile Include="Demos\02_Dmd_Texture_Demo.cpp" />
   </ItemGroup>
 </Project>

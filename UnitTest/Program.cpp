@@ -6,6 +6,7 @@
 #include "Demos/01_StarDemo.h"
 #include "Demos/01_RectDemo.h"
 #include "Demos/02_TextureDemo.h"
+#include "Demos/02_Dmd_Texture_Demo.cpp.h"
 #include "Demos/03_ShadedDemo.h"
 #include "Demos/04_BlurDemo.h"
 #include "Demos/05_RenderingTargetDemo.h"
@@ -19,11 +20,11 @@ void Program::Init()
 	Camera::Create();
 	States::Create();
 
-	Push(new StarDemo);
+	//Push(new StarDemo);
 	//Push(new RectDemo);
-	//Push(new TextureDemo);
+	//Push(new Dmd_Texture_Demo);
 	//Push(new ShadedDemo);
-	//Push(new BlurDemo);
+	Push(new BlurDemo);
 	//Push(new RenderingTargetDemo);
 	//Push(new CollisionDemo);
 	//Push(new AnimationDemo);
