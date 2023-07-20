@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TextureRect.h"
+#include "Dmd.h"
 
 class BlurBuffer : public ShaderBuffer
 {
@@ -28,7 +28,7 @@ private:
 	Data data;
 };
 
-class BlurTexture : public TextureRect
+class BlurTexture : public Dmd
 {
 public:
 	BlurTexture(Vector3 position, Vector3 size, float rotation, wstring path);

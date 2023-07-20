@@ -4,7 +4,7 @@ class Dmd
 {
 public:
 	Dmd(Vector3 position, Vector3 size, float rotation, wstring path);
-	Dmd(Vector3 position, Vector3 size, float rotation);
+
 	~Dmd();
 
 	virtual void Move();
@@ -27,6 +27,17 @@ public:
 	const Vector3 GetSize() { return size; }
 	const float GetRotation() { return rotation; }
 	const Vector3 GetPosition() { return position; }
+
+	struct Data
+	{
+		Vector2 textureSize;
+		int blurCount;
+		int dummy;
+	};
+
+private:
+		Data data;
+		Dmd* buffer = nullptr;
 
 protected:
 	vector<VertexTexture> vertices;

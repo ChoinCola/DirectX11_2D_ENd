@@ -2,7 +2,7 @@
 #include "BlurTexture.h"
 
 BlurTexture::BlurTexture(Vector3 position, Vector3 size, float rotation, wstring path)
-	: TextureRect(position, size, rotation, path)
+	: Dmd(position, size, rotation, path)
 {
 	buffer = new BlurBuffer();
 	buffer->SetTextureSize({ size.x, size.y });
@@ -17,7 +17,7 @@ BlurTexture::~BlurTexture()
 
 void BlurTexture::Update()
 {
-	TextureRect::Update();
+	Dmd::Update();
 }
 
 void BlurTexture::Render()

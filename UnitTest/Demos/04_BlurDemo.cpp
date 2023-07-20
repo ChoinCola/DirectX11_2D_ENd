@@ -5,7 +5,7 @@
 
 void BlurDemo::Init()
 {
-	bt = new BlurTexture(Vector3(640, 360, 0), Vector3(WinMaxWidth, WinMaxHeight, 1), 0.f, TexturePath + L"asdf.jpg");
+	bt = new BlurTexture(Vector3(WinMaxWidth/2, WinMaxHeight/2, 0), Vector3(100, 100, 1), 0.f, TexturePath + L"asdf.jpg");
 }
 
 void BlurDemo::Destroy()
