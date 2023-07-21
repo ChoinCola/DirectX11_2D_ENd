@@ -113,8 +113,8 @@ void BoundingBox::UpdateCollisionData()
 		
 		// Axis Vector Update
 		{
-			D3DXVec3TransformNormal(&data->axisDir[x], &Values::RightVec, &world);
-			D3DXVec3TransformNormal(&data->axisDir[y], &Values::UpVec, &world);
+			D3DXVec3TransformNormal(&data->axisDir[x], &Values::RightVec, &world); // world에 돌아간 만큼 방향 벡터를 저장하게 된다.
+			D3DXVec3TransformNormal(&data->axisDir[y], &Values::UpVec, &world); // 축 벡터에 대해서 노멀라이즈 시켜주어야 한다. 방향 벡터만 구하게 된다.
 
 			D3DXVec3Normalize(&data->axisDir[x], &data->axisDir[x]);
 			D3DXVec3Normalize(&data->axisDir[y], &data->axisDir[y]);
@@ -134,7 +134,7 @@ void BoundingBox::UpdateCollisionData()
 
 				for (int j = 0; j < 2; ++j)
 				{
-					float projection = D3DXVec3Dot(&point, &unitAxes[j]);
+					float projection = D3DXVec3Dot(&point, &unitAxes[j]); // 내적 Cross = 외적
 
 					if (projection < minValues[j])
 						minValues[j] = projection;
@@ -143,8 +143,8 @@ void BoundingBox::UpdateCollisionData()
 						maxValues[j] = projection;
 				}
 			}
-			data->axisLen[x] = (maxValues[x] - minValues[x]) / 2;
-			data->axisLen[y] = (maxValues[y] - minValues[y]) / 2;
+			data->axisLen[x] = (maxValues[x] - minValues[x]) / 2; // 중점
+			data->axisLen[y] = (maxValues[y] - minValues[y]) / 2; // 중점
 		}
 	}
 }

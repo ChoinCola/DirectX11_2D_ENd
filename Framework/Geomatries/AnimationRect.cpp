@@ -71,6 +71,7 @@ void AnimationRect::Update()
 	UnmapVertexBuffer();
 
 	__super::Update();
+	// __super = 부모함수를 수행시키겠다.
 }
 
 void AnimationRect::Render()

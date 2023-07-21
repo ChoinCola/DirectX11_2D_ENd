@@ -24,10 +24,10 @@ void Program::Init()
 	//Push(new RectDemo);
 	//Push(new Dmd_Texture_Demo);
 	//Push(new ShadedDemo);
-	Push(new BlurDemo);
+	//Push(new BlurDemo);
 	//Push(new RenderingTargetDemo);
 	//Push(new CollisionDemo);
-	//Push(new AnimationDemo);
+	Push(new AnimationDemo);
 	//Push(new PlayerDemo);
 	//Push(new TileMapDemo);
 }
