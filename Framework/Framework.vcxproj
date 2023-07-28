@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Geomatries\Game_Demo\Character_Demo.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="Game\Character.cpp" />
     <ClCompile Include="Game\UI\ProgressBar.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Utilities\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Geomatries\Game_Demo\Character_Demo.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Game\Character.h" />
     <ClInclude Include="Game\UI\ProgressBar.h" />

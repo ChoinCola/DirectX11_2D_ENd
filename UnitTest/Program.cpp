@@ -14,6 +14,7 @@
 #include "Demos/07_AnimationDemo.h"
 #include "Demos/08_PlayerDemo.h"
 #include "Demos/09_TileMapDemo.h"
+#include "Demos/10_Game_Demo.h"
 
 void Program::Init()
 {
@@ -27,9 +28,10 @@ void Program::Init()
 	//Push(new BlurDemo);
 	//Push(new RenderingTargetDemo);
 	//Push(new CollisionDemo);
-	Push(new AnimationDemo);
+	//Push(new AnimationDemo);
 	//Push(new PlayerDemo);
 	//Push(new TileMapDemo);
+	Push(new Game_Demo);
 }
 
 void Program::Destroy()

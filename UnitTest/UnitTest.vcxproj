@@ -160,6 +160,7 @@
     <ClInclude Include="Demos\07_AnimationDemo.h" />
     <ClInclude Include="Demos\08_PlayerDemo.h" />
     <ClInclude Include="Demos\09_TileMapDemo.h" />
+    <ClInclude Include="Demos\10_Game_Demo.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\HUD.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Demos\08_PlayerDemo.cpp" />
     <ClCompile Include="Demos\09_TileMapDemo.cpp" />
     <ClCompile Include="Demos\02_Dmd_Texture_Demo.cpp" />
+    <ClCompile Include="Demos\10_Game_Demo.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="UI\HUD.cpp" />
   </ItemGroup>

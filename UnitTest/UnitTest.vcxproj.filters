@@ -16,6 +16,7 @@
     <ClInclude Include="Demos\09_TileMapDemo.h" />
     <ClInclude Include="Demos\01_StarDemo.h" />
     <ClInclude Include="Demos\02_Dmd_Texture_Demo.cpp.h" />
+    <ClInclude Include="Demos\10_Game_Demo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp" />
@@ -32,5 +33,6 @@
     <ClCompile Include="Demos\09_TileMapDemo.cpp" />
     <ClCompile Include="Demos\01_StarDemo.cpp" />
     <ClCompile Include="Demos\02_Dmd_Texture_Demo.cpp" />
+    <ClCompile Include="Demos\10_Game_Demo.cpp" />
   </ItemGroup>
 </Project>
