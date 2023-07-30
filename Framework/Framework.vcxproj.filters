@@ -41,7 +41,7 @@
     <ClCompile Include="Utilities\Grid.cpp" />
     <ClCompile Include="Geomatries\Star.cpp" />
     <ClCompile Include="Geomatries\Dmd.cpp" />
-    <ClCompile Include="Geomatries\Game_Demo\Character_Demo.cpp" />
+    <ClCompile Include="Game\Item.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Systems\Graphics.h" />
@@ -88,6 +88,6 @@
     <ClInclude Include="Utilities\Grid.h" />
     <ClInclude Include="Geomatries\Star.h" />
     <ClInclude Include="Geomatries\Dmd.h" />
-    <ClInclude Include="Geomatries\Game_Demo\Character_Demo.h" />
+    <ClInclude Include="Game\Item.h" />
   </ItemGroup>
 </Project>

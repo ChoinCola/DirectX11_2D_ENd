@@ -12,5 +12,6 @@ public:
 
 private:
 	class Character_Demo* tr = nullptr;
+
 	vector<class Character_Demo*> trs;
 };

@@ -27,7 +27,7 @@ public:
 	const Vector3 GetSize() { return size; }
 	const float GetRotation() { return rotation; }
 	const Vector3 GetPosition() { return position; }
-
+	void SetPosition(const float x, const float y) { position.y += y; position.x += x; }
 protected:
 	vector<VertexTexture> vertices;
 	VertexBuffer* vb = nullptr;

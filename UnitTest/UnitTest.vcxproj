@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Character\Character_Demo.h" />
     <ClInclude Include="Character\Player.h" />
     <ClInclude Include="Demos\01_RectDemo.h" />
     <ClInclude Include="Demos\01_StarDemo.h" />
@@ -163,9 +164,11 @@
     <ClInclude Include="Demos\10_Game_Demo.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Item_Object\Sword.h" />
     <ClInclude Include="UI\HUD.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Character\Character_Demo.cpp" />
     <ClCompile Include="Character\Player.cpp" />
     <ClCompile Include="Demos\01_RectDemo.cpp" />
     <ClCompile Include="Demos\01_StarDemo.cpp" />
@@ -180,6 +183,7 @@
     <ClCompile Include="Demos\02_Dmd_Texture_Demo.cpp" />
     <ClCompile Include="Demos\10_Game_Demo.cpp" />
     <ClCompile Include="Program.cpp" />
+    <ClCompile Include="Item_Object\Sword.cpp" />
     <ClCompile Include="UI\HUD.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

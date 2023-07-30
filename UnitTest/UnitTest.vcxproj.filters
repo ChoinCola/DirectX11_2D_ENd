@@ -17,6 +17,8 @@
     <ClInclude Include="Demos\01_StarDemo.h" />
     <ClInclude Include="Demos\02_Dmd_Texture_Demo.cpp.h" />
     <ClInclude Include="Demos\10_Game_Demo.h" />
+    <ClInclude Include="Character\Character_Demo.h" />
+    <ClInclude Include="Item_Object\Sword.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp" />
@@ -34,5 +36,7 @@
     <ClCompile Include="Demos\01_StarDemo.cpp" />
     <ClCompile Include="Demos\02_Dmd_Texture_Demo.cpp" />
     <ClCompile Include="Demos\10_Game_Demo.cpp" />
+    <ClCompile Include="Character\Character_Demo.cpp" />
+    <ClCompile Include="Item_Object\Sword.cpp" />
   </ItemGroup>
 </Project>
