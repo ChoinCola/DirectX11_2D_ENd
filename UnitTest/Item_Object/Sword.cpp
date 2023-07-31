@@ -2,7 +2,7 @@
 #include "Sword.h"
 
 
-Goblin_Sword::Goblin_Sword(Vector3 position, Vector3 size, AnimationRect* Host)
+Goblin_Sword::Goblin_Sword(Vector3 position, Vector3 size, Character* Host)
 	: Item(position, size), Host(Host)
 {
 	Fspeed = 1;
@@ -34,15 +34,13 @@ Goblin_Sword::~Goblin_Sword()
 
 void Goblin_Sword::Update()
 {
-
-	animRect->Follow(Host->GetPosition(), Host->GetmoveP() * 100);
-	animator->Update();
 	animRect->Update();
 
 	Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
 	Vector3 position = animRect->GetPosition() + Vector3(100, 0, 0);
 	collision->Update(position, size, 0.f);
 }
+
 
 void Goblin_Sword::Render()
 {

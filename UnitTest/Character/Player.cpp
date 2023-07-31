@@ -44,7 +44,6 @@ Player::~Player()
 
 void Player::Update()
 {
-	animRect->Move();
 	animator->Update();
 	animRect->Update();
 

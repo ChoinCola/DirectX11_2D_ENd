@@ -6,21 +6,6 @@
 AnimationRect::AnimationRect(Vector3 position, Vector3 size)
 	: TextureRect(position, size, .0f)
 {
-	SetShader(ShaderPath + L"Animation.hlsl");
-	speed = 100;
-	animator = new Animator();
-	moveP = { 1,0,0 };
-
-	{
-		Texture2D* srcTex = new Texture2D(TexturePath + L"player.png");
-		AnimationClip* RunR = new AnimationClip(L"RunR", srcTex, 10, Values::ZeroVec2, { srcTex->GetWidth(), srcTex->GetHeight() * .5f });
-		AnimationClip* RunL = new AnimationClip(L"RunL", srcTex, 10, { 0, srcTex->GetHeight() * 0.5f }, { srcTex->GetWidth(), srcTex->GetHeight() }, true);
-		animator->AddAnimClip(RunR);
-		animator->AddAnimClip(RunL);
-		animator->SetCurrentAnimClip(L"RunL");
-		SAFE_DELETE(srcTex);
-	}
-
 	// Sampler
 	{
 		// 선형 보간
@@ -85,75 +70,4 @@ void AnimationRect::Render()
 	__super::Render();
 }
 
-void AnimationRect::SetNormalize(D3DXVECTOR2 move, const int speed, const float delta)
-{
-	D3DXVec2Normalize(&move, &move);
-	SetPosition(move.x * speed * delta, move.y * speed * delta);
-}
 
-
-void AnimationRect::Follow(const Vector3 st, const Vector3 direc)
-{
-	SetPosition(st.x + direc.x, st.y + direc.y);
-	if (moveP.x) { animator->SetCurrentAnimClip(L"RunR"); }
-	else { animator->SetCurrentAnimClip(L"RunL"); }
-}
-
-void AnimationRect::Move()
-{
-	auto key = Keyboard::Get();
-	auto delta = Time::Delta();
-	
-
-	// 방향판별
-	if (key->Press('D')) { moveP = { 1,0,0 }; }
-	else if (key->Press('A')) { moveP = { 0,1,0 }; }
-
-	// 이동판별
-	if (key->Press('W') && key->Press('D'))
-	{
-		SetNormalize({ 1, 1 }, speed, delta);
-		animator->SetCurrentAnimClip(L"RunR");
-	}
-	else if (key->Press('W') && key->Press('A'))
-	{
-		SetNormalize({ -1, 1 }, speed, delta);
-		animator->SetCurrentAnimClip(L"RunL");
-	}
-	else if (key->Press('S') && key->Press('D'))
-	{
-		SetNormalize({ 1, -1 }, speed, delta);
-		animator->SetCurrentAnimClip(L"RunR");
-	}
-	else if (key->Press('S') && key->Press('A'))
-	{
-		SetNormalize({ -1, -1 }, speed, delta);
-		animator->SetCurrentAnimClip(L"RunL");
-	}
-	else if (key->Press('A'))
-	{
-		SetNormalize({ -1, 0 }, speed, delta);
-		animator->SetCurrentAnimClip(L"RunL");
-	}
-	else if (key->Press('D'))
-	{
-		SetNormalize({ 1, 0 }, speed, delta);
-		animator->SetCurrentAnimClip(L"RunR");
-	}
-	else if (key->Press('W'))
-	{
-		SetNormalize({ 0, 1 }, speed, delta);
-		if (moveP.x) { animator->SetCurrentAnimClip(L"RunR"); }
-		else { animator->SetCurrentAnimClip(L"RunL"); }
-	}
-	else if (key->Press('S'))
-	{
-		SetNormalize({ 0, -1 }, speed, delta);
-		if (moveP.x) { animator->SetCurrentAnimClip(L"RunR"); }
-		else { animator->SetCurrentAnimClip(L"RunL"); }
-	}
-	else {
-		if (moveP.x) { animator->SetCurrentAnimClip(L"IdleR"); }
-		else { animator->SetCurrentAnimClip(L"IdleL"); }
-	}
-}

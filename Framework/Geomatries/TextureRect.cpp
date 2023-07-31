@@ -140,20 +140,6 @@ TextureRect::~TextureRect()
 	//SAFE_RELEASE(srv);
 }
 
-void TextureRect::Move()
-{
-	//if (Keyboard::Get()->Press('W'))
-	//	position.y += 100 * Time::Delta();
-	//if (Keyboard::Get()->Press('S'))
-	//	position.y -= 100 * Time::Delta();
-
-	//if (Keyboard::Get()->Press('D'))
-	//	position.x += 100 * Time::Delta();
-	//if (Keyboard::Get()->Press('A'))
-	//	position.x -= 100 * Time::Delta();
-
-}
-
 void TextureRect::MapVertexBuffer()
 {
 	DC->Map(vb->GetResource(), 0, D3D11_MAP_WRITE_DISCARD, 0, &subResource);
@@ -177,7 +163,6 @@ void TextureRect::SetShader(wstring shaderpath)
 void TextureRect::Update()
 {
 	UpdateWorld();
-	Move();
 }
 
 void TextureRect::UpdateWorld()

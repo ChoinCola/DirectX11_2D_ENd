@@ -5,10 +5,10 @@
 Character_Demo::Character_Demo(Vector3 position, Vector3 size)
 	: Character(position, size)
 {
-	animRect->SetSpeed(200);
 	Fspeed = 1.f/6.f;
 	animator = new Animator();
 
+	SetSpeed(200);
 	#pragma region Animation
 	{
 		Texture2D* idle = new Texture2D(LCharacter + L"Goblin/goblin_idle_spritesheet.png");
@@ -35,21 +35,56 @@ Character_Demo::Character_Demo(Vector3 position, Vector3 size)
 	collision = new BoundingBox
 	(animRect->GetPosition(), animRect->GetSize(), animRect->GetRotation(), Color(1, 0, 0, .35f));
 
-	Sword = new Goblin_Sword(position, Vector3(1000, 100, 1), animRect);
+	Sword = new Goblin_Sword(position, Vector3(100, 100, 1), this);
 }
 
 Character_Demo::~Character_Demo()
 {
 }
 
+void Character_Demo::SetNormalize(D3DXVECTOR2 &move, const int speed, const float delta)
+{
+	D3DXVec2Normalize(&move, &move);
+
+	animRect->SetPosition
+	(animRect->GetPosition().x + (move.x * speed * delta), 
+	animRect->GetPosition().y + (move.y * speed * delta));
+}
+
+void Character_Demo::Move()
+{
+	auto key = Keyboard::Get();
+	auto delta = Time::Delta();
+	
+		// 방향판별
+		if (key->Press('W')) { moveP.y = +1; }
+		if (key->Press('A')) { moveP.x = -1; front = 0;}
+		if (key->Press('S')) { moveP.y = -1; }
+		if (key->Press('D')) { moveP.x = +1; front = 1;}
+
+		// 이동판별
+		if(abs(moveP.x) || abs(moveP.y)){
+			if (front) { animator->SetCurrentAnimClip(L"RunR"); }
+			else { animator->SetCurrentAnimClip(L"RunL"); }
+			SetNormalize(moveP, speed, delta);
+		}
+		else {
+			if(front) { animator->SetCurrentAnimClip(L"IdleR"); }
+			else {animator->SetCurrentAnimClip(L"IdleL"); }
+		}
+
+		// 이동 초기화
+		moveP = {0, 0};
+}
+
 void Character_Demo::Update()
 {
-	animRect->Move();
+	Move();
 	animator->Update();
 	animRect->Update();
 
+	Follow(*Sword, moveP, 60);
 	Sword->Update();
-
 
 	Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
 	Vector3 position = animRect->GetPosition() + Vector3(100, 0, 0);
@@ -58,7 +93,6 @@ void Character_Demo::Update()
 
 void Character_Demo::Render()
 {
-
 	animRect->Render();
 	collision->Render();
 	Sword->Render();
