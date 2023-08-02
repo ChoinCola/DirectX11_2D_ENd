@@ -3,11 +3,18 @@
 
 
 Character_Demo::Character_Demo(Vector3 position, Vector3 size)
-	: Character(position, size)
+	: Character(position, size) 
 {
+
+	#pragma region Start_Set
+	{
+		delay = 0;
+		angle_attack = 0;
+	}
+	#pragma endregion
+	Attack_now = false;
 	Fspeed = 1.f/6.f;
 	animator = new Animator();
-
 	SetSpeed(200);
 	#pragma region Animation
 	{
@@ -63,6 +70,7 @@ void Character_Demo::Move()
 		if (key->Press('D')) { moveP.x = +1; front = 1;}
 
 		// 이동판별
+
 		if(abs(moveP.x) || abs(moveP.y)){
 			if (front) { animator->SetCurrentAnimClip(L"RunR"); }
 			else { animator->SetCurrentAnimClip(L"RunL"); }
@@ -76,19 +84,55 @@ void Character_Demo::Move()
 		// 이동 초기화
 		moveP = {0, 0};
 }
+void Character_Demo::Attack(const float Attack_speed = 1)
+{
+	auto delta = Time::Delta();
+	auto key = Keyboard::Get();
+
+		if (Attack_now == true || key->Press('F')) {
+			Attack_now = true;
+			if ((angle_attack >= 90 || angle_attack <= -90)) {
+
+				angle_attack = 0;
+				delay = 0;
+				Sword->GetanimRect()->SetRotation(angle_attack);
+				Attack_now = false;
+
+				D3DXMatrixTranslation(&Sword->GetanimRect()->GetCenterPoint(),
+					0,
+					0,
+					0);
+				return;
+			}
+
+			else if (front) angle_attack -= delta * 100 * Attack_speed;
+			else angle_attack += delta * 100 * Attack_speed;
+
+			{
+				D3DXMatrixTranslation(&Sword->GetanimRect()->GetCenterPoint(),
+					Sword->Getaniator()->GetTexelFrameSize().x * 30,
+					Sword->Getaniator()->GetTexelFrameSize().y * 30,
+					animRect->GetPosition().z);
+			}
+		}
+	Sword->GetanimRect()->SetRotation(angle_attack);
+}
 
 void Character_Demo::Update()
 {
+	Attack(5);
 	Move();
+	Follow(*Sword, 60, 1);
+
 	animator->Update();
 	animRect->Update();
-
-	Follow(*Sword, moveP, 60);
 	Sword->Update();
 
-	Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
-	Vector3 position = animRect->GetPosition() + Vector3(100, 0, 0);
-	collision->Update(position, size, 0.f);
+	{
+		Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
+		Vector3 position = animRect->GetPosition() + Vector3(100, 0, 0);
+		collision->Update(position, size, 0.f);
+	}
 }
 
 void Character_Demo::Render()

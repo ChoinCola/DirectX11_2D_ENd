@@ -4,6 +4,8 @@
 TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring path)
 	: position(position), size(size), rotation(rotation)
 {
+	
+
 	// vertices
 	{
 		vertices.assign(4, VertexTexture());
@@ -75,6 +77,11 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring
 TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation)
 	: position(position), size(size), rotation(rotation)
 {
+
+	{
+		D3DXMatrixTranslation(&X, 0, 0, 0);
+	}
+
 	// vertices
 	{
 		vertices.assign(4, VertexTexture());
@@ -165,13 +172,14 @@ void TextureRect::Update()
 	UpdateWorld();
 }
 
+
 void TextureRect::UpdateWorld()
 {
 	D3DXMatrixTranslation(&T, position.x, position.y, position.z);
 	D3DXMatrixScaling(&S, size.x, size.y, size.z);
 	D3DXMatrixRotationZ(&R, (float)D3DXToRadian(rotation));
 
-	world = S * R * T;
+	world = S * X * R * T ;
 	wb->SetWorld(world);
 }
 

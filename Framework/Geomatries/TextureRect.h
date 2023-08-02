@@ -21,13 +21,18 @@ public:
 
 	const Vector3* GetVerticesLocalPosition() { return verticesLocalPosition; }
 	const Matrix GetWorld() { return world; }
+	void SetWorld(const Matrix world) { this->world = world; }
 
 	const Vector3 GetSize() { return size; }
 	const float GetRotation() { return rotation; }
 	const Vector3 GetPosition() { return position; }
+	D3DXMATRIX& GetCenterPoint() { return X; }
+
 	void SetPosition(const float x, const float y) { position.y = y; position.x = x; }
+	void SetRotation(const float rotation) { this->rotation = rotation; }
 
 protected:
+
 	vector<VertexTexture> vertices;
 	VertexBuffer* vb = nullptr;
 
@@ -40,7 +45,7 @@ protected:
 	InputLayout* il = nullptr;
 
 	Matrix world;
-	Matrix S, R, T;
+	Matrix S, R, T, X;
 
 	WorldBuffer* wb = nullptr;
 

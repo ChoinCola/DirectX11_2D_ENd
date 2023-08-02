@@ -32,6 +32,8 @@ Goblin_Sword::~Goblin_Sword()
 {
 }
 
+
+
 void Goblin_Sword::Update()
 {
 	animRect->Update();
