@@ -1,28 +1,28 @@
 #include "stdafx.h"
-#include "Character_Demo.h"
+#include "Knight.h"
 
 
-Character_Demo::Character_Demo(Vector3 position, Vector3 size)
-	: Character(position, size) 
+Knight::Knight(Vector3 position, Vector3 size)
+	: Character(position, size)
 {
 
-	#pragma region Start_Set
+#pragma region Start_Set
 	{
 		delay = 0;
 		angle_attack = 0;
 	}
-	#pragma endregion
+#pragma endregion
 	Attack_now = false;
-	Fspeed = 1.f/6.f;
+	Fspeed = 1.f / 6.f;
 	animator = new Animator();
 	SetSpeed(200);
-	#pragma region Animation
+#pragma region Animation
 	{
-		Texture2D* idle = new Texture2D(LCharacter + L"Goblin/goblin_idle_spritesheet.png");
-		Texture2D* MoveR = new Texture2D(LCharacter + L"Goblin/goblin_run_spritesheet.png");
+		Texture2D* idle = new Texture2D(LCharacter + L"Knight/knight_idle_spritesheet.png");
+		Texture2D* MoveR = new Texture2D(LCharacter + L"Knight/knight_run_spritesheet.png");
 
-		AnimationClip* RunR = new AnimationClip(L"RunR", MoveR, 6, Values::ZeroVec2, { MoveR->GetWidth(), MoveR->GetHeight()}, 0, Fspeed);
-		AnimationClip* RunL = new AnimationClip(L"RunL", MoveR, 6, { MoveR->GetWidth(), 0 }, {0, MoveR->GetHeight()}, true, Fspeed);
+		AnimationClip* RunR = new AnimationClip(L"RunR", MoveR, 6, Values::ZeroVec2, { MoveR->GetWidth(), MoveR->GetHeight() }, 0, Fspeed);
+		AnimationClip* RunL = new AnimationClip(L"RunL", MoveR, 6, { MoveR->GetWidth(), 0 }, { 0, MoveR->GetHeight() }, true, Fspeed);
 		AnimationClip* IdleR = new AnimationClip(L"IdleR", idle, 6, Values::ZeroVec2, { MoveR->GetWidth(), MoveR->GetHeight() }, 0, Fspeed);
 		AnimationClip* IdleL = new AnimationClip(L"IdleL", idle, 6, { MoveR->GetWidth() ,0 }, { 0, MoveR->GetHeight() }, 0, Fspeed);
 
@@ -37,54 +37,54 @@ Character_Demo::Character_Demo(Vector3 position, Vector3 size)
 		SAFE_DELETE(idle);
 		SAFE_DELETE(MoveR);
 	}
-	#pragma endregion
+#pragma endregion
 
 	collision = new BoundingBox
 	(animRect->GetPosition(), animRect->GetSize(), animRect->GetRotation(), Color(1, 0, 0, .35f));
 
-	Sword = new Goblin_Sword(position, Vector3(100, 100, 1), this);
+	Sword = new Knight_Sword(position, Vector3(100, 100, 1), this);
 }
 
-Character_Demo::~Character_Demo()
+Knight::~Knight()
 {
 }
 
-void Character_Demo::SetNormalize(D3DXVECTOR2 &move, const int speed, const float delta)
+void Knight::SetNormalize(D3DXVECTOR2& move, const int speed, const float delta)
 {
 	D3DXVec2Normalize(&move, &move);
 
 	animRect->SetPosition
-	(animRect->GetPosition().x + (move.x * speed * delta), 
-	animRect->GetPosition().y + (move.y * speed * delta));
+	(animRect->GetPosition().x + (move.x * speed * delta),
+		animRect->GetPosition().y + (move.y * speed * delta));
 }
 
-void Character_Demo::Move()
+void Knight::Move()
 {
 	auto key = Keyboard::Get();
 	auto delta = Time::Delta();
-	
-		// 방향판별
-		if (key->Press('W')) { moveP.y = +1; }
-		if (key->Press('A')) { moveP.x = -1; front = 0;}
-		if (key->Press('S')) { moveP.y = -1; }
-		if (key->Press('D')) { moveP.x = +1; front = 1;}
 
-		// 이동판별
+	// 방향판별
+	if (key->Press('W')) { moveP.y = +1; }
+	if (key->Press('A')) { moveP.x = -1; front = 0; }
+	if (key->Press('S')) { moveP.y = -1; }
+	if (key->Press('D')) { moveP.x = +1; front = 1; }
 
-		if(abs(moveP.x) || abs(moveP.y)){
-			if (front) { animator->SetCurrentAnimClip(L"RunR"); }
-			else { animator->SetCurrentAnimClip(L"RunL"); }
-			SetNormalize(moveP, speed, delta);
-		}
-		else {
-			if(front) { animator->SetCurrentAnimClip(L"IdleR"); }
-			else {animator->SetCurrentAnimClip(L"IdleL"); }
-		}
+	// 이동판별
 
-		// 이동 초기화
-		moveP = {0, 0};
+	if (abs(moveP.x) || abs(moveP.y)) {
+		if (front) { animator->SetCurrentAnimClip(L"RunR"); }
+		else { animator->SetCurrentAnimClip(L"RunL"); }
+		SetNormalize(moveP, speed, delta);
+	}
+	else {
+		if (front) { animator->SetCurrentAnimClip(L"IdleR"); }
+		else { animator->SetCurrentAnimClip(L"IdleL"); }
+	}
+
+	// 이동 초기화
+	moveP = { 0, 0 };
 }
-void Character_Demo::Attack(const float Attack_speed = 1, const float Attack_delay = 0)
+void Knight::Attack(const float Attack_speed = 1, const float Attack_delay = 0)
 {
 	auto delta = Time::Delta();
 	auto key = Keyboard::Get();
@@ -117,15 +117,15 @@ void Character_Demo::Attack(const float Attack_speed = 1, const float Attack_del
 		}
 	}
 
-	if(delay <= Attack_delay) { delay += delta;}
+	if (delay <= Attack_delay) { delay += delta; }
 
 	Sword->GetanimRect()->SetRotation(angle_attack);
 }
 
-void Character_Demo::Update()
+void Knight::Update()
 {
-	Attack(5, 1);
-	Move();
+	//Attack(5, 1);
+	//Move();
 	Follow(*Sword, 60, 1);
 
 	animator->Update();
@@ -139,7 +139,7 @@ void Character_Demo::Update()
 	}
 }
 
-void Character_Demo::Render()
+void Knight::Render()
 {
 	animRect->Render();
 	collision->Render();

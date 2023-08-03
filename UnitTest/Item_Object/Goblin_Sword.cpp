@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Sword.h"
+#include "Goblin_Sword.h"
 
 
 Goblin_Sword::Goblin_Sword(Vector3 position, Vector3 size, Character* Host)

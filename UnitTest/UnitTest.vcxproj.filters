@@ -18,7 +18,9 @@
     <ClInclude Include="Demos\02_Dmd_Texture_Demo.cpp.h" />
     <ClInclude Include="Demos\10_Game_Demo.h" />
     <ClInclude Include="Character\Character_Demo.h" />
-    <ClInclude Include="Item_Object\Sword.h" />
+    <ClInclude Include="Item_Object\Goblin_Sword.h" />
+    <ClInclude Include="Character\Knight.h" />
+    <ClInclude Include="Item_Object\Knight_Sword.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp" />
@@ -37,6 +39,8 @@
     <ClCompile Include="Demos\02_Dmd_Texture_Demo.cpp" />
     <ClCompile Include="Demos\10_Game_Demo.cpp" />
     <ClCompile Include="Character\Character_Demo.cpp" />
-    <ClCompile Include="Item_Object\Sword.cpp" />
+    <ClCompile Include="Item_Object\Goblin_Sword.cpp" />
+    <ClCompile Include="Character\Knight.cpp" />
+    <ClCompile Include="Item_Object\Knight_Sword.cpp" />
   </ItemGroup>
 </Project>

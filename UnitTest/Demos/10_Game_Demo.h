@@ -12,6 +12,7 @@ public:
 
 private:
 	class Character_Demo* tr = nullptr;
+	class Knight* kn = nullptr;
 
-	vector<class Character_Demo*> trs;
+	vector<class Character*> trs;
 };
