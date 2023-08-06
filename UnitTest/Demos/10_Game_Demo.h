@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Card/Card_Demo.h"
+#include "Game_Master/Battle_Master.h"
+
 class Game_Demo : public IObject
 {
 public:
@@ -11,8 +14,6 @@ public:
 	virtual void GUI() override;
 
 private:
-	class Character_Demo* tr = nullptr;
-	class Knight* kn = nullptr;
-
-	vector<class Character*> trs;
+	Card_Demo* cd = nullptr;
+	Battle_Master* ef = nullptr;
 };

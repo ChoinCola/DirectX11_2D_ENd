@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -148,8 +148,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Game_Master\Battle_Master.h" />
+    <ClInclude Include="Card\Card_Demo.h" />
     <ClInclude Include="Character\Character_Demo.h" />
     <ClInclude Include="Character\Player.h" />
+    <ClInclude Include="Game_Master\Character_Master.h" />
     <ClInclude Include="Demos\01_RectDemo.h" />
     <ClInclude Include="Demos\01_StarDemo.h" />
     <ClInclude Include="Demos\02_Dmd_Texture_Demo.cpp.h" />
@@ -165,13 +168,19 @@
     <ClInclude Include="Character\Knight.h" />
     <ClInclude Include="Item_Object\Knight_Sword.h" />
     <ClInclude Include="Program.h" />
+    <ClInclude Include="Game_Master\Shop.h" />
+    <ClInclude Include="UI\Ready_Ui.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Item_Object\Goblin_Sword.h" />
     <ClInclude Include="UI\HUD.h" />
+    <ClInclude Include="Game_Master\User_Hand.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game_Master\Battle_Master.cpp" />
+    <ClCompile Include="Card\Card_Demo.cpp" />
     <ClCompile Include="Character\Character_Demo.cpp" />
     <ClCompile Include="Character\Player.cpp" />
+    <ClCompile Include="Game_Master\Character_Master.cpp" />
     <ClCompile Include="Demos\01_RectDemo.cpp" />
     <ClCompile Include="Demos\01_StarDemo.cpp" />
     <ClCompile Include="Demos\02_TextureDemo.cpp" />
@@ -188,7 +197,10 @@
     <ClCompile Include="Item_Object\Knight_Sword.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Item_Object\Goblin_Sword.cpp" />
+    <ClCompile Include="Game_Master\Shop.cpp" />
+    <ClCompile Include="UI\Ready_Ui.cpp" />
     <ClCompile Include="UI\HUD.cpp" />
+    <ClCompile Include="Game_Master\User_Hand.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

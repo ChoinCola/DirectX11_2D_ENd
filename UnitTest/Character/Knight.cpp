@@ -42,7 +42,7 @@ Knight::Knight(Vector3 position, Vector3 size)
 	collision = new BoundingBox
 	(animRect->GetPosition(), animRect->GetSize(), animRect->GetRotation(), Color(1, 0, 0, .35f));
 
-	Sword = new Knight_Sword(position, Vector3(100, 100, 1), this);
+	hand = new Knight_Sword(position, Vector3(100, 100, 1), this);
 }
 
 Knight::~Knight()
@@ -94,10 +94,10 @@ void Knight::Attack(const float Attack_speed = 1, const float Attack_delay = 0)
 		if ((angle_attack >= 90 || angle_attack <= -90)) {
 
 			angle_attack = 0;
-			Sword->GetanimRect()->SetRotation(angle_attack);
+			hand->GetanimRect()->SetRotation(angle_attack);
 			Attack_now = false;
 			delay = 0;
-			D3DXMatrixTranslation(&Sword->GetanimRect()->GetCenterPoint(),
+			D3DXMatrixTranslation(&hand->GetanimRect()->GetCenterPoint(),
 				0,
 				0,
 				0);
@@ -109,9 +109,9 @@ void Knight::Attack(const float Attack_speed = 1, const float Attack_delay = 0)
 		else angle_attack += delta * 100 * Attack_speed;
 
 		{
-			D3DXMatrixTranslation(&Sword->GetanimRect()->GetCenterPoint(),
-				Sword->Getaniator()->GetTexelFrameSize().x * 30,
-				Sword->Getaniator()->GetTexelFrameSize().y * 30,
+			D3DXMatrixTranslation(&hand->GetanimRect()->GetCenterPoint(),
+				hand->Getaniator()->GetTexelFrameSize().x * 30,
+				hand->Getaniator()->GetTexelFrameSize().y * 30,
 				animRect->GetPosition().z);
 
 		}
@@ -119,18 +119,19 @@ void Knight::Attack(const float Attack_speed = 1, const float Attack_delay = 0)
 
 	if (delay <= Attack_delay) { delay += delta; }
 
-	Sword->GetanimRect()->SetRotation(angle_attack);
+	hand->GetanimRect()->SetRotation(angle_attack);
 }
 
 void Knight::Update()
 {
+	__super::Update();
 	//Attack(5, 1);
 	//Move();
-	Follow(*Sword, 60, 1);
+	Follow(*hand, 60, 1);
 
 	animator->Update();
 	animRect->Update();
-	Sword->Update();
+	hand->Update();
 
 	{
 		Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
@@ -143,5 +144,5 @@ void Knight::Render()
 {
 	animRect->Render();
 	collision->Render();
-	Sword->Render();
+	hand->Render();
 }

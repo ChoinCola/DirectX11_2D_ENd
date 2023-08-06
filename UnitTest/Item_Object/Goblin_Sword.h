@@ -12,9 +12,11 @@ public:
 	virtual void Update() override;
 	virtual void Render() override;
 
+	const Character* GetHost() { return Host; }
+
 private:
 
-	BoundingBox* collision = nullptr;
 	Character* Host = nullptr;
+
 	float Fspeed;
 };

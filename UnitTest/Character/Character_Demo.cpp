@@ -5,7 +5,6 @@
 Character_Demo::Character_Demo(Vector3 position, Vector3 size)
 	: Character(position, size) 
 {
-
 	#pragma region Start_Set
 	{
 		delay = 0;
@@ -13,6 +12,7 @@ Character_Demo::Character_Demo(Vector3 position, Vector3 size)
 	}
 	#pragma endregion
 	Attack_now = false;
+	dch = true;
 	Fspeed = 1.f/6.f;
 	animator = new Animator();
 	SetSpeed(200);
@@ -42,7 +42,7 @@ Character_Demo::Character_Demo(Vector3 position, Vector3 size)
 	collision = new BoundingBox
 	(animRect->GetPosition(), animRect->GetSize(), animRect->GetRotation(), Color(1, 0, 0, .35f));
 
-	Sword = new Goblin_Sword(position, Vector3(100, 100, 1), this);
+	hand = new Goblin_Sword(position, Vector3(100, 100, 1), this);
 }
 
 Character_Demo::~Character_Demo()
@@ -94,10 +94,11 @@ void Character_Demo::Attack(const float Attack_speed = 1, const float Attack_del
 		if ((angle_attack >= 90 || angle_attack <= -90)) {
 
 			angle_attack = 0;
-			Sword->GetanimRect()->SetRotation(angle_attack);
+			hand->GetanimRect()->SetRotation(angle_attack);
 			Attack_now = false;
 			delay = 0;
-			D3DXMatrixTranslation(&Sword->GetanimRect()->GetCenterPoint(),
+			dch = true;
+			D3DXMatrixTranslation(&hand->GetanimRect()->GetCenterPoint(),
 				0,
 				0,
 				0);
@@ -109,28 +110,30 @@ void Character_Demo::Attack(const float Attack_speed = 1, const float Attack_del
 		else angle_attack += delta * 100 * Attack_speed;
 
 		{
-			D3DXMatrixTranslation(&Sword->GetanimRect()->GetCenterPoint(),
-				Sword->Getaniator()->GetTexelFrameSize().x * 30,
-				Sword->Getaniator()->GetTexelFrameSize().y * 30,
+			D3DXMatrixTranslation(&hand->GetanimRect()->GetCenterPoint(),
+				hand->Getaniator()->GetTexelFrameSize().x * 30,
+				hand->Getaniator()->GetTexelFrameSize().y * 30,
 				animRect->GetPosition().z);
 
 		}
 	}
 
 	if(delay <= Attack_delay) { delay += delta;}
-
-	Sword->GetanimRect()->SetRotation(angle_attack);
+	
+	hand->GetanimRect()->SetRotation(angle_attack);
+	hand->
 }
 
 void Character_Demo::Update()
 {
+	__super::Update();
 	Attack(5, 1);
 	Move();
-	Follow(*Sword, 60, 1);
+	Follow(*hand, 60, 1);
 
 	animator->Update();
 	animRect->Update();
-	Sword->Update();
+	hand->Update();
 
 	{
 		Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
@@ -143,5 +146,5 @@ void Character_Demo::Render()
 {
 	animRect->Render();
 	collision->Render();
-	Sword->Render();
+	hand->Render();
 }

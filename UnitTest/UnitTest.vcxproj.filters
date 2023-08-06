@@ -21,6 +21,12 @@
     <ClInclude Include="Item_Object\Goblin_Sword.h" />
     <ClInclude Include="Character\Knight.h" />
     <ClInclude Include="Item_Object\Knight_Sword.h" />
+    <ClInclude Include="Game_Master\Character_Master.h" />
+    <ClInclude Include="Card\Card_Demo.h" />
+    <ClInclude Include="Game_Master\User_Hand.h" />
+    <ClInclude Include="Game_Master\Battle_Master.h" />
+    <ClInclude Include="Game_Master\Shop.h" />
+    <ClInclude Include="UI\Ready_Ui.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp" />
@@ -42,5 +48,11 @@
     <ClCompile Include="Item_Object\Goblin_Sword.cpp" />
     <ClCompile Include="Character\Knight.cpp" />
     <ClCompile Include="Item_Object\Knight_Sword.cpp" />
+    <ClCompile Include="Game_Master\Character_Master.cpp" />
+    <ClCompile Include="Card\Card_Demo.cpp" />
+    <ClCompile Include="Game_Master\User_Hand.cpp" />
+    <ClCompile Include="Game_Master\Battle_Master.cpp" />
+    <ClCompile Include="Game_Master\Shop.cpp" />
+    <ClCompile Include="UI\Ready_Ui.cpp" />
   </ItemGroup>
 </Project>

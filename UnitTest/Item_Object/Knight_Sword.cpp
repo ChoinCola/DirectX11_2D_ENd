@@ -3,7 +3,7 @@
 
 
 Knight_Sword::Knight_Sword(Vector3 position, Vector3 size, Character* Host)
-	: Item(position, size), Host(Host)
+	: Item(position, size, 15), Host(Host)
 {
 	Fspeed = 1;
 	animator = new Animator();
@@ -38,7 +38,9 @@ void Knight_Sword::Update()
 
 	Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
 	Vector3 position = animRect->GetPosition() + Vector3(100, 0, 0);
-	collision->Update(position, size, 0.f);
+	float Rotation = animRect->GetRotation();
+
+	collision->Update(position, size, Rotation);
 }
 
 

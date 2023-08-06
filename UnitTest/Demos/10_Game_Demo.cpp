@@ -1,33 +1,29 @@
 #include "stdafx.h"
 #include "10_Game_Demo.h"
 
-#include "Character/Character_Demo.h"
-#include "Character/Knight.h"
+
 
 void Game_Demo::Init()
 {
-	tr = new Character_Demo(Vector3(640, 360, 0), Vector3(100, 100, 1));
-	kn = new Knight(Vector3(640, 360, 0), Vector3(100, 100, 1));
+	ef = new Battle_Master();
+	cd = new Card_Demo();
 }
 
 void Game_Demo::Destroy()
 {
-	SAFE_DELETE(tr);
-	SAFE_DELETE(kn);
+
 
 }
 
 void Game_Demo::Update()
 {
-	tr->Update();
-	kn->Update();
-
+	cd->Update();
+	ef->Update();
 }
 
 void Game_Demo::Render()
 {
-	tr->Render();
-	kn->Render();
+	cd->Render();
 }
 
 void Game_Demo::PostRender()

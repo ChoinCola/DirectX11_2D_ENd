@@ -17,6 +17,11 @@ Character::~Character()
 	SAFE_DELETE(animator);
 }
 
+void Character::Update()
+{
+	Damage_Chack();
+}
+
 void Character::SetSpeed(const float speed)
 {
 	this->speed = speed;
@@ -30,6 +35,19 @@ auto Character::GetmoveP()
 auto Character::Getspeed() -> float
 {
 	return speed;
+}
+
+void Character::Damage_Chack()
+{
+	if (hit_calculation != nullptr)
+	{
+		for (auto def : *hit_calculation)
+		{
+			HP -= def->GetDamage();
+			hit_calculation->pop_front();
+			
+		}
+	}
 }
 
 void Character::Follow(Item &st, const float xsk, const float ysk)

@@ -14,10 +14,9 @@ public:
 	void Move();
 	void Attack(const float Attack_speed, const float Attack_delay);
 
+
 private:
 	void SetNormalize(D3DXVECTOR2 &move, const int speed, const float delta);
-	Goblin_Sword* Sword = nullptr;
-	BoundingBox* collision = nullptr;
 
 	bool Attack_now = false;
 	float Fspeed;
