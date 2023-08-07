@@ -121,7 +121,6 @@ void Character_Demo::Attack(const float Attack_speed = 1, const float Attack_del
 	if(delay <= Attack_delay) { delay += delta;}
 	
 	hand->GetanimRect()->SetRotation(angle_attack);
-	hand->
 }
 
 void Character_Demo::Update()
