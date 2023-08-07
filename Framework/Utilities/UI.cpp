@@ -12,6 +12,11 @@ UI::~UI()
 	SAFE_DELETE(vb);
 }
 
+void UI::Update(Vector3 HostPos)
+{
+	UpdatePosition(HostPos);
+	UpdateWorld();
+}
 void UI::Update()
 {
 	UpdatePosition();
@@ -229,5 +234,12 @@ void UI::UpdateWorld()
 void UI::UpdatePosition()
 {
 	Vector3 centerPos = Camera::Get()->GetPosition() + Vector3(WinMaxWidth / 2, WinMaxHeight / 2, 0.0f);
+	position = centerPos + originPosition;
+}
+
+void UI::UpdatePosition(Vector3 HostPos)
+{
+	//Vector3 centerPos = Camera::Get()->GetPosition() + Vector3(WinMaxWidth / 2, WinMaxHeight / 2, 0.0f);
+	Vector3 centerPos = HostPos;
 	position = centerPos + originPosition;
 }

@@ -15,6 +15,7 @@ public:
 public:
 	virtual ~UI();
 
+	virtual void Update(Vector3 HostPos);
 	virtual void Update();
 	virtual void Render();
 
@@ -34,6 +35,7 @@ private:
 	void SetVertices(vector<T>& vertices, FillType type);
 
 	void UpdateWorld();
+	void UpdatePosition(Vector3 HostPos);
 	void UpdatePosition();
 
 protected:

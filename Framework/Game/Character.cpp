@@ -1,25 +1,41 @@
 #include "Framework.h"
 #include "Character.h"
 
+
 Character::Character(Vector3 position, Vector3 size)
-	:	front(0) , moveP({0, 0}), speed(100), damage(10), HP(100)
+	:	front(0) , moveP({0, 0}), speed(100), HP(100)
 {
 	front = 0;
 	moveP = {0, 0};
 	speed = 100;
 	animRect = new AnimationRect(position, size);
 	animator = new Animator();
+	HPbar();
+	HPdefault = HP;
 }
 
 Character::~Character()
 {
 	SAFE_DELETE(animRect);
 	SAFE_DELETE(animator);
+	SAFE_DELETE(HPBar);
 }
 
 void Character::Update()
 {
 	Damage_Chack();
+
+	{
+		HPBar->UpdateProgressBar(HPdefault / HP);
+		HPBar->Update(animRect->GetPosition());
+	}
+	
+	if(HP <= 0) { this->~Character(); }
+}
+
+void Character::Render()
+{
+	HPBar->Render();
 }
 
 void Character::SetSpeed(const float speed)
@@ -70,4 +86,14 @@ void Character::Follow(Item &st, const float xsk, const float ysk)
 	(animRect->GetPosition().x - xsk,
 		animRect->GetPosition().y + (sin(my) * ysk));
 	}
+}
+
+void Character::HPbar()
+{
+	Vector3 HPposition = animRect->GetPosition();
+	HPposition.y += 10;
+	
+	HPBar = new ProgressBar({-50, (animRect->GetSize().y/2) + 20, 0},
+	{ animRect->GetSize().x , (animRect->GetSize().y / 5), 0 }, 
+	0.0f, D3DXCOLOR(255, 0, 0, 1), UI::LEFT_TO_RIGHT);
 }

@@ -91,6 +91,8 @@ void Character_Demo::Attack(const float Attack_speed = 1, const float Attack_del
 
 	if (Attack_now == true || (key->Press('F') && delay >= Attack_delay)) {
 		Attack_now = true;
+		hand->Setphysical(1);
+
 		if ((angle_attack >= 90 || angle_attack <= -90)) {
 
 			angle_attack = 0;
@@ -117,8 +119,9 @@ void Character_Demo::Attack(const float Attack_speed = 1, const float Attack_del
 
 		}
 	}
+	else { hand->Setphysical(0); }
 
-	if(delay <= Attack_delay) { delay += delta;}
+	if(delay <= Attack_delay) { delay += delta; }
 	
 	hand->GetanimRect()->SetRotation(angle_attack);
 }
@@ -143,7 +146,9 @@ void Character_Demo::Update()
 
 void Character_Demo::Render()
 {
+
 	animRect->Render();
 	collision->Render();
 	hand->Render();
+	__super::Render();
 }

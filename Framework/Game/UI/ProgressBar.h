@@ -36,6 +36,7 @@ public:
 	ProgressBar(Vector3 position, Vector3 size, float rotation, FillType type = NONE);
 	virtual ~ProgressBar() override;
 
+	virtual void Update(Vector3 HostPos) override;
 	virtual void Update() override;
 	virtual void Render() override;
 

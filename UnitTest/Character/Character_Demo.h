@@ -22,6 +22,6 @@ private:
 	float Fspeed;
 
 	float delay;
-	double angle_attack;
+	float angle_attack;
 
 };

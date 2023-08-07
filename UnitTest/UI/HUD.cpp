@@ -7,7 +7,7 @@ HUD::HUD()
 {
 	float width = -WinMaxWidth / 2 + 30;
 	float height = WinMaxHeight / 2 - 30;
-	HPBar = new ProgressBar({ 0, 0, 0 }, { 500, 500, 1 }, 0.0f, TexturePath + L"jelda.png", UI::DOWN_TO_UP);
+	HPBar = new ProgressBar({ 0, 0, 0 }, { 500, 500, 1 }, 0.0f, Color(255,0,0,1), UI::DOWN_TO_UP);
 }
 
 HUD::~HUD()

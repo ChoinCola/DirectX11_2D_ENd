@@ -26,6 +26,14 @@ ProgressBar::~ProgressBar()
 	SAFE_DELETE(pb);
 }
 
+void ProgressBar::Update(Vector3 HostPos)
+{
+	if (pb)
+		pb->UpdateProgressPercent(percent);
+
+	UI::Update(HostPos);
+}
+
 void ProgressBar::Update()
 {
 	if (pb)
@@ -45,7 +53,7 @@ void ProgressBar::Render()
 void ProgressBar::UpdateProgressBar(float percent)
 {
 	this->percent = percent;
-	cout << String::ToString(size) << endl;
+	//cout << String::ToString(size) << endl;
 
 	if (pb)
 		return;

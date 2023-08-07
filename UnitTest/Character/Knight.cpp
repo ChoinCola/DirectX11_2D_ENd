@@ -142,6 +142,7 @@ void Knight::Update()
 
 void Knight::Render()
 {
+	HPBar->Render();
 	animRect->Render();
 	collision->Render();
 	hand->Render();
