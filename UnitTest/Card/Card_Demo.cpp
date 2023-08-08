@@ -3,36 +3,45 @@
 
 Card_Demo::Card_Demo()
 {
-	tr = new Character_Demo(Vector3(640, 360, 0), Vector3(100, 100, 1));
-	kn = new Knight(Vector3(640, 360, 0), Vector3(100, 100, 1));
-	Insert_Vector();
+	Card_Unit.push_back(new Character_Demo(Vector3(640, 360, 0), Vector3(90, 100, 1)));
+	Card_Unit.push_back(new Knight(Vector3(640, 500, 0), Vector3(90, 100, 1)));
 
+	//unit1 = new Character_Demo(Vector3(640, 360, 0), Vector3(90, 100, 1));
+	//unit2 = new Knight(Vector3(640, 500, 0), Vector3(90, 100, 1));
+
+	Insert_Vector();
 }
 
 Card_Demo::~Card_Demo()
 {
-	SAFE_DELETE(tr);
-	SAFE_DELETE(kn);
+	for (auto def : Card_Unit) {
+		SAFE_DELETE(def);
+	}
+	SAFE_DELETE(unit1);
+	SAFE_DELETE(unit2);
 }
 
 void Card_Demo::Update()
 {
-	tr->Update();
-	kn->Update();
+	//unit1->Update();
+	//unit2->Update();
 }
 
 void Card_Demo::Render()
 {
-	tr->Render();
-	kn->Render();
+	//for (auto& def : Card_Unit) {
+	//	def->Render();
+	//}
+
+	//unit1->Render();
+	//unit2->Render();
 }
 
 void Card_Demo::Insert_Vector()
 {
-	Character_list->Get()->push_back(tr);
-	Character_list->Get()->push_back(kn);
-
-	Item_list->Get()->push_back(tr->GetItem());
-	Item_list->Get()->push_back(kn->GetItem());
+	for (auto def : Card_Unit) {
+		Character_list.Get()->push_back(def);
+		Item_list.Get()->push_back(def->GetItem());
+	}
 }
 

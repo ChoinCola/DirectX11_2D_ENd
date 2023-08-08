@@ -11,7 +11,7 @@ class Character
 {
 
 public:
-	Character(Vector3 position, Vector3 size);
+	Character(Vector3 position, Vector3 size, std::wstring Character_Name = L"UnFound");
 	virtual ~Character();
 
 	virtual void Update();
@@ -23,11 +23,13 @@ public:
 	void SetSpeed(const float speed);
 	auto GetmoveP();
 	auto Getspeed()->float;
+	auto GetHP() { return HP; }
 	Item* GetItem() { return hand; }
+	const std::wstring GetName() { return Character_Name; }
 	BoundingBox& Getcollision() { return *collision; }
 
-	std::list<Item*>* Get_hit_calculation() { return hit_calculation;}
-	void Push_Damage(Item* damage) { hit_calculation->push_back(damage); }
+	std::list<Item*>& Get_hit_calculation() { return hit_calculation; }
+	void Push_Damage(Item* damage) { hit_calculation.push_back(damage); }
 
 protected:
 	float damage; // °ø°Ý·Â
@@ -37,19 +39,17 @@ protected:
 	float speed = NULL;
 	int front;
 
-	std::list<Item*>* hit_calculation = nullptr;
+	std::list<Item*> hit_calculation;
 
 	D3DXVECTOR2 moveP;
 
 	AnimationRect* animRect = nullptr;
 	Animator* animator = nullptr;
-
 	BoundingBox* collision = nullptr;
-
 	ProgressBar* HPBar = nullptr;
-
 	Item* hand = nullptr;
 
+	std::wstring Character_Name;
 private:
 	void HPbar();
 

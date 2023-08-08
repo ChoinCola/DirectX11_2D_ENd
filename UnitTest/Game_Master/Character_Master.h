@@ -5,22 +5,19 @@
 #include "Game/Item.h"
 #include "math.h"
 
-class Character_Master 
+class Character_Master
 {
 public:
 	Character_Master();
 	~Character_Master();
 
-	void Update();
-	void Render();
+	virtual void Update();
+	virtual void Render();
 	void Chack_Collision();
-
-	BoundingBox& Getcollision() { return *collision; }
+	void Chack_HP();
 
 protected:
 
-	SingletonBase<std::vector<Character*>>* Character_list;
-	SingletonBase<std::vector<Item*>>* Item_list;
-
-	BoundingBox* collision = nullptr;
+	SingletonBase<std::list<Character*>> Character_list;
+	SingletonBase<std::list<Item*>> Item_list;
 };

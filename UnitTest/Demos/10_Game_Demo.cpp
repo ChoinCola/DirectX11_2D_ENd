@@ -5,8 +5,9 @@
 
 void Game_Demo::Init()
 {
-	ef = new Battle_Master();
 	cd = new Card_Demo();
+	ef = new Battle_Master();
+
 }
 
 void Game_Demo::Destroy()
@@ -17,13 +18,14 @@ void Game_Demo::Destroy()
 
 void Game_Demo::Update()
 {
-	cd->Update();
+	//cd->Update();
 	ef->Update();
 }
 
 void Game_Demo::Render()
 {
-	cd->Render();
+	//cd->Render();
+	ef->Render();
 }
 
 void Game_Demo::PostRender()

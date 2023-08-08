@@ -47,7 +47,7 @@ void BoundingBox::Init()
 	wb = new WorldBuffer();
 
 	cb = new CollisionBuffer();
-	
+
 	D3D11_BLEND_DESC desc;
 	States::GetBlendDesc(&desc);
 	desc.RenderTarget[0].BlendEnable = true;
@@ -66,7 +66,46 @@ void BoundingBox::Update(Vector3 position, Vector3 size, float rotation)
 		DXMath::Translation(position);
 
 	wb->SetWorld(world);
-	
+
+	if (Keyboard::Get()->Down(VK_F1))
+		cb->SwitchRender();
+
+	UpdateCollisionData();
+}
+void BoundingBox::Update(Vector3 position, Vector3 size, float rotation, D3DXMATRIX CenterPoint)
+{
+	this->size = size;
+	this->rotation = rotation;
+	this->position = position;
+
+	world =
+		DXMath::Scaling(size) *
+		CenterPoint *
+		DXMath::RotationInDegree(rotation) *
+		DXMath::Translation(position);
+
+	wb->SetWorld(world);
+
+	if (Keyboard::Get()->Down(VK_F1))
+		cb->SwitchRender();
+
+	UpdateCollisionData();
+}
+
+void BoundingBox::Update(Vector3 position, Vector3 size, float rotation, Vector3 CenterPoint)
+{
+	this->size = size;
+	this->rotation = rotation;
+	this->position = position;
+	this->CenterPoint = CenterPoint;
+	world =
+		DXMath::Scaling(size) *
+		DXMath::Translation(CenterPoint) *
+		DXMath::RotationInDegree(rotation) *
+		DXMath::Translation(position);
+
+	wb->SetWorld(world);
+
 	if (Keyboard::Get()->Down(VK_F1))
 		cb->SwitchRender();
 
@@ -99,7 +138,7 @@ void BoundingBox::UpdateCollisionData()
 		D3DXVec3TransformCoord(&edge->RT, &vertices[1].position, &world);
 		D3DXVec3TransformCoord(&edge->RB, &vertices[2].position, &world);
 	}
-	
+
 	// OBB
 	{
 		// Center Position Vector Update
@@ -110,7 +149,7 @@ void BoundingBox::UpdateCollisionData()
 
 			data->centerPos = Vector3(x, y, z);
 		}
-		
+
 		// Axis Vector Update
 		{
 			D3DXVec3TransformNormal(&data->axisDir[x], &Values::RightVec, &world); // world에 돌아간 만큼 방향 벡터를 저장하게 된다.
@@ -172,7 +211,7 @@ bool BoundingBox::OBB(BoundingBox* a, BoundingBox* b)
 
 	Vector3 centerDir, axis;
 	float centerProjDist, r1, r2;
-	
+
 	centerDir = ad.centerPos - bd.centerPos;
 
 	// a Rect : X axis
@@ -183,7 +222,7 @@ bool BoundingBox::OBB(BoundingBox* a, BoundingBox* b)
 
 		r1 = ad.axisLen[x];
 		r2 = abs(D3DXVec3Dot(&bd.axisDir[x], &axis) * bd.axisLen[x]) +
-			 abs(D3DXVec3Dot(&bd.axisDir[y], &axis) * bd.axisLen[y]);
+			abs(D3DXVec3Dot(&bd.axisDir[y], &axis) * bd.axisLen[y]);
 
 		if (centerProjDist > r1 + r2)
 			return false;
@@ -197,7 +236,7 @@ bool BoundingBox::OBB(BoundingBox* a, BoundingBox* b)
 
 		r1 = ad.axisLen[y];
 		r2 = abs(D3DXVec3Dot(&bd.axisDir[x], &axis) * bd.axisLen[x]) +
-			 abs(D3DXVec3Dot(&bd.axisDir[y], &axis) * bd.axisLen[y]);
+			abs(D3DXVec3Dot(&bd.axisDir[y], &axis) * bd.axisLen[y]);
 
 		if (centerProjDist > r1 + r2)
 			return false;
@@ -211,7 +250,7 @@ bool BoundingBox::OBB(BoundingBox* a, BoundingBox* b)
 
 		r1 = bd.axisLen[x];
 		r2 = abs(D3DXVec3Dot(&ad.axisDir[x], &axis) * ad.axisLen[x]) +
-			 abs(D3DXVec3Dot(&ad.axisDir[y], &axis) * ad.axisLen[y]);
+			abs(D3DXVec3Dot(&ad.axisDir[y], &axis) * ad.axisLen[y]);
 
 		if (centerProjDist > r1 + r2)
 			return false;
@@ -225,7 +264,7 @@ bool BoundingBox::OBB(BoundingBox* a, BoundingBox* b)
 
 		r1 = bd.axisLen[y];
 		r2 = abs(D3DXVec3Dot(&ad.axisDir[x], &axis) * ad.axisLen[x]) +
-			 abs(D3DXVec3Dot(&ad.axisDir[y], &axis) * ad.axisLen[y]);
+			abs(D3DXVec3Dot(&ad.axisDir[y], &axis) * ad.axisLen[y]);
 
 		if (centerProjDist > r1 + r2)
 			return false;

@@ -18,8 +18,9 @@ public:
 	void Insert_Vector();
 
 private:
-	Character* tr = nullptr;
-	Character* kn = nullptr;
-	
+	std::vector<Character*> Card_Unit;
+
+	Character_Demo* unit1 = nullptr;
+	Knight* unit2 = nullptr;
 };
 

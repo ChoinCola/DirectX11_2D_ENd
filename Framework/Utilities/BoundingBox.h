@@ -50,12 +50,16 @@ public:
 	void Init();
 
 	void Update(Vector3 position, Vector3 size, float rotation);
+	void Update(Vector3 position, Vector3 size, float rotation, Vector3 CenterPoint);
+	void Update(Vector3 position, Vector3 size, float rotation, D3DXMATRIX CenterPoint);
 	void Render(); // 충돌체 그리는거 보여주기 위해 Render를 넣었다.
+
+	Vector3 GetPosition() { return position; }
 
 	void UpdateCollisionData(); // OBB와 AABB와 마찬가지로 케릭터의 움직임 좌표를 업데이트 해주는 역할을 한다.
 
 	static bool AABB(BoundingBox* a, BoundingBox* b);
-	static bool OBB (BoundingBox* a, BoundingBox* b); // 각각 OBB나 AABB의 충돌처리를 가져오기 위해 사용한다.
+	static bool OBB(BoundingBox* a, BoundingBox* b); // 각각 OBB나 AABB의 충돌처리를 가져오기 위해 사용한다.
 
 private:
 	vector<VertexColor> vertices;
@@ -72,6 +76,7 @@ private:
 	Matrix world;
 	WorldBuffer* wb = nullptr;
 
+	Vector3 CenterPoint;
 	Vector3 position;
 	Vector3 size;
 	float rotation;

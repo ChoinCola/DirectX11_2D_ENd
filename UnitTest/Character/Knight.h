@@ -17,12 +17,12 @@ public:
 
 private:
 	void SetNormalize(D3DXVECTOR2& move, const int speed, const float delta);
-	BoundingBox* collision = nullptr;
 
 	bool Attack_now = false;
 	float Fspeed;
 
 	float delay;
 	double angle_attack;
+
 
 };

@@ -3,11 +3,12 @@
 
 
 Knight_Sword::Knight_Sword(Vector3 position, Vector3 size, Character* Host)
-	: Item(position, size, 15), Host(Host)
+	: Item(position, size), Host(Host)
 {
+	Mass = 15;
 	Fspeed = 1;
 	animator = new Animator();
-
+	Item_Name = L"Knight_Sword";
 #pragma region Animation
 	{
 		Texture2D* idle = new Texture2D(LItem + L"weapon_sword.png");
@@ -35,12 +36,8 @@ Knight_Sword::~Knight_Sword()
 void Knight_Sword::Update()
 {
 	animRect->Update();
-
-	Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
-	Vector3 position = animRect->GetPosition() + Vector3(100, 0, 0);
-	float Rotation = animRect->GetRotation();
-
-	collision->Update(position, size, Rotation);
+	collision->Update(animRect->GetPosition(), animRect->GetSize(),
+		animRect->GetRotation(), animRect->GetCenterPoint());
 }
 
 

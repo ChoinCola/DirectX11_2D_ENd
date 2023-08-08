@@ -3,11 +3,12 @@
 
 
 Goblin_Sword::Goblin_Sword(Vector3 position, Vector3 size, Character* Host)
-	: Item(position, size, 10), Host(Host)
+	: Item(position, size), Host(Host)
 {
+	Mass = 10;
 	Fspeed = 1;
 	animator = new Animator();
-
+	Item_Name = L"Goblin_Sword";
 #pragma region Animation
 	{
 		Texture2D* idle = new Texture2D(LItem + L"goblin_knife.png");
@@ -37,14 +38,9 @@ Goblin_Sword::~Goblin_Sword()
 void Goblin_Sword::Update()
 {
 	animRect->Update();
-
-	Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
-	Vector3 position = animRect->GetPosition() + Vector3(100, 0, 0);
-	float Rotation = animRect->GetRotation();
-
-	collision->Update(position, size, Rotation);
+	collision->Update(animRect->GetPosition(), animRect->GetSize(),
+		animRect->GetRotation(), animRect->GetCenterPoint());
 }
-
 
 void Goblin_Sword::Render()
 {

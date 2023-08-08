@@ -16,7 +16,7 @@ public:
 
 
 private:
-	void SetNormalize(D3DXVECTOR2 &move, const int speed, const float delta);
+	void SetNormalize(D3DXVECTOR2& move, const int speed, const float delta);
 
 	bool Attack_now = false;
 	float Fspeed;

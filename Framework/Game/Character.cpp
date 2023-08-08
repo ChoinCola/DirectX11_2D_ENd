@@ -2,11 +2,11 @@
 #include "Character.h"
 
 
-Character::Character(Vector3 position, Vector3 size)
-	:	front(0) , moveP({0, 0}), speed(100), HP(100)
+Character::Character(Vector3 position, Vector3 size, std::wstring Character_Name)
+	: front(0), moveP({ 0, 0 }), speed(100), HP(100)
 {
 	front = 0;
-	moveP = {0, 0};
+	moveP = { 0, 0 };
 	speed = 100;
 	animRect = new AnimationRect(position, size);
 	animator = new Animator();
@@ -16,9 +16,11 @@ Character::Character(Vector3 position, Vector3 size)
 
 Character::~Character()
 {
+	SAFE_DELETE(collision);
 	SAFE_DELETE(animRect);
 	SAFE_DELETE(animator);
 	SAFE_DELETE(HPBar);
+	SAFE_DELETE(hand);
 }
 
 void Character::Update()
@@ -26,11 +28,9 @@ void Character::Update()
 	Damage_Chack();
 
 	{
-		HPBar->UpdateProgressBar(HPdefault / HP);
+		HPBar->UpdateProgressBar(HP / HPdefault);
 		HPBar->Update(animRect->GetPosition());
 	}
-	
-	if(HP <= 0) { this->~Character(); }
 }
 
 void Character::Render()
@@ -55,18 +55,30 @@ auto Character::Getspeed() -> float
 
 void Character::Damage_Chack()
 {
-	if (hit_calculation != nullptr)
+	if (!hit_calculation.empty())
 	{
-		for (auto def : *hit_calculation)
+		for (auto def = hit_calculation.begin();
+			def != hit_calculation.end();)
 		{
-			HP -= def->GetDamage();
-			hit_calculation->pop_front();
-			
+			if ((*def)->Getphysical() == 0)
+			{
+				HP -= (*def)->GetDamage();
+				cout << String::ToString(GetName()) <<
+					" IS HIT" << endl;
+
+				cout << String::ToString(L"Damage!") <<
+					(*def)->GetDamage() << endl;
+
+				cout << HP << endl;
+
+				def = hit_calculation.erase(def);
+			}
+			else { ++def; }
 		}
 	}
 }
 
-void Character::Follow(Item &st, const float xsk, const float ysk)
+void Character::Follow(Item& st, const float xsk, const float ysk)
 {
 	auto delta = Time::Delta();
 	static double my = 0;
@@ -74,17 +86,17 @@ void Character::Follow(Item &st, const float xsk, const float ysk)
 	if (my >= 360) my = 0;
 	else my += (1 * delta) * 10;
 
-	if (front) { 
-	st.Getaniator()->SetCurrentAnimClip(L"IdleR"); 
-	st.GetanimRect()->SetPosition
-	(animRect->GetPosition().x + xsk,
-		animRect->GetPosition().y + (sin(my) * ysk));
+	if (front) {
+		st.Getaniator()->SetCurrentAnimClip(L"IdleR");
+		st.GetanimRect()->SetPosition
+		(animRect->GetPosition().x + xsk,
+			animRect->GetPosition().y + (sin(my) * ysk));
 	}
-	else { 
-	st.Getaniator()->SetCurrentAnimClip(L"IdleL"); 
-	st.GetanimRect()->SetPosition
-	(animRect->GetPosition().x - xsk,
-		animRect->GetPosition().y + (sin(my) * ysk));
+	else {
+		st.Getaniator()->SetCurrentAnimClip(L"IdleL");
+		st.GetanimRect()->SetPosition
+		(animRect->GetPosition().x - xsk,
+			animRect->GetPosition().y + (sin(my) * ysk));
 	}
 }
 
@@ -92,8 +104,8 @@ void Character::HPbar()
 {
 	Vector3 HPposition = animRect->GetPosition();
 	HPposition.y += 10;
-	
-	HPBar = new ProgressBar({-50, (animRect->GetSize().y/2) + 20, 0},
-	{ animRect->GetSize().x , (animRect->GetSize().y / 5), 0 }, 
-	0.0f, D3DXCOLOR(255, 0, 0, 1), UI::LEFT_TO_RIGHT);
+
+	HPBar = new ProgressBar({ -50, (animRect->GetSize().y / 2) + 20, 0 },
+		{ animRect->GetSize().x , (animRect->GetSize().y / 5), 0 },
+		0.0f, D3DXCOLOR(255, 0, 0, 1), UI::LEFT_TO_RIGHT);
 }

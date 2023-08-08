@@ -3,5 +3,5 @@
 
 void Battle_Master::Update()
 {
-	__super::Chack_Collision();
+	__super::Update();
 }

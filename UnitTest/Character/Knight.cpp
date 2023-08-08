@@ -10,6 +10,7 @@ Knight::Knight(Vector3 position, Vector3 size)
 	{
 		delay = 0;
 		angle_attack = 0;
+		Character_Name = L"Knight";
 	}
 #pragma endregion
 	Attack_now = false;
@@ -42,7 +43,7 @@ Knight::Knight(Vector3 position, Vector3 size)
 	collision = new BoundingBox
 	(animRect->GetPosition(), animRect->GetSize(), animRect->GetRotation(), Color(1, 0, 0, .35f));
 
-	hand = new Knight_Sword(position, Vector3(100, 100, 1), this);
+	hand = new Knight_Sword(position, Vector3(80, 80, 1), this);
 }
 
 Knight::~Knight()
@@ -91,6 +92,7 @@ void Knight::Attack(const float Attack_speed = 1, const float Attack_delay = 0)
 
 	if (Attack_now == true || (key->Press('F') && delay >= Attack_delay)) {
 		Attack_now = true;
+		hand->Setphysical(1);
 		if ((angle_attack >= 90 || angle_attack <= -90)) {
 
 			angle_attack = 0;
@@ -116,6 +118,7 @@ void Knight::Attack(const float Attack_speed = 1, const float Attack_delay = 0)
 
 		}
 	}
+	else { hand->Setphysical(0); }
 
 	if (delay <= Attack_delay) { delay += delta; }
 
@@ -134,9 +137,7 @@ void Knight::Update()
 	hand->Update();
 
 	{
-		Vector3 size = animRect->GetSize() + Vector3(0, 150, 0);
-		Vector3 position = animRect->GetPosition() + Vector3(100, 0, 0);
-		collision->Update(position, size, 0.f);
+		collision->Update(animRect->GetPosition(), animRect->GetSize(), 0.f);
 	}
 }
 

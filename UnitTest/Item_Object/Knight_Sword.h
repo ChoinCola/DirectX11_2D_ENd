@@ -14,7 +14,6 @@ public:
 
 private:
 
-	BoundingBox* collision = nullptr;
 	Character* Host = nullptr;
 	float Fspeed;
 };
