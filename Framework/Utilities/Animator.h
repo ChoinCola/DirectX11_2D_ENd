@@ -7,7 +7,8 @@ public:
 
 	AnimationClip
 	(wstring clipName, Texture2D* srcTex, UINT frameCount, Vector2 startPos, Vector2 endPos, bool bReversed = false, float playRate = 1.f / 15.f);
-
+	AnimationClip
+	(wstring clipName, Texture2D* srcTex, UINT frameCount, std::vector<Vector2> Pos, bool bReversed, float playRate);
 protected:
 	wstring clipName = L"";
 	vector<Vector2> keyFrames;

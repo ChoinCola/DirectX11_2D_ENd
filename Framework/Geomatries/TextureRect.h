@@ -14,6 +14,7 @@ public:
 	void SetShader(wstring shaderpath);
 
 	void Update();
+	void Update(Vector3 position);
 	void UpdateWorld();
 
 	void Render();
@@ -26,9 +27,11 @@ public:
 	const Vector3 GetSize() { return size; }
 	const float GetRotation() { return rotation; }
 	const Vector3 GetPosition() { return position; }
+	ID3D11ShaderResourceView* GetSRV() { return srv; }
 	D3DXMATRIX& GetCenterPoint() { return X; }
 
 	void SetPosition(const float x, const float y, const float z = 0) { position.y = y; position.x = x; position.z = z;}
+	void SetPosition(const Vector3 def) { position = def; }
 	void SetRotation(const float rotation) { this->rotation = rotation; }
 
 protected:

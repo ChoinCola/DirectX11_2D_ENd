@@ -172,6 +172,12 @@ void TextureRect::Update()
 	UpdateWorld();
 }
 
+void TextureRect::Update(Vector3 position)
+{
+	this->position = position;
+	UpdateWorld();
+}
+
 
 void TextureRect::UpdateWorld()
 {

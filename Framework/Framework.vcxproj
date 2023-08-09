@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Button.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="Game\Character.cpp" />
     <ClCompile Include="Game\UI\ProgressBar.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="Geomatries\Tile\TileMap.cpp" />
     <ClCompile Include="Geomatries\Tile\TileSet.cpp" />
     <ClCompile Include="Game\Item.cpp" />
+    <ClCompile Include="Game\MousePointer.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
     <ClCompile Include="Renders\IA\InputLayout.cpp" />
     <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
@@ -198,6 +200,7 @@
     <ClCompile Include="Utilities\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Button.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Game\Character.h" />
     <ClInclude Include="Game\UI\ProgressBar.h" />
@@ -213,6 +216,7 @@
     <ClInclude Include="Geomatries\Tile\TileSet.h" />
     <ClInclude Include="Interfaces\IObject.h" />
     <ClInclude Include="Game\Item.h" />
+    <ClInclude Include="Game\MousePointer.h" />
     <ClInclude Include="Renders\IA\IndexBuffer.h" />
     <ClInclude Include="Renders\IA\InputLayout.h" />
     <ClInclude Include="Renders\IA\VertexBuffer.h" />

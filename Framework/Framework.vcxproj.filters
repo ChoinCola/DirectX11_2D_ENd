@@ -42,6 +42,8 @@
     <ClCompile Include="Geomatries\Star.cpp" />
     <ClCompile Include="Geomatries\Dmd.cpp" />
     <ClCompile Include="Game\Item.cpp" />
+    <ClCompile Include="Game\Button.cpp" />
+    <ClCompile Include="Game\MousePointer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Systems\Graphics.h" />
@@ -89,5 +91,7 @@
     <ClInclude Include="Geomatries\Star.h" />
     <ClInclude Include="Geomatries\Dmd.h" />
     <ClInclude Include="Game\Item.h" />
+    <ClInclude Include="Game\Button.h" />
+    <ClInclude Include="Game\MousePointer.h" />
   </ItemGroup>
 </Project>

@@ -110,6 +110,8 @@ typedef UINT		uint;
 #define WinMaxWidth 1280
 #define WinMaxHeight 720
 
+const wstring LUI = L"../Framework/GameAsset/UI/";
+const wstring LButton = L"../Framework/GameAsset/UI/button/";
 const wstring HPPath = L"../Framework/GameAsset/UI/HP/";
 const wstring ShaderPath  = L"../_Shaders/";
 const wstring TexturePath = L"../_Resources/_Textures/";
