@@ -20,8 +20,10 @@ Character::~Character()
 	SAFE_DELETE(animRect);
 	SAFE_DELETE(animator);
 	SAFE_DELETE(HPBar);
-	SAFE_DELETE(HPBar_Black)
 	SAFE_DELETE(hand);
+
+	for (auto def : HPBar_Black)
+		SAFE_DELETE(def)
 }
 
 void Character::Update()
@@ -31,14 +33,18 @@ void Character::Update()
 		HPBar->UpdateProgressBar(HP / HPdefault);
 		HPBar->Update(animRect->GetPosition());
 
-		HPBar_Black->Update(animRect->GetPosition());
+		for (auto def : HPBar_Black)
+		{
+			def->Update(animRect->GetPosition());
+		}
 	}
 }
 
 void Character::Render()
 {
-	HPBar_Black->Render();
 	HPBar->Render();
+	for (auto def : HPBar_Black)
+		def->Render();
 }
 
 void Character::SetSpeed(const float speed)
@@ -105,14 +111,24 @@ void Character::Follow(Item& st, const float xsk, const float ysk)
 
 void Character::HPbar()
 {
-
 	HPBar = new ProgressBar({ -50, (animRect->GetSize().y / 2) + 20, 0 },
-		{ animRect->GetSize().x , (animRect->GetSize().y / 5), 0 },
+		{ 100 , (animRect->GetSize().y / 6), 0 },
 		0.0f, D3DXCOLOR(255, 0, 0, 1), UI::LEFT_TO_RIGHT);
+	{
+		HPBar_Black.push_back(new ProgressBar({ HPBar->GetPosition().x + 
+												HPBar->GetSize().x / 2, 
+												HPBar->GetPosition().y, 0 },
+			{ HPBar->GetSize().x, HPBar->GetSize().y + HPBar->GetSize().y / 2, 0},
+			0.0f, HPPath + L"HP_BAR_MIDDLE.png"));
 
-	HPBar_Black = new ProgressBar({ -50, (animRect->GetSize().y / 2) + 20, 0 },
-		{ animRect->GetSize().x , (animRect->GetSize().y / 5), 0 },
-		0.0f, D3DXCOLOR(0, 0, 0, 1), UI::LEFT_TO_RIGHT);
+		HPBar_Black.push_back(new ProgressBar({ HPBar_Black[0]->GetPosition().x -
+												HPBar_Black[0]->GetSize().x / 2,
+												HPBar_Black[0]->GetPosition().y, 0 }
+		,{ 4, HPBar_Black[0]->GetSize().y, 1 },0.0f, HPPath + L"HP_BAR_LEFT_PEAK.png"));
 
-	HPBar_Black->UpdateProgressBar(1);
+		HPBar_Black.push_back(new ProgressBar({ HPBar_Black[0]->GetPosition().x +
+												HPBar_Black[0]->GetSize().x / 2,
+												HPBar_Black[0]->GetPosition().y, 0 }
+		,{ 4, HPBar_Black[0]->GetSize().y, 1 },0.0f, HPPath + L"HP_BAR_LEFT_PEAK.png"));
+	}
 }

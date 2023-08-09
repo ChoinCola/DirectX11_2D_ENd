@@ -71,7 +71,6 @@ void Character_Demo::Move()
 	if (key->Press('D')) { moveP.x = +1; front = 1; }
 
 	// 이동판별
-
 	if (abs(moveP.x) || abs(moveP.y)) {
 		if (front) { animator->SetCurrentAnimClip(L"RunR"); }
 		else { animator->SetCurrentAnimClip(L"RunL"); }

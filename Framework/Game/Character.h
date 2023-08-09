@@ -46,8 +46,9 @@ protected:
 	AnimationRect* animRect = nullptr;
 	Animator* animator = nullptr;
 	BoundingBox* collision = nullptr;
+
 	ProgressBar* HPBar = nullptr;
-	ProgressBar* HPBar_Black = nullptr;
+	std::vector<ProgressBar*> HPBar_Black;
 	Item* hand = nullptr;
 
 	std::wstring Character_Name;

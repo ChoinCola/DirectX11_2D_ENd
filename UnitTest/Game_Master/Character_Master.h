@@ -20,7 +20,4 @@ protected:
 
 	SingletonBase<std::list<Character*>> Character_list;
 	SingletonBase<std::list<Item*>> Item_list;
-
-private:
-	bool isPrime(Character* input);
 };

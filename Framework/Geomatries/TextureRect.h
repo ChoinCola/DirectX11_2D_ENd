@@ -28,7 +28,7 @@ public:
 	const Vector3 GetPosition() { return position; }
 	D3DXMATRIX& GetCenterPoint() { return X; }
 
-	void SetPosition(const float x, const float y) { position.y = y; position.x = x; }
+	void SetPosition(const float x, const float y, const float z = 0) { position.y = y; position.x = x; position.z = z;}
 	void SetRotation(const float rotation) { this->rotation = rotation; }
 
 protected:

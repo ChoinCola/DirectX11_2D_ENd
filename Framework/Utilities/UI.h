@@ -29,7 +29,7 @@ public:
 	void SetShader(wstring shaderPath);
 
 	const Vector3 GetPosition() { return position; }
-
+	const Vector3 GetSize() { return size; }
 private:
 	template<typename T>
 	void SetVertices(vector<T>& vertices, FillType type);
