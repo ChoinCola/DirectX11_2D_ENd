@@ -93,6 +93,7 @@ void Knight::Attack(const float Attack_speed = 1, const float Attack_delay = 0)
 	if (Attack_now == true || (key->Press('F') && delay >= Attack_delay)) {
 		Attack_now = true;
 		hand->Setphysical(1);
+
 		if ((angle_attack >= 90 || angle_attack <= -90)) {
 
 			angle_attack = 0;
@@ -143,8 +144,8 @@ void Knight::Update()
 
 void Knight::Render()
 {
-	HPBar->Render();
 	animRect->Render();
 	collision->Render();
 	hand->Render();
+	__super::Render();
 }

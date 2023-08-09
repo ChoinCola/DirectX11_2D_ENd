@@ -19,8 +19,5 @@ public:
 
 private:
 	std::vector<Character*> Card_Unit;
-
-	Character_Demo* unit1 = nullptr;
-	Knight* unit2 = nullptr;
 };
 

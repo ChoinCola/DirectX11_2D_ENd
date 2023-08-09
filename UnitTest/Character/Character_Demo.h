@@ -23,5 +23,4 @@ private:
 
 	float delay;
 	float angle_attack;
-
 };

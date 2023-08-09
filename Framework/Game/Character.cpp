@@ -10,8 +10,8 @@ Character::Character(Vector3 position, Vector3 size, std::wstring Character_Name
 	speed = 100;
 	animRect = new AnimationRect(position, size);
 	animator = new Animator();
-	HPbar();
 	HPdefault = HP;
+	HPbar();
 }
 
 Character::~Character()
@@ -20,21 +20,24 @@ Character::~Character()
 	SAFE_DELETE(animRect);
 	SAFE_DELETE(animator);
 	SAFE_DELETE(HPBar);
+	SAFE_DELETE(HPBar_Black)
 	SAFE_DELETE(hand);
 }
 
 void Character::Update()
 {
 	Damage_Chack();
-
 	{
 		HPBar->UpdateProgressBar(HP / HPdefault);
 		HPBar->Update(animRect->GetPosition());
+
+		HPBar_Black->Update(animRect->GetPosition());
 	}
 }
 
 void Character::Render()
 {
+	HPBar_Black->Render();
 	HPBar->Render();
 }
 
@@ -102,10 +105,14 @@ void Character::Follow(Item& st, const float xsk, const float ysk)
 
 void Character::HPbar()
 {
-	Vector3 HPposition = animRect->GetPosition();
-	HPposition.y += 10;
 
 	HPBar = new ProgressBar({ -50, (animRect->GetSize().y / 2) + 20, 0 },
 		{ animRect->GetSize().x , (animRect->GetSize().y / 5), 0 },
 		0.0f, D3DXCOLOR(255, 0, 0, 1), UI::LEFT_TO_RIGHT);
+
+	HPBar_Black = new ProgressBar({ -50, (animRect->GetSize().y / 2) + 20, 0 },
+		{ animRect->GetSize().x , (animRect->GetSize().y / 5), 0 },
+		0.0f, D3DXCOLOR(0, 0, 0, 1), UI::LEFT_TO_RIGHT);
+
+	HPBar_Black->UpdateProgressBar(1);
 }

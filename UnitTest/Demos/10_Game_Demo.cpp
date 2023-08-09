@@ -12,19 +12,15 @@ void Game_Demo::Init()
 
 void Game_Demo::Destroy()
 {
-
-
 }
 
 void Game_Demo::Update()
 {
-	//cd->Update();
 	ef->Update();
 }
 
 void Game_Demo::Render()
 {
-	//cd->Render();
 	ef->Render();
 }
 

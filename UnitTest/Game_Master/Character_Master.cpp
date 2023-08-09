@@ -16,7 +16,8 @@ Character_Master::~Character_Master()
 void Character_Master::Update()
 {
 	for (auto& def : *Character_list.Get()) {
-		def->Update();
+		if(def != nullptr)
+			def->Update();
 	}
 	Chack_Collision();
 	Chack_HP();
@@ -25,7 +26,8 @@ void Character_Master::Update()
 void Character_Master::Render()
 {
 	for (auto& def : *Character_list.Get()) {
-		def->Render();
+		if(def != nullptr)
+			def->Render();
 	}
 }
 
@@ -54,9 +56,16 @@ void Character_Master::Chack_Collision()
 	{
 		for (auto def_C : *Character_list.Get())
 		{
+			// 오류판정
+			if(def_C == nullptr)
+				continue;
 
 			for (auto def_Item : *Item_list.Get())
 			{
+				// 오류판정
+				if (def_Item == nullptr)
+					continue;
+
 				bool Chack_duplication = false;
 				// 현재 객체의 데미지 판정이 데미지 피해적용이 발생하기 전에 발생했는가?
 				if (!def_C->Get_hit_calculation().empty()) {
@@ -88,12 +97,20 @@ void Character_Master::Chack_Collision()
 
 void Character_Master::Chack_HP()
 {
-	for (auto def = Character_list.Get()->begin(); def != Character_list.Get()->end();)
+	std::list<Character*> def_list;
+
+	for (auto def = Character_list.Get()->begin(); def != Character_list.Get()->end(); def++)
 	{
 		if ((*def)->GetHP() <= 0)
 		{
-			Character_list.Get()->erase(def);
+			def_list.push_back((*def));
 		}
-		else { def++; }
+	}
+
+	if(!def_list.empty()) {
+		for (auto def = def_list.begin(); def != def_list.end(); def++)
+		{
+			Character_list.Get()->remove((*def));
+		}
 	}
 }

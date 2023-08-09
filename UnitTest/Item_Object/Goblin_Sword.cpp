@@ -5,7 +5,7 @@
 Goblin_Sword::Goblin_Sword(Vector3 position, Vector3 size, Character* Host)
 	: Item(position, size), Host(Host)
 {
-	Mass = 10;
+	Mass = 90;
 	Fspeed = 1;
 	animator = new Animator();
 	Item_Name = L"Goblin_Sword";
