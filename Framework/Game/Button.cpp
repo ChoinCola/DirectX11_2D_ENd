@@ -6,10 +6,11 @@ Button::Button(Vector3 position, Vector3 size, std::wstring Button_Name,
 {
 	Button_name = Button_Name;
 	Push_now = false;
+	Size = size;
 
-	this->Button_Default = new TextureRect(position, size, 0.0f,LButton + Button_Default);
-	this->Button_Push = new TextureRect(position, size, 0.0f, LButton + Button_Push);
-	this->Button_Mark = new TextureRect(position, size, 0.0f, LButton + Button_Mark);
+	this->Button_Default = new TextureRect(position, Size, 0.0f,LButton + Button_Default);
+	this->Button_Push = new TextureRect(position, Size, 0.0f, LButton + Button_Push);
+	this->Button_Mark = new TextureRect(position, Size, 0.0f, LButton + Button_Mark);
 
 	Mark_Default_Position = position;
 }
@@ -23,31 +24,26 @@ Button::~Button()
 
 void Button::Update()
 {
+	if (!Push_now) {
+		Button_Mark->SetPosition(
+			Mark_Default_Position.x,
+			Mark_Default_Position.y + 10,
+			Mark_Default_Position.z);
+	}
+	else {
+		Button_Mark->SetPosition(Mark_Default_Position);
+	}
+
 	Button_Default->Update();
 	Button_Push->Update();
 	Button_Mark->Update();
 }
 
-void Button::Update(Vector3 position)
-{
-	Button_Default->Update(position);
-	Button_Push->Update(position);
-	Button_Mark->Update(position);
-}
-
 void Button::Render()
 {
-	if(!Push_now) {
-		Button_Default->Render();
-		Button_Mark->SetPosition(Mark_Default_Position);
+	if(!Push_now) {	Button_Default->Render(); }
+	else { Button_Push->Render(); 
+	cout << String::ToString(L"IM! Push!") << endl;
 	}
-	else {
-		Button_Push->Render();
-		Button_Mark->SetPosition(
-		Mark_Default_Position.x,
-		Mark_Default_Position.y - 2,
-		Mark_Default_Position.z);
-	}
-
 	Button_Mark->Render();
 }

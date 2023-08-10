@@ -49,6 +49,7 @@ public:
 
 	void Init();
 
+	void Update(Vector3 position);
 	void Update(Vector3 position, Vector3 size, float rotation);
 	void Update(Vector3 position, Vector3 size, float rotation, Vector3 CenterPoint);
 	void Update(Vector3 position, Vector3 size, float rotation, D3DXMATRIX CenterPoint);

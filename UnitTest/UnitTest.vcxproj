@@ -155,6 +155,7 @@
     <ClInclude Include="Game_Master\Character_Master.h" />
     <ClInclude Include="Demos\10_Game_Demo.h" />
     <ClInclude Include="Character\Knight.h" />
+    <ClInclude Include="Game_Master\UI_Master.h" />
     <ClInclude Include="Item_Object\Knight_Sword.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="Game_Master\Shop.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Game_Master\Character_Master.cpp" />
     <ClCompile Include="Demos\10_Game_Demo.cpp" />
     <ClCompile Include="Character\Knight.cpp" />
+    <ClCompile Include="Game_Master\UI_Master.cpp" />
     <ClCompile Include="Item_Object\Knight_Sword.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="Item_Object\Goblin_Sword.cpp" />

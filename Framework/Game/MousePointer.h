@@ -17,11 +17,15 @@ enum Mouse_state
 class MousePointer
 {
 public:
-	MousePointer(Vector3 size, float Fspeed);
+	MousePointer(Vector3 size = {100,100,0});
 	~MousePointer();
 
-	virtual void Update();
-	virtual void Render();
+	void Update();
+	void Render();
+
+	int GetMosueState() { return Mouse_state; };
+	void SetMouseState(int def) { Mouse_state = def; };
+	SingletonBase<Mouse>* GetMouse() { return &Mouse; };
 
 protected:
 	std::wstring MouseName;

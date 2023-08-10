@@ -4,6 +4,10 @@
 TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring path)
 	: position(position), size(size), rotation(rotation)
 {
+	{
+		D3DXMatrixTranslation(&X, 0, 0, 0);
+	}
+
 	// vertices
 	{
 		vertices.assign(4, VertexTexture());

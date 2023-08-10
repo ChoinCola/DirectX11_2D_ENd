@@ -7,10 +7,9 @@ void Game_Demo::Init()
 {
 	cd = new Card_Demo();
 	ef = new Battle_Master();
-	mp = new MousePointer(Vector3{50, 50, 0}, 1);
+	mp = new MousePointer(Vector3{50, 50, 0});
+	ui = new UI_Master();
 	ShowCursor(false);
-	ft = new Font();
-	ft->DrawString(L"TextString",DT_CENTER,DT_TOP);
 }
 
 void Game_Demo::Destroy()
@@ -21,11 +20,17 @@ void Game_Demo::Update()
 {
 	ef->Update();
 	mp->Update();
+	ui->Update();
 }
 
 void Game_Demo::Render()
 {
 	ef->Render();
+
+	ui->Render();
+
+
+
 	mp->Render();
 }
 

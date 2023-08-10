@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Utilities/SingletonBase.h"
 #include "Game/Character.h"
 #include "Game/Item.h"
 #include "math.h"

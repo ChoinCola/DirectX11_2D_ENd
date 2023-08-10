@@ -54,6 +54,23 @@ void BoundingBox::Init()
 	States::CreateBlend(&desc, &bs);
 }
 
+void BoundingBox::Update(Vector3 position)
+{
+	this->position = position;
+
+	world =
+		DXMath::Scaling(size) *
+		DXMath::RotationInDegree(rotation) *
+		DXMath::Translation(position);
+
+	wb->SetWorld(world);
+
+	if (Keyboard::Get()->Down(VK_F1))
+		cb->SwitchRender();
+
+	UpdateCollisionData();
+}
+
 void BoundingBox::Update(Vector3 position, Vector3 size, float rotation)
 {
 	this->size = size;
