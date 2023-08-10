@@ -3,6 +3,7 @@
 #include "Card/Card_Demo.h"
 #include "Game_Master/Battle_Master.h"
 #include "Game/MousePointer.h"
+#include "Game/Font.h"
 
 class Game_Demo : public IObject
 {
@@ -18,4 +19,5 @@ private:
 	MousePointer* mp = nullptr;
 	Card_Demo* cd = nullptr;
 	Battle_Master* ef = nullptr;
+	Font* ft = nullptr;
 };

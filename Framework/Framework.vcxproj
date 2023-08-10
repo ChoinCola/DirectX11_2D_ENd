@@ -155,6 +155,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Font.cpp" />
+    <ClCompile Include="Game\UI\Details_windows.cpp" />
     <ClCompile Include="Game\Button.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="Game\Character.cpp" />
@@ -200,6 +202,8 @@
     <ClCompile Include="Utilities\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Font.h" />
+    <ClInclude Include="Game\UI\Details_windows.h" />
     <ClInclude Include="Game\Button.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Game\Character.h" />

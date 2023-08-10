@@ -44,6 +44,8 @@
     <ClCompile Include="Game\Item.cpp" />
     <ClCompile Include="Game\Button.cpp" />
     <ClCompile Include="Game\MousePointer.cpp" />
+    <ClCompile Include="Game\UI\Details_windows.cpp" />
+    <ClCompile Include="Game\Font.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Systems\Graphics.h" />
@@ -93,5 +95,7 @@
     <ClInclude Include="Game\Item.h" />
     <ClInclude Include="Game\Button.h" />
     <ClInclude Include="Game\MousePointer.h" />
+    <ClInclude Include="Game\UI\Details_windows.h" />
+    <ClInclude Include="Game\Font.h" />
   </ItemGroup>
 </Project>

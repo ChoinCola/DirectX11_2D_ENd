@@ -9,6 +9,8 @@ void Game_Demo::Init()
 	ef = new Battle_Master();
 	mp = new MousePointer(Vector3{50, 50, 0}, 1);
 	ShowCursor(false);
+	ft = new Font();
+	ft->DrawString(L"TextString",DT_CENTER,DT_TOP);
 }
 
 void Game_Demo::Destroy()
