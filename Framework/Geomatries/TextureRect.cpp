@@ -4,8 +4,6 @@
 TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring path)
 	: position(position), size(size), rotation(rotation)
 {
-	
-
 	// vertices
 	{
 		vertices.assign(4, VertexTexture());

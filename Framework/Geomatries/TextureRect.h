@@ -1,5 +1,30 @@
 #pragma once
 
+class RedBuffer : public ShaderBuffer
+{
+public:
+	RedBuffer() : ShaderBuffer(&data, sizeof(data))
+	{
+		data.HIT = false;
+	}
+
+	void SetHit(bool type)
+	{
+		data.HIT = type;
+	}
+
+	struct Data
+	{
+		bool HIT;
+		Vector3 dummy1;
+		bool dubbmy2;
+		bool dummy3;
+		bool d4;
+	};
+private:
+	Data data;
+};
+
 class TextureRect
 {
 public:
@@ -61,4 +86,6 @@ protected:
 	D3D11_MAPPED_SUBRESOURCE subResource;
 
 	Vector3 verticesLocalPosition[4];
+
+	RedBuffer* hb = nullptr;
 };

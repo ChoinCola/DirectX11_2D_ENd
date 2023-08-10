@@ -5,7 +5,7 @@ MousePointer::MousePointer(Vector3 size, float Fspeed)
 {
 	animRect = new AnimationRect(Mouse.Get()->GetPosition(),size);
 	animator = new Animator();
-
+	Mouse_state = IDLE;
 #pragma region Animation
 	{
 		Texture2D* idle = new Texture2D(LUI + L"Crosshair/stylesheet_green.png");
@@ -32,8 +32,28 @@ MousePointer::~MousePointer()
 }
 
 void MousePointer::Update()
-{
-	animRect->SetPosition(Mouse.Get()->GetPosition());
+{	
+	switch (Mouse_state)
+	{
+	case(IDLE) : 
+	{
+		animRect->SetPosition(Mouse.Get()->GetPosition().x + animRect->GetSize().x / 7, Mouse.Get()->GetPosition().y - animRect->GetSize().y / 4);
+	}
+	case(ON_OBJECT) :
+	{
+	}
+	case(ON_CHARACTER):
+	{
+	}
+	case(ON_CARD):
+	{
+	}
+	case(ON_DATAOPEN):
+	{
+	}
+	default:
+		break;
+	}
 	animator->Update();
 	animRect->Update();
 }
