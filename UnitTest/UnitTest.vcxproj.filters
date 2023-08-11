@@ -17,6 +17,7 @@
     <ClInclude Include="Game_Master\Shop.h" />
     <ClInclude Include="UI\Ready_Ui.h" />
     <ClInclude Include="Game_Master\UI_Master.h" />
+    <ClInclude Include="UI\Card_UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp" />
@@ -34,5 +35,6 @@
     <ClCompile Include="Game_Master\Shop.cpp" />
     <ClCompile Include="UI\Ready_Ui.cpp" />
     <ClCompile Include="Game_Master\UI_Master.cpp" />
+    <ClCompile Include="UI\Card_UI.cpp" />
   </ItemGroup>
 </Project>

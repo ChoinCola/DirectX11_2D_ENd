@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="UI\Card_UI.h" />
     <ClInclude Include="Game_Master\Battle_Master.h" />
     <ClInclude Include="Card\Card_Demo.h" />
     <ClInclude Include="Character\Character_Demo.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Game_Master\User_Hand.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="UI\Card_UI.cpp" />
     <ClCompile Include="Game_Master\Battle_Master.cpp" />
     <ClCompile Include="Card\Card_Demo.cpp" />
     <ClCompile Include="Character\Character_Demo.cpp" />

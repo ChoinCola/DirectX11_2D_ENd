@@ -28,8 +28,9 @@ private:
 class TextureRect
 {
 public:
-	TextureRect(Vector3 position, Vector3 size, float rotation, wstring path);
-	TextureRect(Vector3 position, Vector3 size, float rotation);
+	TextureRect(Vector3 position, Vector3 size, float rotation, Color path, Vector2 flip = { 0,0 });
+	TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip = { 0,0 });
+	TextureRect(Vector3 position, Vector3 size, float rotation, Vector2 flip = { 0,0 });
 	~TextureRect();
 
 	void MapVertexBuffer();
@@ -61,7 +62,9 @@ public:
 
 protected:
 
+	vector<VertexColor> colorVertices;
 	vector<VertexTexture> vertices;
+
 	VertexBuffer* vb = nullptr;
 
 	vector<uint> indices;
@@ -88,4 +91,7 @@ protected:
 	Vector3 verticesLocalPosition[4];
 
 	RedBuffer* hb = nullptr;
+
+	private:
+	void buff(Vector2 flip);
 };

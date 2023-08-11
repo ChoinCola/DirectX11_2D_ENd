@@ -27,7 +27,7 @@ void Button::Update()
 	if (!Push_now) {
 		Button_Mark->SetPosition(
 			Mark_Default_Position.x,
-			Mark_Default_Position.y + 10,
+			Mark_Default_Position.y + 4,
 			Mark_Default_Position.z);
 	}
 	else {

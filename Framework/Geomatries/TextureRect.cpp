@@ -1,63 +1,43 @@
 #include "Framework.h"
 #include "TextureRect.h"
 
-TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring path)
+TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color path, Vector2 flip)
 	: position(position), size(size), rotation(rotation)
 {
 	{
 		D3DXMatrixTranslation(&X, 0, 0, 0);
 	}
 
-	// vertices
+	buff(flip);
+
 	{
-		vertices.assign(4, VertexTexture());
-
-		vertices[0].position = verticesLocalPosition[0] = Vector3(-0.5f, -0.5f, 0.0f);
-		vertices[1].position = verticesLocalPosition[1] = Vector3(0.5f, 0.5f, 0.0f);
-		vertices[2].position = verticesLocalPosition[2] = Vector3(0.5f, -0.5f, 0.0f);
-		vertices[3].position = verticesLocalPosition[3] = Vector3(-0.5f, 0.5f, 0.0f);
-
-		vertices[0].uv = Vector2(0, 1);
-		vertices[1].uv = Vector2(1, 0);
-		vertices[2].uv = Vector2(1, 1);
-		vertices[3].uv = Vector2(0, 0);
+		colorVertices.assign(4, VertexColor());
+		for (VertexColor& v : colorVertices)
+			v.color = path;
 	}
+	// Vertex Buffer
+	{
+		vb = new VertexBuffer();
+		vb->Create(colorVertices, D3D11_USAGE_DYNAMIC);
+	}
+
+
+
+}
+
+TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip)
+	: position(position), size(size), rotation(rotation)
+{
+	{
+		D3DXMatrixTranslation(&X, 0, 0, 0);
+	}
+
+	buff(flip);
 
 	// Vertex Buffer
 	{
 		vb = new VertexBuffer();
 		vb->Create(vertices, D3D11_USAGE_DYNAMIC);
-	}
-
-	// Index Buffer
-	{
-		indices = { 0,1,2,0,3,1 };
-
-		ib = new IndexBuffer();
-		ib->Create(indices, D3D11_USAGE_IMMUTABLE);
-	}
-
-	// Vertex Shader
-	{
-		vs = new VertexShader();
-		vs->Create(ShaderPath + L"VertexTexture.hlsl", "VS");
-	}
-
-	// Pixel Shader
-	{
-		ps = new PixelShader();
-		ps->Create(ShaderPath + L"VertexTexture.hlsl", "PS");
-	}
-
-	// InputLayout
-	{
-		il = new InputLayout();
-		il->Create(VertexTexture::descs, VertexTexture::count, vs->GetBlob());
-	}
-
-	// World Buffer
-	{
-		wb = new WorldBuffer();
 	}
 
 	// Shader Resource View
@@ -76,7 +56,7 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring
 	}
 }
 
-TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation)
+TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Vector2 flip)
 	: position(position), size(size), rotation(rotation)
 {
 
@@ -84,56 +64,12 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation)
 		D3DXMatrixTranslation(&X, 0, 0, 0);
 	}
 
-	// vertices
-	{
-		vertices.assign(4, VertexTexture());
-
-		vertices[0].position = verticesLocalPosition[0] = Vector3(-0.5f, -0.5f, 0.0f);
-		vertices[1].position = verticesLocalPosition[1] = Vector3(0.5f, 0.5f, 0.0f);
-		vertices[2].position = verticesLocalPosition[2] = Vector3(0.5f, -0.5f, 0.0f);
-		vertices[3].position = verticesLocalPosition[3] = Vector3(-0.5f, 0.5f, 0.0f);
-
-		vertices[0].uv = Vector2(0, 1);
-		vertices[1].uv = Vector2(1, 0);
-		vertices[2].uv = Vector2(1, 1);
-		vertices[3].uv = Vector2(0, 0);
-	}
+	buff(flip);
 
 	// Vertex Buffer
 	{
 		vb = new VertexBuffer();
 		vb->Create(vertices, D3D11_USAGE_DYNAMIC);
-	}
-
-	// Index Buffer
-	{
-		indices = { 0,1,2,0,3,1 };
-
-		ib = new IndexBuffer();
-		ib->Create(indices, D3D11_USAGE_IMMUTABLE);
-	}
-
-	// Vertex Shader
-	{
-		vs = new VertexShader();
-		vs->Create(ShaderPath + L"VertexTexture.hlsl", "VS");
-	}
-
-	// Pixel Shader
-	{
-		ps = new PixelShader();
-		ps->Create(ShaderPath + L"VertexTexture.hlsl", "PS");
-	}
-
-	// InputLayout
-	{
-		il = new InputLayout();
-		il->Create(VertexTexture::descs, VertexTexture::count, vs->GetBlob());
-	}
-
-	// World Buffer
-	{
-		wb = new WorldBuffer();
 	}
 }
 
@@ -210,4 +146,59 @@ void TextureRect::Render()
 void TextureRect::GUI()
 {
 
+}
+
+void TextureRect::buff(Vector2 flip)
+{
+	flip.x ? flip.x = 1 : flip.x = 0;
+	flip.y ? flip.y = 1 : flip.y = 0;
+
+	{
+		D3DXMatrixTranslation(&X, 0, 0, 0);
+	}
+
+	// vertices
+	{
+		vertices.assign(4, VertexTexture());
+
+		vertices[0].position = verticesLocalPosition[0] = Vector3(-0.5f, -0.5f, 0.0f);
+		vertices[1].position = verticesLocalPosition[1] = Vector3(0.5f, 0.5f, 0.0f);
+		vertices[2].position = verticesLocalPosition[2] = Vector3(0.5f, -0.5f, 0.0f);
+		vertices[3].position = verticesLocalPosition[3] = Vector3(-0.5f, 0.5f, 0.0f);
+
+		vertices[0].uv = Vector2(flip.x, !flip.y);
+		vertices[1].uv = Vector2(!flip.x, flip.y);
+		vertices[2].uv = Vector2(!flip.x, !flip.y);
+		vertices[3].uv = Vector2(flip.x, flip.y);
+	}
+	// Index Buffer
+	{
+		indices = { 0,1,2,0,3,1 };
+
+		ib = new IndexBuffer();
+		ib->Create(indices, D3D11_USAGE_IMMUTABLE);
+	}
+
+	// Vertex Shader
+	{
+		vs = new VertexShader();
+		vs->Create(ShaderPath + L"VertexTexture.hlsl", "VS");
+	}
+
+	// Pixel Shader
+	{
+		ps = new PixelShader();
+		ps->Create(ShaderPath + L"VertexTexture.hlsl", "PS");
+	}
+
+	// InputLayout
+	{
+		il = new InputLayout();
+		il->Create(VertexTexture::descs, VertexTexture::count, vs->GetBlob());
+	}
+
+	// World Buffer
+	{
+		wb = new WorldBuffer();
+	}
 }

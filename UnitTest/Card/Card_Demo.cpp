@@ -22,6 +22,7 @@ void Card_Demo::Update()
 
 void Card_Demo::Render()
 {
+	
 }
 
 void Card_Demo::Insert_Vector()
