@@ -4,12 +4,15 @@
 
 
 void Game_Demo::Init()
-{
+{	
+	GM = new Game_Master();
 	mp = new MousePointer(Vector3{50, 50, 0});
 	cd = new Card_Demo();
 	ui = new UI_Master();
 	ef = new Character_Master();
 	ShowCursor(false);
+
+	GM->Chack_ALL_LIST();
 }
 
 void Game_Demo::Destroy()
@@ -18,6 +21,7 @@ void Game_Demo::Destroy()
 
 void Game_Demo::Update()
 {
+	
 	ef->Update();
 	mp->Update();
 	cd->Update();

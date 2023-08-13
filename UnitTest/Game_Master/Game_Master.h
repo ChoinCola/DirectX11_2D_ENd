@@ -12,8 +12,7 @@ class Game_Master
 public:
 	Game_Master();
 	~Game_Master();
-private:
-void Chack_ALL_LIST();
+	void Chack_ALL_LIST();
 
 protected:
 	SingletonBase<MousePointer> mouse;

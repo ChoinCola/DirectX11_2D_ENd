@@ -17,6 +17,7 @@ public:
 	virtual void GUI() override;
 
 private:
+	Game_Master* GM = nullptr;
 	MousePointer* mp = nullptr;
 	Card_Demo* cd = nullptr;
 	Character_Master* ef = nullptr;
