@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Knight.h"
 
-
 Knight::Knight(Vector3 position, Vector3 size)
 	: Character(position, size)
 {

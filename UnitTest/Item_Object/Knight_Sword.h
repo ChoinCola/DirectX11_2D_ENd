@@ -1,7 +1,6 @@
 #pragma once
-
-#include "Game/Item.h"
-#include "Game/Character.h"
+ #include "Game/Item.h"
+ #include "Game/Character.h"
 
 class Knight_Sword : public Item
 {

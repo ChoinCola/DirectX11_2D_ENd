@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Card/Card_Demo.h"
-#include "Game_Master/Battle_Master.h"
+#include "Game_Master/Character_Master.h"
 #include "Game_Master/UI_Master.h"
 #include "Game/MousePointer.h"
 #include "Game/Font.h"
@@ -19,6 +19,6 @@ public:
 private:
 	MousePointer* mp = nullptr;
 	Card_Demo* cd = nullptr;
-	Battle_Master* ef = nullptr;
+	Character_Master* ef = nullptr;
 	UI_Master* ui = nullptr;
 };

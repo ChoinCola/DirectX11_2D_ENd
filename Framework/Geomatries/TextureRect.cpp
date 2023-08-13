@@ -4,25 +4,61 @@
 TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color path, Vector2 flip)
 	: position(position), size(size), rotation(rotation)
 {
+	flip.x ? flip.x = 1 : flip.x = 0;
+	flip.y ? flip.y = 1 : flip.y = 0;
+
 	{
 		D3DXMatrixTranslation(&X, 0, 0, 0);
 	}
 
-	buff(flip);
-
+	// vertices
 	{
 		colorVertices.assign(4, VertexColor());
 		for (VertexColor& v : colorVertices)
 			v.color = path;
+
+		colorVertices[0].position = Vector3(-0.5f, -0.5f, 0.0f);
+		colorVertices[1].position = Vector3(+0.5f, +0.5f, 0.0f);
+		colorVertices[2].position = Vector3(+0.5f, -0.5f, 0.0f);
+		colorVertices[3].position = Vector3(-0.5f, +0.5f, 0.0f);
 	}
+
 	// Vertex Buffer
 	{
 		vb = new VertexBuffer();
 		vb->Create(colorVertices, D3D11_USAGE_DYNAMIC);
 	}
 
+	// Index Buffer
+	{
+		indices = { 0,1,2,0,3,1 };
 
+		ib = new IndexBuffer();
+		ib->Create(indices, D3D11_USAGE_IMMUTABLE);
+	}
 
+	// Vertex Shader
+	{
+		vs = new VertexShader();
+		vs->Create(ShaderPath + L"UI/ColorUI.hlsl", "VS");
+	}
+
+	// Pixel Shader
+	{
+		ps = new PixelShader();
+		ps->Create(ShaderPath + L"UI/ColorUI.hlsl", "PS");
+	}
+
+	// InputLayout
+	{
+		il = new InputLayout();
+		il->Create(VertexColor::descs, VertexColor::count, vs->GetBlob());
+	}
+
+	// World Buffer
+	{
+		wb = new WorldBuffer();
+	}
 }
 
 TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip)
@@ -138,7 +174,8 @@ void TextureRect::Render()
 	ps->SetShader();
 	wb->SetVSBuffer(0);
 
-	DC->PSSetShaderResources(0, 1, &srv);
+	if (srv)
+		DC->PSSetShaderResources(0, 1, &srv);
 
 	DC->DrawIndexed(ib->GetCount(), 0, 0);
 }

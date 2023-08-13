@@ -3,5 +3,4 @@
 
 void Battle_Master::Update()
 {
-	__super::Update();
 }

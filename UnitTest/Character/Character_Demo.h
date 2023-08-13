@@ -1,8 +1,8 @@
 #pragma once
+
 #include "Game/Character.h"
 #include "Item_Object/Goblin_Sword.h"
 #include "math.h"
-
 class Character_Demo : public Character
 {
 public:

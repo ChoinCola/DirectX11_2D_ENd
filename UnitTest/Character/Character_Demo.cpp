@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Character_Demo.h"
 
-
 Character_Demo::Character_Demo(Vector3 position, Vector3 size)
 	: Character(position, size)
 {

@@ -18,6 +18,8 @@
     <ClInclude Include="UI\Ready_Ui.h" />
     <ClInclude Include="Game_Master\UI_Master.h" />
     <ClInclude Include="UI\Card_UI.h" />
+    <ClInclude Include="UI\ICard_UI.h" />
+    <ClInclude Include="Game_Master\Game_Master.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp" />
@@ -36,5 +38,7 @@
     <ClCompile Include="UI\Ready_Ui.cpp" />
     <ClCompile Include="Game_Master\UI_Master.cpp" />
     <ClCompile Include="UI\Card_UI.cpp" />
+    <ClCompile Include="UI\ICard_UI.cpp" />
+    <ClCompile Include="Game_Master\Game_Master.cpp" />
   </ItemGroup>
 </Project>

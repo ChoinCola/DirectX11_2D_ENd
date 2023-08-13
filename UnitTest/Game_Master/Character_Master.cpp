@@ -3,9 +3,19 @@
 #include "stdafx.h"
 
 Character_Master::Character_Master()
+	: Game_Master()
 {
 	Character_list.Create();
 	Item_list.Create();
+	Card_list.Create();
+
+	Card_list.Get()->push_back(new Card_Demo());
+
+	for (auto& def : *Card_list.Get()) {
+		if (def != nullptr)
+			def->Insert_List(Character_list.Get(), Item_list.Get());
+	}
+
 }
 
 Character_Master::~Character_Master()
@@ -19,6 +29,11 @@ void Character_Master::Update()
 		if(def != nullptr)
 			def->Update();
 	}
+
+	for (auto& def : *Card_list.Get()) {
+		if (def != nullptr)
+			def->Update();
+	}
 	Chack_Collision();
 	Chack_HP();
 }
@@ -29,28 +44,15 @@ void Character_Master::Render()
 		if(def != nullptr)
 			def->Render();
 	}
+	for (auto& def : *Card_list.Get()) {
+		if (def != nullptr)
+			def->Render();
+	}
 }
 
 void Character_Master::Chack_Collision()
 {
-	{
-		static bool ALL_list_chack = true;
-		if (Character_list.Get() != nullptr && ALL_list_chack) {
-			cout << String::ToString(L"Character_list") << endl;
-			for (auto def : *Character_list.Get()) {
-				cout << String::ToString(def->GetName()) << endl;
-				cout << String::ToString(def->Getcollision().GetPosition()) << endl;
-			}
 
-			cout << String::ToString(L"Item_list") << endl;
-			for (auto def : *Item_list.Get()) {
-				cout << String::ToString(def->GetName()) << endl;
-				cout << String::ToString(def->Getcollision().GetPosition()) << endl;
-
-			}
-			ALL_list_chack = false;
-		}
-	}
 
 	if (Character_list.Get() != nullptr && Item_list.Get() != nullptr)
 	{

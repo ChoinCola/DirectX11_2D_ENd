@@ -5,9 +5,9 @@
 
 #include "Character/Character_Demo.h"
 #include "Character/Knight.h"
+#include "UI/Card_UI.h"
 
-
-class Card_Demo : public Character_Master
+class Card_Demo
 {
 public:
 	Card_Demo();
@@ -15,9 +15,13 @@ public:
 
 	void Update();
 	void Render();
-	void Insert_Vector();
+	void Insert_List(std::list<Character*> *Clist, std::list<Item*> *Itlist);
 
 private:
+
 	std::vector<Character*> Card_Unit;
+	
+	std::list<int> upgrade;
+	Card_UI* Cardinfo;
 };
 

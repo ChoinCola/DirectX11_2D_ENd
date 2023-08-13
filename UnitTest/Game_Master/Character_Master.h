@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/Character.h"
-#include "Game/Item.h"
+#include "Game_Master/Game_Master.h"
 #include "math.h"
 
-class Character_Master
+class Game_Master;
+class Character_Master : public Game_Master
 {
 public:
 	Character_Master();
@@ -14,9 +14,4 @@ public:
 	virtual void Render();
 	void Chack_Collision();
 	void Chack_HP();
-
-protected:
-
-	SingletonBase<std::list<Character*>> Character_list;
-	SingletonBase<std::list<Item*>> Item_list;
 };

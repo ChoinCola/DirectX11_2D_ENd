@@ -17,12 +17,17 @@ public:
 
 	void Push() { Push_now ? Push_now = false : Push_now = true; };
 	bool GetPush() { return Push_now; };
+	bool GetUP() { return UP; };
 	std::wstring GetName() { return Button_name; };
 	Vector3 GetSize() { return Size; };
 	Vector3 GetPosition() { return Mark_Default_Position; };
+	void SetRender() { Render_now ? Render_now = false : Render_now = true; };
 
 protected:
+	bool Render_now;
 	bool Push_now;
+	bool UP;
+
 	std::wstring Button_name;
 
 	TextureRect* Button_Default = nullptr;
