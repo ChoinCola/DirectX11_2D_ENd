@@ -1,7 +1,5 @@
 // 렌더 타겟에 그려진 픽셀들의 최종 색상을 계산하는 역할
-
 #pragma once
-#include "IShader.h"
 
 class PixelShader : public IShader
 {

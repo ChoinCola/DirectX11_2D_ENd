@@ -11,7 +11,7 @@ Character::Character(Vector3 position, Vector3 size, std::wstring Character_Name
 	animRect = new AnimationRect(position, size);
 	animator = new Animator();
 	HPdefault = HP;
-	HPbar();
+
 }
 
 Character::~Character()
@@ -19,34 +19,29 @@ Character::~Character()
 	SAFE_DELETE(collision);
 	SAFE_DELETE(animRect);
 	SAFE_DELETE(animator);
-	SAFE_DELETE(HPBar);
 	SAFE_DELETE(hand);
-
-	for (auto def : HPBar_Black)
-		SAFE_DELETE(def)
 }
 
 void Character::Update()
 {
 	Damage_Chack();
-	{
-		HPBar_Black[1]->UpdateProgressBar(HP / HPdefault);
-		for (auto def : HPBar_Black)
-		{
-			def->Update(animRect->GetPosition());
-		}
-	}
 }
 
 void Character::Render()
 {
-	for (auto def : HPBar_Black)
-		def->Render();
 }
 
 void Character::SetSpeed(const float speed)
 {
 	this->speed = speed;
+}
+
+void Character::SetNormalize(D3DXVECTOR2& move, const float speed, const float delta)
+{
+	D3DXVec2Normalize(&move, &move);
+	animRect->SetPosition
+	(animRect->GetPosition().x + (move.x * speed * delta),
+		animRect->GetPosition().y + (move.y * speed * delta));
 }
 
 auto Character::GetmoveP()
@@ -103,34 +98,5 @@ void Character::Follow(Item& st, const float xsk, const float ysk)
 		st.GetanimRect()->SetPosition
 		(animRect->GetPosition().x - xsk,
 			animRect->GetPosition().y + (sin(my) * ysk));
-	}
-}
-
-void Character::HPbar()
-{
-	{
-		HPBar_Black.push_back(new ProgressBar({ -50, (animRect->GetSize().y / 2) + 20, 0 },
-			{ 100 , (animRect->GetSize().y / 6), 0 },
-			0.0f, D3DXCOLOR(0.09f, 0.07f, 0.14f, 1), UI::LEFT_TO_RIGHT));
-
-		HPBar_Black.push_back(new ProgressBar({ -50, (animRect->GetSize().y / 2) + 20, 0 },
-			{ 100 , (animRect->GetSize().y / 6), 0 },
-			0.0f, D3DXCOLOR(255, 0, 0, 1), UI::LEFT_TO_RIGHT));
-
-		HPBar_Black.push_back(new ProgressBar({  HPBar_Black[1]->GetPosition().x + 
-												 HPBar_Black[1]->GetSize().x / 2, 
-												 HPBar_Black[1]->GetPosition().y, 0 },
-			{ HPBar_Black[1]->GetSize().x, HPBar_Black[1]->GetSize().y + HPBar_Black[1]->GetSize().y / 2, 0},
-			0.0f, HPPath + L"HP_BAR_MIDDLE.png"));
-
-		HPBar_Black.push_back(new ProgressBar({ HPBar_Black[2]->GetPosition().x -
-												HPBar_Black[2]->GetSize().x / 2,
-												HPBar_Black[2]->GetPosition().y, 0 }
-		,{ 4, HPBar_Black[2]->GetSize().y, 1 },0.0f, HPPath + L"HP_BAR_LEFT_PEAK.png"));
-
-		HPBar_Black.push_back(new ProgressBar({ HPBar_Black[2]->GetPosition().x +
-												HPBar_Black[2]->GetSize().x / 2,
-												HPBar_Black[2]->GetPosition().y, 0 }
-		,{ 4, HPBar_Black[2]->GetSize().y, 1 },0.0f, HPPath + L"HP_BAR_LEFT_PEAK.png"));
 	}
 }

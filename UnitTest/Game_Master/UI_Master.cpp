@@ -16,28 +16,10 @@ UI_Master::~UI_Master()
 void UI_Master::Update()
 {
 	Chack_Collision();
-	for (auto& def : *Button_list.Get()) {
-		if (def != nullptr)
-			def->Update();
-	}
-
-	for (auto& def : *Button_list.Get()) {
-		if (def != nullptr)
-			def->Update();
-	}
 }
 
 void UI_Master::Render()
 {
-	for (auto& def : *UI_list.Get()) {
-		if (def != nullptr)
-			def->Render();
-	}
-
-	for (auto& def : *Button_list.Get()) {
-		if (def != nullptr)
-			def->Render();
-	}
 }
 
 void UI_Master::Chack_Collision()
@@ -74,9 +56,6 @@ void UI_Master::Chack_Collision()
 			else { mouse.Get()->SetMouseState(IDLE); }
 		}
 	}
-
-
-
 
 	if (UI_list.Get() != nullptr)
 	{

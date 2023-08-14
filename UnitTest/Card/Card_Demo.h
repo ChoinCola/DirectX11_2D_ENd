@@ -21,6 +21,7 @@ private:
 
 	std::vector<Character*> Card_Unit;
 	
+	Card_UI* Cardinfo;
 	std::list<int> upgrade;
 };
 

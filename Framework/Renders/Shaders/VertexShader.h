@@ -1,7 +1,6 @@
 // 정점들의 위치, 색상, uv좌표 등의 속성을 계산
 
 #pragma once
-#include "IShader.h"
 
 class VertexShader : public IShader
 {

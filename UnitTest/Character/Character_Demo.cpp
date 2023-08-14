@@ -42,20 +42,17 @@ Character_Demo::Character_Demo(Vector3 position, Vector3 size)
 	collision = new BoundingBox
 	(animRect->GetPosition(), animRect->GetSize(), animRect->GetRotation(), Color(1, 0, 0, 0.35f));
 
+	HPB = new HPBar(
+		animRect->GetPosition(), { 100 , (animRect->GetSize().y / 6), 0 },
+		&HP, &HPdefault);
+	HPBar_list.Get()->push_back(HPB);
+
 	hand = new Goblin_Sword(position, Vector3(50, 50, 1), this);
+	Item_list.Get()->push_back(hand);
 }
 
 Character_Demo::~Character_Demo()
 {
-}
-
-void Character_Demo::SetNormalize(D3DXVECTOR2& move, const int speed, const float delta)
-{
-	D3DXVec2Normalize(&move, &move);
-
-	animRect->SetPosition
-	(animRect->GetPosition().x + (move.x * speed * delta),
-		animRect->GetPosition().y + (move.y * speed * delta));
 }
 
 void Character_Demo::Move()
@@ -134,7 +131,6 @@ void Character_Demo::Update()
 
 	animator->Update();
 	animRect->Update();
-	hand->Update();
 	{
 		collision->Update(animRect->GetPosition(), animRect->GetSize(), 0.f);
 	}
@@ -144,6 +140,5 @@ void Character_Demo::Render()
 {
 	animRect->Render();
 	collision->Render();
-	hand->Render();
 	__super::Render();
 }

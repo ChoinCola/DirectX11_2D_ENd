@@ -52,7 +52,7 @@ public:
 
 	const Vector3 GetSize() { return size; }
 	const float GetRotation() { return rotation; }
-	const Vector3 GetPosition() { return position; }
+	Vector3& GetPosition() { return position; }
 	ID3D11ShaderResourceView* GetSRV() { return srv; }
 	D3DXMATRIX& GetCenterPoint() { return X; }
 

@@ -21,6 +21,10 @@ void Character_Master::Update()
 		if(def != nullptr)
 			def->Update();
 	}
+	for (auto& def : *Item_list.Get()) {
+		if (def != nullptr)
+			def->Update();
+	}
 
 	Chack_Collision();
 	Chack_HP();
@@ -32,12 +36,16 @@ void Character_Master::Render()
 		if(def != nullptr)
 			def->Render();
 	}
+
+	for (auto& def : *Item_list.Get()) {
+		if (def != nullptr)
+			def->Update();
+	}
+
 }
 
 void Character_Master::Chack_Collision()
 {
-
-
 	if (Character_list.Get() != nullptr && Item_list.Get() != nullptr)
 	{
 		for (auto def_C : *Character_list.Get())

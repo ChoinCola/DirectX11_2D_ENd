@@ -4,10 +4,11 @@
 Game_Master::Game_Master()
 {
 	Character_list.Create();
-
-	Button_list.Create();
-	UI_list.Create();
+	HPBar_list.Create();
 	Item_list.Create();
+
+	UI_list.Create();
+	Button_list.Create();
 }
 
 Game_Master::~Game_Master()
@@ -17,8 +18,7 @@ Game_Master::~Game_Master()
 void Game_Master::Chack_ALL_LIST()
 {
 	{
-		static bool ALL_list_chack = true;
-		if (Character_list.Get() != nullptr && ALL_list_chack) {
+		if (Character_list.Get() != nullptr) {
 			cout << String::ToString(L"Character_list") << endl;
 			for (auto def : *Character_list.Get()) {
 				cout << String::ToString(def->GetName()) << endl;
@@ -33,25 +33,50 @@ void Game_Master::Chack_ALL_LIST()
 			}
 		}
 
-		if (Button_list.Get() != nullptr && ALL_list_chack) {
+		if (Button_list.Get() != nullptr) {
 			cout << String::ToString(L"Button_list") << endl;
 			for (auto def : *Button_list.Get()) {
 				cout << String::ToString(def->GetName()) << endl;
 				cout << String::ToString(def->GetPosition()) << endl;
 			}
-			ALL_list_chack = false;
 			cout << endl;
 		}
 
-		if (UI_list.Get() != nullptr && ALL_list_chack) {
+		if (UI_list.Get() != nullptr) {
 			cout << String::ToString(L"UI_list") << endl;
 			for (auto def : *UI_list.Get()) {
 				cout << String::ToString(def->GetName()) << endl;
 				cout << String::ToString(def->GetPosition()) << endl;
 			}
-			ALL_list_chack = false;
 			cout << endl;
 		}
-		ALL_list_chack = false;
 	}
+}
+
+void Game_Master::Update()
+{
+	for(auto def : *Character_list.Get())
+		def->Update();
+	for (auto def : *HPBar_list.Get())
+		def->Update();
+	for (auto def : *Item_list.Get())
+		def->Update();
+	for (auto def : *UI_list.Get())
+		def->Update();
+	for (auto def : *Button_list.Get())
+		def->Update();
+}
+
+void Game_Master::Render()
+{
+	for (auto def : *Character_list.Get())
+		def->Render();
+	for (auto def : *HPBar_list.Get())
+		def->Render();
+	for (auto def : *Item_list.Get())
+		def->Render();
+	for (auto def : *UI_list.Get())
+		def->Render();
+	for (auto def : *Button_list.Get())
+		def->Render();
 }

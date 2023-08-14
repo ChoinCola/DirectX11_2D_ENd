@@ -8,14 +8,19 @@ Card_Demo::Card_Demo()
 
 	int Card_unit_count = Card_Unit.size();
 
-	//Cardinfo = new Card_UI(
-	//Vector3(640, 360, 0),
-	//L"TestCard",
-	//0,
-	//Card_unit_count,
-	//&upgrade,
-	//L"TestCard\nInfo"
-	//);
+	Cardinfo = new Card_UI(
+	Vector3(640, 360, 0),
+	L"TestCard",
+	0,
+	Card_unit_count,
+	&upgrade,
+	L"TestCard\nInfo"
+	);
+
+	UI_list.Get()->push_back(Cardinfo);
+	for (auto def : Card_Unit) {
+		Character_list.Get()->push_back(def);
+	}
 }
 
 Card_Demo::~Card_Demo()

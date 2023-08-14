@@ -76,6 +76,7 @@ typedef UINT		uint;
 
 #include "Utilities/Gui.h"
 
+
 #define DEVICE Graphics::Get()->GetDevice()
 #define DC     Graphics::Get()->GetDC()
 
@@ -88,10 +89,24 @@ typedef UINT		uint;
 
 #include "Utilities/DirectHelper.h"
 
+#include "Renders/IA/IndexBuffer.h"
+#include "Renders/IA/VertexBuffer.h"
+#include "Renders/IA/InputLayout.h"
 #include "Renders/Resources/VertexTypes.h"
 #include "Renders/Resources/ShaderBuffer.h"
 #include "Renders/Resources/GlobalBuffer.h"
 #include "Renders/Resources/Texture2D.h"
+
+#include "Renders/Shaders/IShader.h"
+#include "Renders/Shaders/VertexShader.h"
+#include "Renders/Shaders/PixelShader.h"
+
+#include "Utilities/Animator.h"
+
+#include "Geomatries/ShadedTexture.h"
+#include "Geomatries/TextureRect.h"
+#include "Geomatries/AnimationRect.h"
+
 
 #include "Renders/IA/VertexBuffer.h"
 #include "Renders/IA/IndexBuffer.h"
@@ -106,6 +121,14 @@ typedef UINT		uint;
 #include "Utilities/Path.h"
 
 #include "Systems/Camera.h"
+
+#include "Game/UI/ProgressBar.h"
+#include "Game/HPBar.h"
+
+#include "Game/Item.h"
+#include "Game/Character.h"
+#include "Game/Button.h"
+#include "Game/MousePointer.h"
 
 #define WinMaxWidth 1280
 #define WinMaxHeight 720

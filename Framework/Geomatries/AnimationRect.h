@@ -1,7 +1,5 @@
 #pragma once
 
-#include "TextureRect.h"
-
 class AnimationRect : public TextureRect
 {
 public:

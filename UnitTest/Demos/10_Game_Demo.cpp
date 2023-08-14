@@ -22,19 +22,13 @@ void Game_Demo::Destroy()
 void Game_Demo::Update()
 {
 	
-	ef->Update();
-	mp->Update();
-	cd->Update();
-	ui->Update();
+	GM->Update();
 }
 
 void Game_Demo::Render()
 {
-	ef->Render();
-	cd->Render();
-	ui->Update();
+	GM->Render();
 
-	mp->Render();
 }
 
 void Game_Demo::PostRender()

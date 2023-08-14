@@ -1,11 +1,5 @@
 #pragma once
 
-#include "Card/Card_Demo.h"
-#include "Game_Master/Character_Master.h"
-#include "Game_Master/UI_Master.h"
-#include "Game/MousePointer.h"
-#include "Game/Font.h"
-
 class Game_Demo : public IObject
 {
 public:

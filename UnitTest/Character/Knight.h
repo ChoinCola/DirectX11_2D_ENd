@@ -1,10 +1,6 @@
 #pragma once
 
-#include "Game/Character.h"
-#include "Item_Object/Knight_Sword.h"
-#include "math.h"
-
-class Knight : public Character
+class Knight : public Character, public IGame_Master
 {
 public:
 	Knight(Vector3 position, Vector3 size);
@@ -17,13 +13,9 @@ public:
 
 
 private:
-	void SetNormalize(D3DXVECTOR2& move, const int speed, const float delta);
-
 	bool Attack_now = false;
 	float Fspeed;
 
 	float delay;
 	float angle_attack;
-
-
 };

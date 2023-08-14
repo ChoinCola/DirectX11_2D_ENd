@@ -172,6 +172,7 @@
     <ClCompile Include="Geomatries\Tile\TileSet.cpp" />
     <ClCompile Include="Game\Item.cpp" />
     <ClCompile Include="Game\MousePointer.cpp" />
+    <ClCompile Include="Game\HPBar.cpp" />
     <ClCompile Include="Renders\IA\IndexBuffer.cpp" />
     <ClCompile Include="Renders\IA\InputLayout.cpp" />
     <ClCompile Include="Renders\IA\VertexBuffer.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="Geomatries\Tile\Tile.h" />
     <ClInclude Include="Geomatries\Tile\TileMap.h" />
     <ClInclude Include="Geomatries\Tile\TileSet.h" />
+    <ClInclude Include="Game\HPBar.h" />
     <ClInclude Include="Interfaces\IObject.h" />
     <ClInclude Include="Game\Item.h" />
     <ClInclude Include="Game\MousePointer.h" />

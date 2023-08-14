@@ -1,12 +1,5 @@
 #pragma once
 
-#include "Geomatries/AnimationRect.h"
-#include "Utilities/Animator.h"
-
-#include "Game/UI/ProgressBar.h"
-
-#include "Item.h"
-
 class Character
 {
 
@@ -20,18 +13,20 @@ public:
 	virtual void Damage_Chack();
 
 	void Follow(Item& st, const float xsk = 100, const float ysk = 0);
-	void SetSpeed(const float speed);
+
 	auto GetmoveP();
 	auto Getspeed()->float;
 	auto GetHP() { return HP; }
 	Item* GetItem() { return hand; }
 	const std::wstring GetName() { return Character_Name; }
 	BoundingBox& Getcollision() { return *collision; }
-
 	std::list<Item*>& Get_hit_calculation() { return hit_calculation; }
 	void Push_Damage(Item* damage) { hit_calculation.push_back(damage); }
 
+	void SetSpeed(const float speed);
+	void SetNormalize(D3DXVECTOR2& move, const float speed, const float delta);
 protected:
+
 	float damage; // 공격력
 	bool dch; // 공격여부 ( OBB 겹쳤을 때 한번만 적용되도록
 	float HP; // 채력
@@ -47,12 +42,7 @@ protected:
 	Animator* animator = nullptr;
 	BoundingBox* collision = nullptr;
 
-	ProgressBar* HPBar = nullptr;
-	std::vector<ProgressBar*> HPBar_Black;
+	HPBar* HPB = nullptr;
 	Item* hand = nullptr;
-
 	std::wstring Character_Name;
-private:
-	void HPbar();
-
 };
