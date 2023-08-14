@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Game_Master\Game_Master.h" />
+    <ClInclude Include="Game_Master\Locker.h" />
     <ClInclude Include="UI\ICard_UI.h" />
     <ClInclude Include="UI\Card_UI.h" />
     <ClInclude Include="Game_Master\Battle_Master.h" />
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Master\Game_Master.cpp" />
+    <ClCompile Include="Game_Master\Locker.cpp" />
     <ClCompile Include="UI\ICard_UI.cpp" />
     <ClCompile Include="UI\Card_UI.cpp" />
     <ClCompile Include="Game_Master\Battle_Master.cpp" />

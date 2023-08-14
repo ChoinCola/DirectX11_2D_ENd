@@ -20,6 +20,7 @@
     <ClInclude Include="UI\Card_UI.h" />
     <ClInclude Include="UI\ICard_UI.h" />
     <ClInclude Include="Game_Master\Game_Master.h" />
+    <ClInclude Include="Game_Master\Locker.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp" />
@@ -40,5 +41,6 @@
     <ClCompile Include="UI\Card_UI.cpp" />
     <ClCompile Include="UI\ICard_UI.cpp" />
     <ClCompile Include="Game_Master\Game_Master.cpp" />
+    <ClCompile Include="Game_Master\Locker.cpp" />
   </ItemGroup>
 </Project>

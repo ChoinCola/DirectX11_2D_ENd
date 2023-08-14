@@ -4,7 +4,7 @@
 Game_Master::Game_Master()
 {
 	Character_list.Create();
-	Card_list.Create();
+
 	Button_list.Create();
 	UI_list.Create();
 	Item_list.Create();

@@ -7,14 +7,6 @@ Character_Master::Character_Master()
 {
 	Character_list.Create();
 	Item_list.Create();
-	Card_list.Create();
-
-	Card_list.Get()->push_back(new Card_Demo());
-
-	for (auto& def : *Card_list.Get()) {
-		if (def != nullptr)
-			def->Insert_List(Character_list.Get(), Item_list.Get());
-	}
 
 }
 
@@ -30,10 +22,6 @@ void Character_Master::Update()
 			def->Update();
 	}
 
-	for (auto& def : *Card_list.Get()) {
-		if (def != nullptr)
-			def->Update();
-	}
 	Chack_Collision();
 	Chack_HP();
 }
@@ -42,10 +30,6 @@ void Character_Master::Render()
 {
 	for (auto& def : *Character_list.Get()) {
 		if(def != nullptr)
-			def->Render();
-	}
-	for (auto& def : *Card_list.Get()) {
-		if (def != nullptr)
 			def->Render();
 	}
 }

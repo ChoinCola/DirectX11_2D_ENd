@@ -7,7 +7,7 @@
 #include "Character/Knight.h"
 #include "UI/Card_UI.h"
 
-class Card_Demo
+class Card_Demo : public Game_Master
 {
 public:
 	Card_Demo();
@@ -22,6 +22,5 @@ private:
 	std::vector<Character*> Card_Unit;
 	
 	std::list<int> upgrade;
-	Card_UI* Cardinfo;
 };
 
