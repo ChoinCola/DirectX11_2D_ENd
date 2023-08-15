@@ -5,8 +5,11 @@
 
 #include "UI/ICard_UI.h"
 
+
 #include "Game_Master/IGame_Master.h"
 #include "Game_Master/Game_Master.h"
+
+#include "UI/Card_UI.h"
 
 #include "Character/Character_Demo.h"
 #include "Character/Knight.h"

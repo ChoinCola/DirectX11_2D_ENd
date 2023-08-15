@@ -17,7 +17,7 @@ enum Mouse_state
 class MousePointer
 {
 public:
-	MousePointer(Vector3 size = {100,100,0});
+	MousePointer(Vector3 size = { 50,50,0 });
 	~MousePointer();
 
 	void Update();
@@ -29,7 +29,6 @@ public:
 
 protected:
 	std::wstring MouseName;
-
 	SingletonBase<Mouse> Mouse;
 	AnimationRect* animRect = nullptr;
 	Animator* animator = nullptr;

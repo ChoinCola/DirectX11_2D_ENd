@@ -26,10 +26,15 @@ void UI_Master::Chack_Collision()
 {
 	D3DXVECTOR3 Mposition = mouse.Get()->GetMouse()->Get()->GetPosition();
 
+	bool BOn_Object = 0;
+	bool UOn_Object = 0;
+
+	
 	if (Button_list.Get() != nullptr)
 	{
 		for (auto def_B : *Button_list.Get())
 		{
+			
 			// 오류판정
 			if (def_B == nullptr)
 				continue;
@@ -37,9 +42,11 @@ void UI_Master::Chack_Collision()
 			if (def_B->GetPosition().x - def_B->GetSize().x / 2 <= Mposition.x &&
 				def_B->GetPosition().x + def_B->GetSize().x / 2 >= Mposition.x &&
 				def_B->GetPosition().y - def_B->GetSize().y / 2 <= Mposition.y &&
-				def_B->GetPosition().y + def_B->GetSize().y / 2 >= Mposition.y) // AABB
+				def_B->GetPosition().y + def_B->GetSize().y / 2 >= Mposition.y &&
+				def_B->GetRender()) // AABB
 			{
-				mouse.Get()->SetMouseState(ON_OBJECT);
+				if(BOn_Object == false) BOn_Object += true;
+				
 				if (mouse.Get()->GetMouse()->Get()->Down(0))
 				{
 					def_B->Push();
@@ -49,11 +56,7 @@ void UI_Master::Chack_Collision()
 					def_B->Push();
 				}
 			}
-			else if (def_B->GetPush())
-			{
-				def_B->Push();
-			}
-			else { mouse.Get()->SetMouseState(IDLE); }
+			else if (def_B->GetPush()) def_B->Push();
 		}
 	}
 
@@ -70,21 +73,16 @@ void UI_Master::Chack_Collision()
 				def_B->GetPosition().y - def_B->GetSize().y / 2 <= Mposition.y &&
 				def_B->GetPosition().y + def_B->GetSize().y / 2 >= Mposition.y) // AABB
 			{
-				mouse.Get()->SetMouseState(ON_OBJECT);
+				if (UOn_Object == false) UOn_Object += true;
 				if (mouse.Get()->GetMouse()->Get()->Down(0))
 				{
 					def_B->SetOPEN();
-				}
-				else if (!mouse.Get()->GetMouse()->Get()->Press(0) && def_B->GetOPEN())
-				{
-					def_B->SetOPEN();
+					def_B->SetRenderButton();
+					std::cout << "Touch_Yes!" << std::endl;
 				}
 			}
-			else if (def_B->GetOPEN())
-			{
-				def_B->SetOPEN();
-			}
-			else { mouse.Get()->SetMouseState(IDLE); }
 		}
 	}
+	if(UOn_Object || BOn_Object) mouse.Get()->SetMouseState(ON_OBJECT);
+	else mouse.Get()->SetMouseState(IDLE);
 }

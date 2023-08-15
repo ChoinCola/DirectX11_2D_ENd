@@ -12,4 +12,5 @@ Item::~Item()
 {
 	SAFE_DELETE(animRect);
 	SAFE_DELETE(animator);
+	SAFE_DELETE(collision);
 }

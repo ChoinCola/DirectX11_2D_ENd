@@ -21,6 +21,7 @@ public:
 	std::wstring GetName() { return Button_name; };
 	Vector3 GetSize() { return Size; };
 	Vector3 GetPosition() { return Mark_Default_Position; };
+	bool GetRender() { return Render_now; };
 	void SetRender() { Render_now ? Render_now = false : Render_now = true; };
 
 protected:

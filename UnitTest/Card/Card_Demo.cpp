@@ -9,7 +9,7 @@ Card_Demo::Card_Demo()
 	int Card_unit_count = Card_Unit.size();
 
 	Cardinfo = new Card_UI(
-	Vector3(640, 360, 0),
+	Vector3(640, 500, 0),
 	L"TestCard",
 	0,
 	Card_unit_count,

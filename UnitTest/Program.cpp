@@ -2,18 +2,6 @@
 #include "Program.h"
 
 #include "Systems/Window.h"
-
-#include "Demos/01_StarDemo.h"
-#include "Demos/01_RectDemo.h"
-#include "Demos/02_TextureDemo.h"
-#include "Demos/02_Dmd_Texture_Demo.cpp.h"
-#include "Demos/03_ShadedDemo.h"
-#include "Demos/04_BlurDemo.h"
-#include "Demos/05_RenderingTargetDemo.h"
-#include "Demos/06_CollisionDemo.h"
-#include "Demos/07_AnimationDemo.h"
-#include "Demos/08_PlayerDemo.h"
-#include "Demos/09_TileMapDemo.h"
 #include "Demos/10_Game_Demo.h"
 
 void Program::Init()

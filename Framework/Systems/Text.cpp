@@ -58,6 +58,10 @@ void Text::EndDraw()
     GetDC()->EndDraw();
 }
 
+void Text::Update()
+{
+}
+
 void Text::CreateBackBuffer()
 {
     HRESULT hr;
@@ -203,8 +207,8 @@ void Text::RenderText(wstring text, Vector2 pos, Color color, float size, bool l
     }
 
     deviceContext->SetTransform(D2D1::Matrix3x2F::Identity());
-
-    deviceContext->DrawTextLayout(D2D1::Point2F(pos.x, pos.y), layout, brush);
+    
+    deviceContext->DrawTextLayout(D2D1::Point2F(pos.x, WinMaxHeight - pos.y), layout, brush);
 
     SAFE_RELEASE(layout);
     SAFE_RELEASE(brush);

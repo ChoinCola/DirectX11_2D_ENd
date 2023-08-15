@@ -1,8 +1,6 @@
 #pragma once
-#include "Game/Item.h"
-#include "Game/Character.h"
 
-class Goblin_Sword : public Item
+class Goblin_Sword : public Item, public IGame_Master
 {
 public:
 	Goblin_Sword(Vector3 position, Vector3 size, Character* Host);

@@ -31,6 +31,7 @@ Knight_Sword::Knight_Sword(Vector3 position, Vector3 size, Character* Host)
 
 Knight_Sword::~Knight_Sword()
 {
+	Item_list.Get()->remove(this);
 }
 
 void Knight_Sword::Update()

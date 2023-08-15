@@ -53,6 +53,7 @@ Knight::Knight(Vector3 position, Vector3 size)
 
 Knight::~Knight()
 {
+	Character_list.Get()->remove(this);
 }
 
 void Knight::Move()

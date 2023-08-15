@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Systems\FontClass.cpp" />
     <ClCompile Include="Game\Button.cpp" />
     <ClCompile Include="Game\UI\Details_windows.cpp" />
     <ClCompile Include="Framework.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="Utilities\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Systems\FontClass.h" />
     <ClInclude Include="Game\Button.h" />
     <ClInclude Include="Game\UI\Details_windows.h" />
     <ClInclude Include="Framework.h" />

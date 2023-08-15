@@ -12,7 +12,7 @@ private:
 public:
     void BeginDraw();
     void EndDraw();
-
+    void Update();
     ID2D1DeviceContext* GetDC() { return deviceContext; }
 
     void CreateBackBuffer();

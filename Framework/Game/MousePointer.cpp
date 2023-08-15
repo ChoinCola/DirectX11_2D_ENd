@@ -10,7 +10,6 @@ MousePointer::MousePointer(Vector3 size)
 #pragma region Animation
 	{
 		Texture2D* idle = new Texture2D(LUI + L"Crosshair/stylesheet_green.png");
-
 		// x14 y11
 		Vector2 texSize		= { idle->GetWidth(),idle->GetHeight() };
 
@@ -49,8 +48,8 @@ void MousePointer::Update()
 	case(ON_OBJECT) :
 	{
 		animator->SetCurrentAnimClip(L"On_object");
-		animRect->SetPosition(Mouse.Get()->GetPosition().x + animRect->GetSize().x / 4, 
-							  Mouse.Get()->GetPosition().y - animRect->GetSize().y / 4);
+		animRect->SetPosition(Mouse.Get()->GetPosition().x + animRect->GetSize().x / 5, 
+							  Mouse.Get()->GetPosition().y - animRect->GetSize().y / 2.5);
 		break;
 	}
 	case(ON_CHARACTER):

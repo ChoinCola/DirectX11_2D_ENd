@@ -26,6 +26,13 @@ public:
 	std::wstring GetName() { return CardName; };
 
 	void SetOPEN() { Closenow ? Closenow = false : Closenow = true; };
+	void SetPosition(Vector3 Position) { position = Position; };
+
+	void SetRenderButton() {
+		Close_Button->SetRender();
+		Buy_Button->SetRender();
+		Sell_Button->SetRender();
+	}
 
 protected:
 	std::wstring CardName;

@@ -4,8 +4,12 @@
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 #endif
 
+// xml
+#include "tinyxml/tinyxml.h"
+
 //미리 컴파일된 헤더.
 //pch pre compiled header
+
 
 #include <iostream>
 #include <vector>

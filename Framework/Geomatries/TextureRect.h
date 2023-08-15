@@ -59,6 +59,7 @@ public:
 	void SetPosition(const float x, const float y, const float z = 0) { position.y = y; position.x = x; position.z = z;}
 	void SetPosition(const Vector3 def) { position = def; }
 	void SetRotation(const float rotation) { this->rotation = rotation; }
+	void SetSize(const Vector3 Size) { this->size = Size; }
 
 protected:
 

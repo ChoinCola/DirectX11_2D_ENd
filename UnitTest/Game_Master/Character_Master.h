@@ -1,8 +1,5 @@
 #pragma once
 
-#include "Game_Master/Game_Master.h"
-#include "math.h"
-
 class Game_Master;
 class Character_Master : public Game_Master
 {

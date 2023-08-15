@@ -53,6 +53,7 @@ Character_Demo::Character_Demo(Vector3 position, Vector3 size)
 
 Character_Demo::~Character_Demo()
 {
+	Character_list.Get()->remove(this);
 }
 
 void Character_Demo::Move()

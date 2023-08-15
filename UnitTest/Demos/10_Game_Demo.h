@@ -14,6 +14,6 @@ private:
 	Game_Master* GM = nullptr;
 	MousePointer* mp = nullptr;
 	Card_Demo* cd = nullptr;
-	Character_Master* ef = nullptr;
-	UI_Master* ui = nullptr;
+	Character_Master* CM = nullptr;
+	UI_Master* UM = nullptr;
 };

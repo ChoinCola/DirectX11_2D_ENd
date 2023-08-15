@@ -31,6 +31,7 @@ Goblin_Sword::Goblin_Sword(Vector3 position, Vector3 size, Character* Host)
 
 Goblin_Sword::~Goblin_Sword()
 {
+	Item_list.Get()->remove(this);
 }
 
 

@@ -17,15 +17,6 @@ Character_Master::~Character_Master()
 
 void Character_Master::Update()
 {
-	for (auto& def : *Character_list.Get()) {
-		if(def != nullptr)
-			def->Update();
-	}
-	for (auto& def : *Item_list.Get()) {
-		if (def != nullptr)
-			def->Update();
-	}
-
 	Chack_Collision();
 	Chack_HP();
 }
@@ -33,7 +24,7 @@ void Character_Master::Update()
 void Character_Master::Render()
 {
 	for (auto& def : *Character_list.Get()) {
-		if(def != nullptr)
+		if (def != nullptr)
 			def->Render();
 	}
 
@@ -51,7 +42,7 @@ void Character_Master::Chack_Collision()
 		for (auto def_C : *Character_list.Get())
 		{
 			// 오류판정
-			if(def_C == nullptr)
+			if (def_C == nullptr)
 				continue;
 
 			for (auto def_Item : *Item_list.Get())
@@ -104,7 +95,7 @@ void Character_Master::Chack_HP()
 	if(!def_list.empty()) {
 		for (auto def = def_list.begin(); def != def_list.end(); def++)
 		{
-			Character_list.Get()->remove((*def));
+			SAFE_DELETE(*def);
 		}
 	}
 }

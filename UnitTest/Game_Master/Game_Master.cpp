@@ -1,6 +1,13 @@
 #include "stdafx.h"
 #include "Game_Master.h"
 
+template <class T>
+void ExecuteIfNotNull(T* instance, void (T::*memberFunction)()) {
+    if (instance != nullptr) {
+        (instance->*memberFunction)();
+    }
+}
+
 Game_Master::Game_Master()
 {
 	Character_list.Create();
@@ -55,6 +62,7 @@ void Game_Master::Chack_ALL_LIST()
 
 void Game_Master::Update()
 {
+
 	for(auto def : *Character_list.Get())
 		def->Update();
 	for (auto def : *HPBar_list.Get())
@@ -65,18 +73,26 @@ void Game_Master::Update()
 		def->Update();
 	for (auto def : *Button_list.Get())
 		def->Update();
+	mouse.Get()->Update();
 }
 
 void Game_Master::Render()
 {
-	for (auto def : *Character_list.Get())
+	
+	for (auto def : *Character_list.Get()) {
 		def->Render();
+		def->GetItem()->Render();
+	}
 	for (auto def : *HPBar_list.Get())
 		def->Render();
-	for (auto def : *Item_list.Get())
+	//for (auto def : *Item_list.Get())
+	//	def->Render();
+	for (auto def : *UI_list.Get()) {
 		def->Render();
-	for (auto def : *UI_list.Get())
+		}
+	for (auto def : *Button_list.Get()) {
 		def->Render();
-	for (auto def : *Button_list.Get())
-		def->Render();
+		}
+	mouse.Get()->Render();
 }
+
