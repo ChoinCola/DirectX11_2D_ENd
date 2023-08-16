@@ -8,6 +8,7 @@ struct PixelInput
 {
 	float4 position : SV_POSITION0; // 픽셀 위치     픽셀의 위치를 나타내는 시스템 값을 의미
 	float2 uv : TEXCOORD0; // 픽셀 색상
+	float4 color : COLOR0; // Color
 };
 
 // cbuffer : 상수 버퍼 레지스터
@@ -45,7 +46,7 @@ SamplerState _samp : register(s0); // 샘플링하는 방법을 지정
 // 입력으로 PixelInput 구조체를 받고, float4 형태의 픽셀 색상을 반환
 float4 PS(PixelInput input) : SV_Target
 {
-	float4 color = _sourceTex.Sample(_samp, (float2) input.uv);
+	float4 color = (float4)(input.color, _sourceTex.Sample(_samp, (float2) input.uv).a);
     
 	return color;
 }

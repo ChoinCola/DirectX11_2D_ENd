@@ -18,8 +18,3 @@ void FontClass::SetFontfile()
 {
 
 }
-
-bool FontClass::SetString()
-{
-	return false;
-}

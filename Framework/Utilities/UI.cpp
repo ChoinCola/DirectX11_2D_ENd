@@ -70,6 +70,7 @@ void UI::Init(Vector3 position, Vector3 size, float rotation, Color color, FillT
 	ps = new PixelShader();
 	ps->Create(ShaderPath + L"UI/ColorUI.hlsl", "PS");
 	
+
 	wb = new WorldBuffer();
 }
 

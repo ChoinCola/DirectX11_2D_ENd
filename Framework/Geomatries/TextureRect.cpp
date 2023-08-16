@@ -61,6 +61,78 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 	}
 }
 
+TextureRect::TextureRect
+(Vector3 position, std::vector<Vector3>* terticespos, Vector3 size, float rotation, std::vector<Vector3>* uv, Color path, ID3D11ShaderResourceView* srv, float mapsize, Vector2 flip)
+{
+	flip.x ? flip.x = 1 : flip.x = 0;
+	flip.y ? flip.y = 1 : flip.y = 0;
+
+	{
+		D3DXMatrixTranslation(&X, 0, 0, 0);
+	}
+
+	// vertices
+	{
+		Textvertices.assign(4, TextureVertexTexture());
+
+		Textvertices[0].position = verticesLocalPosition[0] = (*terticespos)[0];
+		Textvertices[1].position = verticesLocalPosition[1] = (*terticespos)[1];
+		Textvertices[2].position = verticesLocalPosition[2] = (*terticespos)[2];
+		Textvertices[3].position = verticesLocalPosition[3] = (*terticespos)[3];
+
+		Textvertices[0].uv = Vector2(flip.x, !flip.y);
+		Textvertices[1].uv = Vector2(!flip.x, flip.y);
+		Textvertices[2].uv = Vector2(!flip.x, !flip.y);
+		Textvertices[3].uv = Vector2(flip.x, flip.y);
+
+		for(auto def : Textvertices)
+			def.color = path;
+	}
+
+	// Index Buffer
+	{
+		indices = { 0,1,2,0,3,1 };
+		ib = new IndexBuffer();
+		ib->Create(indices, D3D11_USAGE_IMMUTABLE);
+	}
+
+	// Vertex Shader
+	{
+		vs = new VertexShader();
+		vs->Create(ShaderPath + L"FontVertexTexture.hlsl", "VS");
+	}
+
+	// Pixel Shader
+	{
+		ps = new PixelShader();
+		ps->Create(ShaderPath + L"FontVertexTexture.hlsl", "PS");
+	}
+
+	// InputLayout
+	{
+		il = new InputLayout();
+		il->Create(VertexTexture::descs, VertexTexture::count, vs->GetBlob());
+	}
+
+	// World Buffer
+	{
+		wb = new WorldBuffer();
+	}
+
+	// Vertex Buffer
+	{
+		vb = new VertexBuffer();
+		vb->Create(Textvertices, D3D11_USAGE_DYNAMIC);
+	}
+
+	// srv
+	{
+		DC->PSSetShaderResources(0, 1, &srv);
+	}
+
+	DC->DrawIndexed(ib->GetCount(), 0, 0);
+}
+
 TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip)
 	: position(position), size(size), rotation(rotation)
 {
@@ -185,7 +257,7 @@ void TextureRect::GUI()
 
 }
 
-void TextureRect::buff(Vector2 flip)
+void TextureRect::buff(Vector2 flip, Color color = {1,1,1,1})
 {
 	flip.x ? flip.x = 1 : flip.x = 0;
 	flip.y ? flip.y = 1 : flip.y = 0;
@@ -208,10 +280,10 @@ void TextureRect::buff(Vector2 flip)
 		vertices[2].uv = Vector2(!flip.x, !flip.y);
 		vertices[3].uv = Vector2(flip.x, flip.y);
 	}
+
 	// Index Buffer
 	{
 		indices = { 0,1,2,0,3,1 };
-
 		ib = new IndexBuffer();
 		ib->Create(indices, D3D11_USAGE_IMMUTABLE);
 	}
