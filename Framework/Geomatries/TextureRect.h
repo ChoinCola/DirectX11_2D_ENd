@@ -29,6 +29,7 @@ class TextureRect
 {
 public:
 	TextureRect(Vector3 position, Vector3 size, float rotation, Color path, Vector2 flip = { 0,0 });
+	TextureRect(Vector3 position, Vector3 size, float rotation, Color path, Vector2 flip = { 0,0 });
 	TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip = { 0,0 });
 	TextureRect(Vector3 position, Vector3 size, float rotation, Vector2 flip = { 0,0 });
 	~TextureRect();
