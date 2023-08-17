@@ -8,7 +8,8 @@ struct D3DXSTRING
 	std::vector<TextureRect*> string; // 문장 벡터
 
 public:
-	void Render() { for(auto def : string) def->Render(); } // STRING값 출력
+	void Update() { for (auto def : string) def->Update(); } // STRING값 출력
+	void Render() { for (auto def : string) def->Render(); } // STRING값 출력
 };
 
 class FontClass : public SingletonBase<FontClass>
@@ -35,15 +36,16 @@ public:
 	void SetSize(Vector3 size) { this->StringSize = size; } // 문자 사이즈 변경.
 	void Setoffset(float offset)  { this->StringOffset = offset; } // 위 아래 오프셋 변경
 	bool SetFont(std::wstring pngFile, char* fntfile); // 폰트파일 재설정
+
 	std::vector<Vector3>* SizeInit(float width, float height);
 	std::vector<Vector2>* uvInit(float x, float y, float xoffset, float yoffset);
-	D3DXSTRING printString(const std::wstring string, const Vector3 position, const Color color, const Vector3 stringsize);
+	D3DXSTRING MakeString(const std::wstring string, const Vector3 position, const Color color, const Vector3 stringsize);
 
 private:
 	std::wstring Fontfile;
 	std::map<int, CharFont*> charators;
 	
-	Texture2D* m_Texture = nullptr;
+	Texture2D* Fontpng = nullptr;
 
 	Vector2 fontImagesize;
 	Vector3 StringSize;

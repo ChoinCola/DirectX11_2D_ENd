@@ -63,8 +63,8 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 
 TextureRect::TextureRect
 (Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size, float rotation, 
-Color path, ID3D11ShaderResourceView* srv) 
-	: position(position), size(size), rotation(rotation), srv(srv)
+Color path, Texture2D* Fontpng) 
+	: position(position), size(size), rotation(rotation)
 {
 	{
 		D3DXMatrixTranslation(&X, 0, 0, 0);
@@ -86,6 +86,12 @@ Color path, ID3D11ShaderResourceView* srv)
 
 		for(auto def : Textvertices)
 			def.color = path;
+	}
+
+	// Vertex Buffer
+	{
+		vb = new VertexBuffer();
+		vb->Create(Textvertices, D3D11_USAGE_DYNAMIC);
 	}
 
 	// Index Buffer
@@ -119,17 +125,11 @@ Color path, ID3D11ShaderResourceView* srv)
 		wb = new WorldBuffer();
 	}
 
-	// Vertex Buffer
-	{
-		vb = new VertexBuffer();
-		vb->Create(Textvertices, D3D11_USAGE_DYNAMIC);
-	}
-
 	// srv
 	{
+		srv = Fontpng->GetSRV();
 		DC->PSSetShaderResources(0, 1, &srv);
 	}
-
 	DC->DrawIndexed(ib->GetCount(), 0, 0);
 }
 

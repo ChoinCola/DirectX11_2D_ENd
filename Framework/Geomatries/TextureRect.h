@@ -30,7 +30,7 @@ class TextureRect
 public:
 	TextureRect(Vector3 position, Vector3 size, float rotation, Color path, Vector2 flip = { 0,0 });
 	TextureRect(Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size,
-	float rotation, Color path, ID3D11ShaderResourceView* srv);
+	float rotation, Color path, Texture2D* Fontpng);
 	TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip = { 0,0 });
 	TextureRect(Vector3 position, Vector3 size, float rotation, Vector2 flip = { 0,0 });
 	~TextureRect();

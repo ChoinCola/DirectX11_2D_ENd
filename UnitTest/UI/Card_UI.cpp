@@ -4,6 +4,7 @@
 Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int CardUnitCount, std::list<int>* Card_Upgrade, std::wstring Cardstring)
 	: ICard_UI()
 {
+	FontClass::Create();
 	float CornerSize = 30;
 	float CCorrection = 9;
 
@@ -178,6 +179,7 @@ Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int Car
 		{ 1,1 }
 	));
 #pragma endregion
+
 #pragma region Button
 
 	
@@ -220,6 +222,9 @@ Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int Car
 	Button_list.Get()->push_back(Buy_Button);
 	Button_list.Get()->push_back(Sell_Button);
 #pragma endregion
+	
+
+
 }
 
 Card_UI::~Card_UI()
@@ -253,13 +258,13 @@ void Card_UI::Render()
 
 		//FontClass* def;
 		//def->Create();
-		FontClass::Create();
 
-		Vector3 pos = Vector3(
-		CardInfo[0]->GetPosition().x + CardInfo[0]->GetSize().x / 2 - Close_Button->GetSize().x / 2,
-		CardInfo[0]->GetPosition().y - CardInfo[0]->GetSize().y / 2 + Close_Button->GetSize().y , 1);
+		//Vector3 pos = Vector3(
+		//	CardInfo[0]->GetPosition().x + CardInfo[0]->GetSize().x / 2 - Close_Button->GetSize().x / 2,
+		//	CardInfo[0]->GetPosition().y - CardInfo[0]->GetSize().y / 2 + Close_Button->GetSize().y, 1);
 
-		D3DCardstring = new D3DXSTRING(FontClass::Get()->printString(Cardstring, pos, {0,0,0,1}, {11.f,11.f,1}));
+		D3DCardstring = new D3DXSTRING(FontClass::Get()->MakeString(Cardstring, { 600,300,0 }, { 255,255,255,1 }, { 11.f,11.f,1 }));
+		D3DCardstring->Update();
 		D3DCardstring->Render();
 	}
 #pragma endregion

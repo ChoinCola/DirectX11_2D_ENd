@@ -48,7 +48,9 @@ SamplerState _samp : register(s0); // 샘플링하는 방법을 지정
 // 입력으로 PixelInput 구조체를 받고, float4 형태의 픽셀 색상을 반환
 float4 PS(PixelInput input) : SV_Target
 {
-    float4 color = float4((float3)input.color, _sourceTex.Sample(_samp, (float2)input.uv).a);
+    //float4 color = float4((float3)input.color, _sourceTex.Sample(_samp, (float2)input.uv).a);
+    float4 color = _sourceTex.Sample(_samp, (float2)input.uv);
+	
 	return color;
 }
 

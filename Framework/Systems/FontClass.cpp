@@ -18,9 +18,11 @@ FontClass::~FontClass()
 
 bool FontClass::SetFont(std::wstring pngFile, char* fntfile)
 {
-	m_Texture = new Texture2D(pngFile);
+	SAFE_DELETE(Fontpng);
+	Fontpng = new Texture2D(pngFile);
+
 	tinyxml2::XMLDocument doc;
-	
+
 	//이미지 파일의 이름을 받아서 해당 이미지 로딩
 	if (tinyxml2::XMLError eRsult = doc.LoadFile(fntfile))	//xml 로드 실패
 	{
@@ -81,17 +83,17 @@ std::vector<Vector2>* FontClass::uvInit(float x, float y, float xoffset, float y
 	return result;
 }
 
-D3DXSTRING FontClass::printString(const std::wstring string, const Vector3 position, const Color color, const Vector3 stringsize)
+D3DXSTRING FontClass::MakeString(const std::wstring string, const Vector3 position, const Color color, const Vector3 stringsize)
 {
 	//StringSize = Vector3{ 11.f,11.f,0 };
 	D3DXSTRING* result = new D3DXSTRING();
 
-	if (FontClass::m_Texture == nullptr) { 
+	if (Fontpng == nullptr) { 
 	SetFont(L"../Framework/GameAsset/Fontfile/Font_0.png", // WSTRING으로 해야함,Texture2D이기 때문,
 			"..\\Framework\\GameAsset\\Fontfile\\Font.fnt");
 	}
 	result->Startposition = result->Endposition = position;
-	result->size = stringsize;
+	result->size = stringsize * 100;
 	result->color = color;
 
 	for (auto def : string) {
@@ -116,7 +118,7 @@ D3DXSTRING FontClass::printString(const std::wstring string, const Vector3 posit
 				value->second->xoffset / fontImagesize.x, value->second->yoffset / fontImagesize.y);
 
 			result->string.push_back(
-				new TextureRect(result->Endposition, terticespos, uv, result->size, 0.0f,result->color, FontClass::m_Texture->GetSRV()));
+				new TextureRect(result->Endposition, terticespos, uv, result->size, 0.0f,result->color, Fontpng));
 
 			int beforeX = value->second->width;
 			int beforeXOffset = value->second->xoffset;

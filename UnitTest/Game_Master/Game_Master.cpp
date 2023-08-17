@@ -10,6 +10,7 @@ void ExecuteIfNotNull(T* instance, void (T::*memberFunction)()) {
 
 Game_Master::Game_Master()
 {
+
 	Character_list.Create();
 	HPBar_list.Create();
 	Item_list.Create();
