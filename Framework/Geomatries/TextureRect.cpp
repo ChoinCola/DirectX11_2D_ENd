@@ -63,7 +63,8 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 
 TextureRect::TextureRect
 (Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size, float rotation, 
-Color path, ID3D11ShaderResourceView* srv) : position(position), size(size), rotation(rotation)
+Color path, ID3D11ShaderResourceView* srv) 
+	: position(position), size(size), rotation(rotation), srv(srv)
 {
 	{
 		D3DXMatrixTranslation(&X, 0, 0, 0);
@@ -103,7 +104,8 @@ Color path, ID3D11ShaderResourceView* srv) : position(position), size(size), rot
 	// Pixel Shader
 	{
 		ps = new PixelShader();
-		ps->Create(ShaderPath + L"FontVertexTexture.hlsl", "PS");
+		ps->Create(ShaderPath + L"FontVertexTexture.hlsl", "PS")
+		;
 	}
 
 	// InputLayout

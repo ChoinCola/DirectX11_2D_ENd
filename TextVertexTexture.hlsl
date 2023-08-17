@@ -2,12 +2,15 @@ struct VertexInput
 {
 	float4 position : POSITION0; // 정점 위치 "position"이라는 변수가 "POSITION0" 스트림의 위치에 대한 정보를 저장한다
 	float2 uv : TEXCOORD0; // uv 좌표
+    float4 color : COLOR0;
 };
 
 struct PixelInput
 {
 	float4 position : SV_POSITION0; // 픽셀 위치     픽셀의 위치를 나타내는 시스템 값을 의미
-	float4 uv : TEXCOORD0; // 텍스트 픽셀 색상
+	float2 uv : TEXCOORD0; // 텍스트 픽셀 색상
+    float4 color : COLOR0;
+	
 };
 
 // cbuffer : 상수 버퍼 레지스터
@@ -34,7 +37,7 @@ PixelInput VS(VertexInput input)
 	output.position = mul(output.position, _view); // 결과에 뷰 행렬을 곱함
 	output.position = mul(output.position, _projection); // 결과에 프로젝션 행렬을 곱함
     
-	output.color = input.uv;
+	output.uv = input.uv;
 	return output;
 }
 
@@ -45,7 +48,7 @@ SamplerState _samp : register(s0); // 샘플링하는 방법을 지정
 // 입력으로 PixelInput 구조체를 받고, float4 형태의 픽셀 색상을 반환
 float4 PS(PixelInput input) : SV_Target
 {
-	float4 color = _sourceTex.Sample(_samp, (float2)input.uv);
+    float4 color = float4((float3)input.color, _sourceTex.Sample(_samp, (float2)input.uv).a);
 	return color;
 }
 

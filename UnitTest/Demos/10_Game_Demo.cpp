@@ -11,7 +11,6 @@ void Game_Demo::Init()
 	UM = new UI_Master();
 	CM = new Character_Master();
 	ShowCursor(false);
-
 	GM->Chack_ALL_LIST();
 }
 

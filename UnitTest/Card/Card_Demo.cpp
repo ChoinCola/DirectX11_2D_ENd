@@ -14,7 +14,7 @@ Card_Demo::Card_Demo()
 	0,
 	Card_unit_count,
 	&upgrade,
-	L"TestCard\nInfo"
+	L"I"
 	);
 
 	UI_list.Get()->push_back(Cardinfo);
