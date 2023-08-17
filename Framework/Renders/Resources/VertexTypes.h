@@ -48,7 +48,7 @@ struct TextureVertexTexture
 
 
 	static D3D11_INPUT_ELEMENT_DESC descs[];	// 정점 데이터 구조 서술
-	static const uint count = 2;				// 원소 개수
+	static const uint count = 3;				// 원소 개수
 };
 
 struct VertexTile

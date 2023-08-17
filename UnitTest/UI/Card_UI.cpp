@@ -222,9 +222,26 @@ Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int Car
 	Button_list.Get()->push_back(Buy_Button);
 	Button_list.Get()->push_back(Sell_Button);
 #pragma endregion
-	
+	Color TextColor { 0.35, 0.34, 0.85, 1};
+	{
+		float textsize = 20.0f;
+		Vector3 pos = Vector3(
+			Card[0]->GetPosition().x,
+			Card[0]->GetPosition().y - textsize/2, 1);
 
+		D3DCardstring = 
+		new D3DXSTRING(FontClass::Get()->MakeString(CardName, pos, TextColor, { textsize, textsize, 1 }, MIDDLE));
 
+	}
+	{
+		float textsize = 20.0f;
+		Vector3 pos = Vector3(
+			CardInfo[0]->GetPosition().x,
+			CardInfo[0]->GetPosition().y, 1);
+		D3DCardInfostring = 
+		new D3DXSTRING(FontClass::Get()->MakeString(Cardstring, pos, TextColor, { textsize, textsize, 1 }));
+
+	}
 }
 
 Card_UI::~Card_UI()
@@ -244,46 +261,16 @@ void Card_UI::Render()
 		for (auto def : CardInfo)
 			def->Render();
 
-		//Text::Get()->BeginDraw();
-		//{
-		//	float textsize = 4.0f;
-		//	float size = (float)Text::Get()->GetStringWidth(Cardstring, textsize);
-		//	Vector2 pos = Vector2(
-		//	CardInfo[0]->GetPosition().x - CardInfo[0]->GetSize().x / 2 + Close_Button->GetSize().x / 2,
-		//	CardInfo[0]->GetPosition().y + CardInfo[0]->GetSize().y / 2 - Close_Button->GetSize().y);
-		//	Text::Get()->RenderText(Cardstring, pos + Vector2(textsize / 4, textsize / 4), Color(38, 43, 68, 1), size, true);
-		//	Text::Get()->RenderText(Cardstring, pos, Color(255, 255, 255, 1), size, true);
-		//}
-		//Text::Get()->EndDraw();
-
-		//FontClass* def;
-		//def->Create();
-
-		//Vector3 pos = Vector3(
-		//	CardInfo[0]->GetPosition().x + CardInfo[0]->GetSize().x / 2 - Close_Button->GetSize().x / 2,
-		//	CardInfo[0]->GetPosition().y - CardInfo[0]->GetSize().y / 2 + Close_Button->GetSize().y, 1);
-
-		D3DCardstring = new D3DXSTRING(FontClass::Get()->MakeString(Cardstring, { 600,300,0 }, { 255,255,255,1 }, { 11.f,11.f,1 }));
-		D3DCardstring->Update();
-		D3DCardstring->Render();
+		D3DCardInfostring->Render();
 	}
 #pragma endregion
 
 #pragma region Card_base
-	for(auto def: Card)
+	for(auto def: Card) {
 		def->Render();
 
-	Text::Get()->BeginDraw();
-	{
-		float textsize = 10.0f;
-		float size = (float)Text::Get()->GetStringWidth(CardName, textsize);
-		Vector2 pos = Vector2(
-		Card[0]->GetPosition().x - Card[0]->GetSize().x / 2 + textsize * CardName.length() / 2,
-		Card[0]->GetPosition().y + Card[0]->GetSize().y / 2);
-		Text::Get()->RenderText(CardName, pos + Vector2(textsize / 4, textsize / 4), Color(38, 43, 68, 1), size, true);
-		Text::Get()->RenderText(CardName, pos, Color(255, 255, 255, 1), size, true);
+		D3DCardstring->Render();
 	}
-	Text::Get()->EndDraw();
 #pragma endregion
 }
 
@@ -299,4 +286,7 @@ void Card_UI::Update()
 
 	for (auto def : CardInfo)
 		def->Update();
+
+	D3DCardInfostring->Update();
+	D3DCardstring->Update();
 }

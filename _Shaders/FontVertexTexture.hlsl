@@ -2,13 +2,15 @@ struct VertexInput
 {
 	float4 position : POSITION0; // 정점 위치 "position"이라는 변수가 "POSITION0" 스트림의 위치에 대한 정보를 저장한다
 	float2 uv : TEXCOORD0; // uv 좌표
+    float4 color : COLOR0;
 };
 
 struct PixelInput
 {
 	float4 position : SV_POSITION0; // 픽셀 위치     픽셀의 위치를 나타내는 시스템 값을 의미
-	float2 uv : TEXCOORD0; // 픽셀 색상
-	float4 color : COLOR0; // Color
+	float2 uv : TEXCOORD0; // 텍스트 픽셀 색상
+    float4 color : COLOR0;
+	
 };
 
 // cbuffer : 상수 버퍼 레지스터
@@ -36,6 +38,8 @@ PixelInput VS(VertexInput input)
 	output.position = mul(output.position, _projection); // 결과에 프로젝션 행렬을 곱함
     
 	output.uv = input.uv;
+    output.color = input.color;
+    
 	return output;
 }
 
@@ -46,8 +50,10 @@ SamplerState _samp : register(s0); // 샘플링하는 방법을 지정
 // 입력으로 PixelInput 구조체를 받고, float4 형태의 픽셀 색상을 반환
 float4 PS(PixelInput input) : SV_Target
 {
-	float4 color = (float4)(input.color, _sourceTex.Sample(_samp, (float2) input.uv).a);
-    
+    float4 color = float4(input.color.rgb, _sourceTex.Sample(_samp, (float2)input.uv).a);
+    //float4 color = _sourceTex.Sample(_samp, (float2)input.uv);
+    //float4 color = input.color;
+	
 	return color;
 }
 
@@ -81,9 +87,4 @@ cbuffer = Constance Buffer : 상수 버퍼
 - 셰이더에서 사용하는 전역 변수를 저장하는데 사용
 - 각 상수 버퍼 레지스터에는 한 개의 상수 버퍼만 할당할 수 있음
 - 상수 버퍼 내부에는 여러 개의 변수를 선언할 수 있다.
-
-Sampler : 샘플러
-- 텍스처에서 픽셀 값을 가져오는 방법을 정의하는 객체
-- 텍스처 샘플링은 텍스처 이미지에 대한 텍셀 값을 계산하는 작업
-  (텍셀 : 텍스처의 픽셀 값)
 */

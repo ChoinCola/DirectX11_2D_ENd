@@ -17,10 +17,10 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 		for (VertexColor& v : colorVertices)
 			v.color = path;
 
-		colorVertices[0].position = Vector3(-0.5f, -0.5f, 0.0f);
-		colorVertices[1].position = Vector3(+0.5f, +0.5f, 0.0f);
-		colorVertices[2].position = Vector3(+0.5f, -0.5f, 0.0f);
-		colorVertices[3].position = Vector3(-0.5f, +0.5f, 0.0f);
+		colorVertices[0].position = Vector3(-0.5f, -0.5f, 0.0f); // 좌하단
+		colorVertices[1].position = Vector3(+0.5f, +0.5f, 0.0f); // 우상단
+		colorVertices[2].position = Vector3(+0.5f, -0.5f, 0.0f); // 우하단
+		colorVertices[3].position = Vector3(-0.5f, +0.5f, 0.0f); // 좌상단
 	}
 
 	// Vertex Buffer
@@ -63,15 +63,15 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 
 TextureRect::TextureRect
 (Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size, float rotation, 
-Color path, Texture2D* Fontpng) 
+Color path, Texture2D* Fontpng)
 	: position(position), size(size), rotation(rotation)
-{
+{	// 텍스트 출력용
 	{
 		D3DXMatrixTranslation(&X, 0, 0, 0);
 	}
 
 	// vertices
-	{
+	{	// 텍스트 출력용 VertexTexture형식
 		Textvertices.assign(4, TextureVertexTexture());
 
 		Textvertices[0].position = verticesLocalPosition[0] = (*terticespos)[0];
@@ -84,7 +84,7 @@ Color path, Texture2D* Fontpng)
 		Textvertices[2].uv = (*uv)[2];
 		Textvertices[3].uv = (*uv)[3];
 
-		for(auto def : Textvertices)
+		for(auto& def : Textvertices)
 			def.color = path;
 	}
 
@@ -110,14 +110,13 @@ Color path, Texture2D* Fontpng)
 	// Pixel Shader
 	{
 		ps = new PixelShader();
-		ps->Create(ShaderPath + L"FontVertexTexture.hlsl", "PS")
-		;
+		ps->Create(ShaderPath + L"FontVertexTexture.hlsl", "PS");
 	}
 
 	// InputLayout
 	{
 		il = new InputLayout();
-		il->Create(VertexTexture::descs, VertexTexture::count, vs->GetBlob());
+		il->Create(TextureVertexTexture::descs, TextureVertexTexture::count, vs->GetBlob());
 	}
 
 	// World Buffer
@@ -128,9 +127,7 @@ Color path, Texture2D* Fontpng)
 	// srv
 	{
 		srv = Fontpng->GetSRV();
-		DC->PSSetShaderResources(0, 1, &srv);
 	}
-	DC->DrawIndexed(ib->GetCount(), 0, 0);
 }
 
 TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip)
@@ -257,7 +254,7 @@ void TextureRect::GUI()
 
 }
 
-void TextureRect::buff(Vector2 flip)
+void TextureRect::buff(Vector2 flip = {0,0})
 {
 	flip.x ? flip.x = 1 : flip.x = 0;
 	flip.y ? flip.y = 1 : flip.y = 0;

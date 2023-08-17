@@ -163,10 +163,8 @@
     <ClCompile Include="Game\UI\ProgressBar.cpp" />
     <ClCompile Include="Geomatries\AnimationRect.cpp" />
     <ClCompile Include="Geomatries\BlurTexture.cpp" />
-    <ClCompile Include="Geomatries\Dmd.cpp" />
     <ClCompile Include="Geomatries\Rect.cpp" />
     <ClCompile Include="Geomatries\ShadedTexture.cpp" />
-    <ClCompile Include="Geomatries\Star.cpp" />
     <ClCompile Include="Geomatries\TextureRect.cpp" />
     <ClCompile Include="Geomatries\Tile\Tile.cpp" />
     <ClCompile Include="Geomatries\Tile\TileMap.cpp" />
@@ -211,10 +209,8 @@
     <ClInclude Include="Game\UI\ProgressBar.h" />
     <ClInclude Include="Geomatries\AnimationRect.h" />
     <ClInclude Include="Geomatries\BlurTexture.h" />
-    <ClInclude Include="Geomatries\Dmd.h" />
     <ClInclude Include="Geomatries\Rect.h" />
     <ClInclude Include="Geomatries\ShadedTexture.h" />
-    <ClInclude Include="Geomatries\Star.h" />
     <ClInclude Include="Geomatries\TextureRect.h" />
     <ClInclude Include="Geomatries\Tile\Tile.h" />
     <ClInclude Include="Geomatries\Tile\TileMap.h" />
