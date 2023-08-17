@@ -4,13 +4,10 @@
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 #endif
 
-// xml
-#include "tinyxml/tinyxml.h"
+
 
 //미리 컴파일된 헤더.
 //pch pre compiled header
-
-
 #include <iostream>
 #include <vector>
 #include <time.h>
@@ -23,6 +20,7 @@
 #include <fstream>
 
 using namespace std;
+
 
 //DirectX
 #include <DirectXTex/DirectXTex.h>
@@ -101,6 +99,9 @@ typedef UINT		uint;
 #include "Renders/Resources/GlobalBuffer.h"
 #include "Renders/Resources/Texture2D.h"
 
+// xml
+#include "tinyxml/tinyxml2.h"
+
 #include "Renders/Shaders/IShader.h"
 #include "Renders/Shaders/VertexShader.h"
 #include "Renders/Shaders/PixelShader.h"
@@ -124,6 +125,7 @@ typedef UINT		uint;
 #include "Utilities/String.h"
 #include "Utilities/Path.h"
 
+#include "Systems/FontClass.h"
 #include "Systems/Camera.h"
 
 #include "Game/UI/ProgressBar.h"

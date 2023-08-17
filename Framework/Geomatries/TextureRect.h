@@ -29,8 +29,8 @@ class TextureRect
 {
 public:
 	TextureRect(Vector3 position, Vector3 size, float rotation, Color path, Vector2 flip = { 0,0 });
-	TextureRect(Vector3 position, std::vector<Vector3>* terticespos, Vector3 size,
-	float rotation, std::vector<Vector3>* uv, Color path, ID3D11ShaderResourceView* srv, float mapsize, Vector2 flip = { 0,0 });
+	TextureRect(Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size,
+	float rotation, Color path, ID3D11ShaderResourceView* srv);
 	TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip = { 0,0 });
 	TextureRect(Vector3 position, Vector3 size, float rotation, Vector2 flip = { 0,0 });
 	~TextureRect();
@@ -97,5 +97,5 @@ protected:
 	RedBuffer* hb = nullptr;
 
 	private:
-	void buff(Vector2 flip , Color color);
+	void buff(Vector2 flip);
 };

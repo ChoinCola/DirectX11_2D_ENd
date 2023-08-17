@@ -46,6 +46,7 @@
     <ClCompile Include="Game\UI\Details_windows.cpp" />
     <ClCompile Include="Game\Button.cpp" />
     <ClCompile Include="Game\HPBar.cpp" />
+    <ClCompile Include="Systems\FontClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Systems\Graphics.h" />
@@ -97,5 +98,6 @@
     <ClInclude Include="Game\UI\Details_windows.h" />
     <ClInclude Include="Game\Button.h" />
     <ClInclude Include="Game\HPBar.h" />
+    <ClInclude Include="Systems\FontClass.h" />
   </ItemGroup>
 </Project>

@@ -62,11 +62,9 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 }
 
 TextureRect::TextureRect
-(Vector3 position, std::vector<Vector3>* terticespos, Vector3 size, float rotation, std::vector<Vector3>* uv, Color path, ID3D11ShaderResourceView* srv, float mapsize, Vector2 flip)
+(Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size, float rotation, 
+Color path, ID3D11ShaderResourceView* srv) : position(position), size(size), rotation(rotation)
 {
-	flip.x ? flip.x = 1 : flip.x = 0;
-	flip.y ? flip.y = 1 : flip.y = 0;
-
 	{
 		D3DXMatrixTranslation(&X, 0, 0, 0);
 	}
@@ -80,10 +78,10 @@ TextureRect::TextureRect
 		Textvertices[2].position = verticesLocalPosition[2] = (*terticespos)[2];
 		Textvertices[3].position = verticesLocalPosition[3] = (*terticespos)[3];
 
-		Textvertices[0].uv = Vector2(flip.x, !flip.y);
-		Textvertices[1].uv = Vector2(!flip.x, flip.y);
-		Textvertices[2].uv = Vector2(!flip.x, !flip.y);
-		Textvertices[3].uv = Vector2(flip.x, flip.y);
+		Textvertices[0].uv = (*uv)[0];
+		Textvertices[1].uv = (*uv)[1];
+		Textvertices[2].uv = (*uv)[2];
+		Textvertices[3].uv = (*uv)[3];
 
 		for(auto def : Textvertices)
 			def.color = path;
@@ -257,7 +255,7 @@ void TextureRect::GUI()
 
 }
 
-void TextureRect::buff(Vector2 flip, Color color = {1,1,1,1})
+void TextureRect::buff(Vector2 flip)
 {
 	flip.x ? flip.x = 1 : flip.x = 0;
 	flip.y ? flip.y = 1 : flip.y = 0;

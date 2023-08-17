@@ -239,17 +239,26 @@ void Card_UI::Render()
 		for (auto def : CardInfo)
 			def->Render();
 
-		Text::Get()->BeginDraw();
-		{
-			float textsize = 4.0f;
-			float size = (float)Text::Get()->GetStringWidth(Cardstring, textsize);
-			Vector2 pos = Vector2(
-			CardInfo[0]->GetPosition().x - CardInfo[0]->GetSize().x / 2 + Close_Button->GetSize().x / 2,
-			CardInfo[0]->GetPosition().y + CardInfo[0]->GetSize().y / 2 - Close_Button->GetSize().y);
-			Text::Get()->RenderText(Cardstring, pos + Vector2(textsize / 4, textsize / 4), Color(38, 43, 68, 1), size, true);
-			Text::Get()->RenderText(Cardstring, pos, Color(255, 255, 255, 1), size, true);
-		}
-		Text::Get()->EndDraw();
+		//Text::Get()->BeginDraw();
+		//{
+		//	float textsize = 4.0f;
+		//	float size = (float)Text::Get()->GetStringWidth(Cardstring, textsize);
+		//	Vector2 pos = Vector2(
+		//	CardInfo[0]->GetPosition().x - CardInfo[0]->GetSize().x / 2 + Close_Button->GetSize().x / 2,
+		//	CardInfo[0]->GetPosition().y + CardInfo[0]->GetSize().y / 2 - Close_Button->GetSize().y);
+		//	Text::Get()->RenderText(Cardstring, pos + Vector2(textsize / 4, textsize / 4), Color(38, 43, 68, 1), size, true);
+		//	Text::Get()->RenderText(Cardstring, pos, Color(255, 255, 255, 1), size, true);
+		//}
+		//Text::Get()->EndDraw();
+
+		FontClass* def;
+		def->Create();
+		Vector3 pos = Vector3(
+		CardInfo[0]->GetPosition().x - CardInfo[0]->GetSize().x / 2 + Close_Button->GetSize().x / 2,
+		CardInfo[0]->GetPosition().y + CardInfo[0]->GetSize().y / 2 - Close_Button->GetSize().y , 1);
+
+		D3DCardstring = def->printString(Cardstring, pos, {255,255,255,1});
+		D3DCardstring->Render();
 	}
 #pragma endregion
 
