@@ -99,8 +99,24 @@ typedef UINT		uint;
 #include "Renders/Resources/GlobalBuffer.h"
 #include "Renders/Resources/Texture2D.h"
 
+///////////////////////////////////////////////////
 // xml
 #include "tinyxml/tinyxml2.h"
+
+#ifdef _WIN64
+	#ifdef _DEBUG
+		#pragma comment(lib, "tinyxml/lib/x64/Debug/tinyxml2.lib")
+	#else
+		#pragma comment(lib, "tinyxml/lib/x64/Release/tinyxml2.lib")
+	#endif
+#else
+	#ifdef _DEBUG
+		#pragma comment(lib, "tinyxml/lib/x86/Debug/tinyxml2.lib")
+	#else
+		#pragma comment(lib, "tinyxml/lib/x86/Release/tinyxml2.lib")
+	#endif
+#endif
+///////////////////////////////////////////////////
 
 #include "Renders/Shaders/IShader.h"
 #include "Renders/Shaders/VertexShader.h"

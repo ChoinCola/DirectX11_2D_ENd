@@ -9,7 +9,7 @@ FontClass::FontClass()
 	StringOffset = 2.f;
 	assert(SetFont(
 		L"../Framework/GameAsset/Fontfile/Font_0.png", // WSTRING으로 해야함,Texture2D이기 때문,
-		"Framework\\GameAsset\\Fontfile\\Font.fnt")); // string으로 해야함, 라이브러리가 string으로 읽기때문,
+		"..\\Framework\\GameAsset\\Fontfile\\Font.fnt")); // string으로 해야함, 라이브러리가 string으로 읽기때문,
 }
 
 FontClass::~FontClass()
@@ -19,7 +19,7 @@ FontClass::~FontClass()
 bool FontClass::SetFont(std::wstring pngFile, char* fntfile)
 {
 	m_Texture = new Texture2D(pngFile);
-	XMLDocument doc;
+	tinyxml2::XMLDocument doc;
 	
 	//이미지 파일의 이름을 받아서 해당 이미지 로딩
 	if (tinyxml2::XMLError eRsult = doc.LoadFile(fntfile))	//xml 로드 실패
@@ -92,6 +92,7 @@ std::vector<Vector2>* FontClass::uvInit(float x, float y, float xoffset, float y
 D3DXSTRING* FontClass::printString(const std::wstring string, const Vector3 position, const Color color)
 {
 	D3DXSTRING* result = new D3DXSTRING();
+
 	result->Startposition = result->Endposition = position;
 	result->size = StringSize;
 	result->color = color;

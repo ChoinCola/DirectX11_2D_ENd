@@ -251,13 +251,13 @@ void Card_UI::Render()
 		//}
 		//Text::Get()->EndDraw();
 
-		FontClass* def;
-		def->Create();
+		//FontClass* def;
+		//def->Create();
 		Vector3 pos = Vector3(
 		CardInfo[0]->GetPosition().x - CardInfo[0]->GetSize().x / 2 + Close_Button->GetSize().x / 2,
 		CardInfo[0]->GetPosition().y + CardInfo[0]->GetSize().y / 2 - Close_Button->GetSize().y , 1);
 
-		D3DCardstring = def->printString(Cardstring, pos, {255,255,255,1});
+		D3DCardstring = FontClass::printString(Cardstring, pos, {255,255,255,1});
 		D3DCardstring->Render();
 	}
 #pragma endregion
