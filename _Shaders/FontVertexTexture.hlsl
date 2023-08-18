@@ -3,6 +3,7 @@ struct VertexInput
 	float4 position : POSITION0; // 정점 위치 "position"이라는 변수가 "POSITION0" 스트림의 위치에 대한 정보를 저장한다
 	float2 uv : TEXCOORD0; // uv 좌표
     float4 color : COLOR0;
+    float1 Outline : OUTLINE0;
 };
 
 struct PixelInput
@@ -10,7 +11,7 @@ struct PixelInput
 	float4 position : SV_POSITION0; // 픽셀 위치     픽셀의 위치를 나타내는 시스템 값을 의미
 	float2 uv : TEXCOORD0; // 텍스트 픽셀 색상
     float4 color : COLOR0;
-	
+    float1 Outline : OUTLINE0;
 };
 
 // cbuffer : 상수 버퍼 레지스터
@@ -39,6 +40,7 @@ PixelInput VS(VertexInput input)
     
 	output.uv = input.uv;
     output.color = input.color;
+    output.Outline = input.Outline;
     
 	return output;
 }
@@ -50,9 +52,55 @@ SamplerState _samp : register(s0); // 샘플링하는 방법을 지정
 // 입력으로 PixelInput 구조체를 받고, float4 형태의 픽셀 색상을 반환
 float4 PS(PixelInput input) : SV_Target
 {
-    float4 color = float4(input.color.rgb, _sourceTex.Sample(_samp, (float2)input.uv).a);
-    //float4 color = _sourceTex.Sample(_samp, (float2)input.uv);
-    //float4 color = input.color;
+    float4 color;
+    if (input.Outline)
+    {
+        color = float4(input.color.rgb, 
+        _sourceTex.Sample(_samp, (float2) input.uv).a);
+        
+        float4 color = _sourceTex.Sample(_samp, (float2) input.uv);
+    
+    // 주변 픽셀들
+        float2 arr[8] =
+        {
+            float2(-1, +1), float2(+0, +1), float2(+1, +1),
+        float2(-1, +0), /* 기준 정점 */float2(+1, +0),
+        float2(-1, -1), float2(+0, -1), float2(+1, -1)
+        };
+    
+    // 블러 카운트 만큼 반복
+        for (int blur = 1; blur < _blurCount; blur++)
+        {
+        // 주변 픽셀들에 대해 반복
+            for (int i = 0; i < 8; i++)
+            {
+            // 입력 텍스처에서 샘플링할 주변 픽셀들의 상대적인 위치를 계산
+                float x = arr[i].x * (float) blur / _imageSize.x;
+                float y = arr[i].y * (float) blur / _imageSize.y;
+            
+            // 새로운 uv 좌표 계산
+                float2 uv = input.uv + float2(x, y);
+            
+            // 입력 텍스처에 색상을 추가로 샘플링하여 누적
+                color += _sourceTex.Sample(_samp, uv);
+            }
+        }
+    
+    // 블러 반복 횟수
+        int blurInterations = _blurCount - 1;
+    // 오프셋 개수
+        int offsetCount = 8;
+    // 전체 샘플링 개수
+        int totalSamples = blurInterations * offsetCount + 1;
+    
+        return color /= totalSamples;
+        
+    }
+    else
+    {
+        color = float4(input.color.rgb, _sourceTex.Sample(_samp, (float2) input.uv).a);
+    }
+
 	
 	return color;
 }

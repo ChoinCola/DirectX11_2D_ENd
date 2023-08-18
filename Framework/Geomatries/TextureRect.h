@@ -30,7 +30,7 @@ class TextureRect
 public:
 	TextureRect(Vector3 position, Vector3 size, float rotation, Color path, Vector2 flip = { 0,0 });
 	TextureRect(Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size,
-	float rotation, Color path, Texture2D* Fontpng); // 문자 출력용 생성자
+	float rotation, Color path, Texture2D* Fontpng, bool OutLine = 0); // 문자 출력용 생성자
 	TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip = { 0,0 });
 	TextureRect(Vector3 position, Vector3 size, float rotation, Vector2 flip = { 0,0 });
 	~TextureRect();

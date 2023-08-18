@@ -222,8 +222,20 @@ Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int Car
 	Button_list.Get()->push_back(Buy_Button);
 	Button_list.Get()->push_back(Sell_Button);
 #pragma endregion
-	Color TextColor { 0.35, 0.34, 0.85, 1};
+	
 	{
+		Color TextColor{ 0, 0, 0, 1 };
+		float textsize = 30.0f;
+		Vector3 pos = Vector3(
+			Card[0]->GetPosition().x,
+			Card[0]->GetPosition().y - textsize / 2, 1);
+
+		D3DCardstring =
+			new D3DXSTRING(FontClass::Get()->MakeString(CardName, pos, TextColor, { textsize, textsize, 1 }, MIDDLE));
+	}
+
+	{
+		Color TextColor{ 0.86, 0.68, 0.85, 1 };
 		float textsize = 20.0f;
 		Vector3 pos = Vector3(
 			Card[0]->GetPosition().x,
@@ -231,13 +243,15 @@ Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int Car
 
 		D3DCardstring = 
 		new D3DXSTRING(FontClass::Get()->MakeString(CardName, pos, TextColor, { textsize, textsize, 1 }, MIDDLE));
-
 	}
+
+
 	{
+		Color TextColor{ 0.86, 0.68, 0.85, 1 };
 		float textsize = 20.0f;
 		Vector3 pos = Vector3(
-			CardInfo[0]->GetPosition().x,
-			CardInfo[0]->GetPosition().y, 1);
+			CardInfo[0]->GetPosition().x - CardInfo[0]->GetSize().x / 2 + Close_Button->GetSize().x / 2,
+			CardInfo[0]->GetPosition().y + CardInfo[0]->GetSize().y / 2 - Close_Button->GetSize().y / 2 - textsize, 1);
 		D3DCardInfostring = 
 		new D3DXSTRING(FontClass::Get()->MakeString(Cardstring, pos, TextColor, { textsize, textsize, 1 }));
 

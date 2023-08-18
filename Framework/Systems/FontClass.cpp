@@ -75,7 +75,7 @@ std::vector<Vector3>* FontClass::SizeInit(float width, float height)
 	//maxx 18, maxy 18 가장큰 한글 폰트의 사이즈를 맥스 18로 잡고 나누어서 offset을 잡는다.
 	std::vector<Vector3>* result = new std::vector<Vector3>;
 
-	// TextureRect에 들어가는 값을 Vector로 보관하여 던져줘야 한다.
+	 //TextureRect에 들어가는 값을 Vector로 보관하여 던져줘야 한다.
 	result->push_back(Vector3(+0.0f			, +0.0f			, 0));
 	result->push_back(Vector3(+width / 18	, +height / 18	, 0));
 	result->push_back(Vector3(+width / 18	, +0.0f			, 0));
@@ -126,7 +126,7 @@ D3DXSTRING FontClass::MakeString
 
 			// 개행문자. 엔터입력시 밑으로
 			if (def == '\n') {
-				result->Endposition.y += result->size.y + StringOffset;
+				result->Endposition.y -= result->size.y * 1.8;
 				result->Endposition.x = result->Startposition.x;
 				continue;
 			}
@@ -143,9 +143,17 @@ D3DXSTRING FontClass::MakeString
 			uvInit(value->second->x / fontImagesize.x, value->second->y / fontImagesize.y,
 					value->second->width / fontImagesize.x, value->second->height / fontImagesize.y);
 
+			// 한글과 영어의 Offset위치가 다르기 떄문에 한글일경우, 추가 offset을 준다.
+			Vector3 Offset;
+			if(value->first >= 40000)
+				Offset = Vector3(0,value->second->yoffset,0);
+			else
+				Offset = Vector3(0, 0, 0);
+
 			// 나온결과값을 문장 에 기입한다.
 			result->string.push_back(
-				new TextureRect(result->Endposition, terticespos, uv, result->size, 0.0f,result->color, Fontpng));
+				new TextureRect(result->Endposition + Offset, 
+				terticespos, uv, result->size, 0.0f,result->color, Fontpng));
 
 			result->Endposition.x += value->second->width / 18 * result->size.x + StringOffset;
 		}
@@ -154,40 +162,40 @@ D3DXSTRING FontClass::MakeString
 	
 	switch (sorting)
 	{
-	case RIGHT : // 이 문장은 시작위치 기준 왼쪽으로 발산합니다.
-	{
-		float sortvectorsizex = (result->Endposition.x - result->Startposition.x); // 전체 문장 길이
-		Vector3 sortvector = { sortvectorsizex, 0, 0 };
-		for (auto def : result->string) {
-			if (def->GetPosition().y < result->Startposition.y) // 엔터가 입력되었을 경우,
-				sortvector.x = sortvectorsizex; // x를 문장길이 기본 으로 초기화
+		case RIGHT : // 이 문장은 시작위치 기준 왼쪽으로 발산합니다.
+		{
+			float sortvectorsizex = (result->Endposition.x - result->Startposition.x); // 전체 문장 길이
+			Vector3 sortvector = { sortvectorsizex, 0, 0 };
+			for (auto def : result->string) {
+				if (def->GetPosition().y < result->Startposition.y) // 엔터가 입력되었을 경우,
+					sortvector.x = sortvectorsizex; // x를 문장길이 기본 으로 초기화
 
-			Vector3 charX = Vector3(def->GetRect().x / 4 - StringOffset, 0, 0);
+				Vector3 charX = Vector3(def->GetRect().x / 4 - StringOffset, 0, 0);
 
-			def->SetPosition(def->GetPosition() - sortvector); // 현재 위치의 단어 길이만큼을 쭉 밀어버림.
-			sortvector -= charX;
-			// 다음에 왼쪽으로 미는 값은 방금 민 글자의 x사이즈 만큼 줄어들어야 한다.
+				def->SetPosition(def->GetPosition() - sortvector); // 현재 위치의 단어 길이만큼을 쭉 밀어버림.
+				sortvector -= charX;
+				// 다음에 왼쪽으로 미는 값은 방금 민 글자의 x사이즈 만큼 줄어들어야 한다.
+			}
+			break;
 		}
-		break;
-	}
-	case MIDDLE : 	// 이 문장은 시작위치 가 문장의 중앙입니다.
-	{
-		float sortvectorsizex = (result->Endposition.x - result->Startposition.x) / 2; // 전체 문장 길이의 반
-		Vector3 sortvector = { sortvectorsizex, 0, 0 };
-		for (auto def : result->string) {
-			if (def->GetPosition().y < result->Startposition.y) // 엔터가 입력되었을 경우,
-				sortvector.x = sortvectorsizex; // x를 문장길이의 기본의 반절 로 초기화
+		case MIDDLE : 	// 이 문장은 시작위치 가 문장의 중앙입니다.
+		{
+			float sortvectorsizex = (result->Endposition.x - result->Startposition.x) / 2; // 전체 문장 길이의 반
+			Vector3 sortvector = { sortvectorsizex, 0, 0 };
+			for (auto def : result->string) {
+				if (def->GetPosition().y < result->Startposition.y) // 엔터가 입력되었을 경우,
+					sortvector.x = sortvectorsizex; // x를 문장길이의 기본의 반절 로 초기화
 
-			Vector3 charX = Vector3(def->GetRect().x / 4 - StringOffset, 0, 0);
+				Vector3 charX = Vector3(def->GetRect().x / 4 - StringOffset, 0, 0);
 			
-			def->SetPosition(def->GetPosition() - sortvector); // 현재 위치의 단어 길이만큼을 쭉 밀어버림.
-			sortvector -= charX;
-			 // 다음에 왼쪽으로 미는 값은 방금 민 글자의 x사이즈 만큼 줄어들어야 한다.
+				def->SetPosition(def->GetPosition() - sortvector); // 현재 위치의 단어 길이만큼을 쭉 밀어버림.
+				sortvector -= charX;
+				 // 다음에 왼쪽으로 미는 값은 방금 민 글자의 x사이즈 만큼 줄어들어야 한다.
+			}
+			break;
 		}
-		break;
-	}
-	default: // 이 문장은 시작위치 기준 오른쪽으로 발산합니다.
-		break;
+		default: // 이 문장은 시작위치 기준 오른쪽으로 발산합니다.
+			break;
 	}
 	return *result;
 }

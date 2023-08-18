@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Dmd.h"
-
 class BlurBuffer : public ShaderBuffer
 {
 public:
@@ -26,19 +24,4 @@ public:
 	};
 private:
 	Data data;
-};
-
-class BlurTexture : public Dmd
-{
-public:
-	BlurTexture(Vector3 position, Vector3 size, float rotation, wstring path);
-	~BlurTexture();
-
-	void Update();
-	void Render();
-
-	void GUI();
-
-private:
-	BlurBuffer* buffer = nullptr;
 };

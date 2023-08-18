@@ -37,18 +37,18 @@ struct VertexTexture
 struct TextureVertexTexture
 {
 	TextureVertexTexture()
-		: position(0, 0, 0), uv(0, 0), color(0,0,0,0)  {}
+		: position(0, 0, 0), uv(0, 0), color(0,0,0,0), Outline(0) {}
 
-	TextureVertexTexture(Vector3 position, Vector2 uv, Color color)
-		: position(position), uv(uv), color(color) {}
+	TextureVertexTexture(Vector3 position, Vector2 uv, Color color, bool Outline)
+		: position(position), uv(uv), color(color), Outline(Outline) {}
 
 	Vector3 position;	// 정점 위치
 	Vector2 uv;			// 텍스트 좌표
 	Color color;		// 텍스트 컬러
-
+	bool Outline;		// 외각선데이터 처리
 
 	static D3D11_INPUT_ELEMENT_DESC descs[];	// 정점 데이터 구조 서술
-	static const uint count = 3;				// 원소 개수
+	static const uint count = 4;				// 원소 개수
 };
 
 struct VertexTile

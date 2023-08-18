@@ -63,7 +63,7 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 
 TextureRect::TextureRect
 (Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size, float rotation, 
-Color path, Texture2D* Fontpng)
+Color path, Texture2D* Fontpng, bool OutLine)
 	: position(position), size(size), rotation(rotation)
 {	// 텍스트 출력용
 	{
@@ -84,8 +84,10 @@ Color path, Texture2D* Fontpng)
 		Textvertices[2].uv = (*uv)[2];
 		Textvertices[3].uv = (*uv)[3];
 
-		for(auto& def : Textvertices)
+		for(auto& def : Textvertices) {
+			def.Outline = OutLine;
 			def.color = path;
+		}
 	}
 
 	// Vertex Buffer
