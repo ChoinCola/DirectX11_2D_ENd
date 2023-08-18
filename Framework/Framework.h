@@ -96,6 +96,7 @@ typedef UINT		uint;
 #include "Renders/IA/InputLayout.h"
 #include "Renders/Resources/VertexTypes.h"
 #include "Renders/Resources/ShaderBuffer.h"
+#include "Renders/Resources/OutlineBuffer.h"
 #include "Renders/Resources/GlobalBuffer.h"
 #include "Renders/Resources/Texture2D.h"
 
@@ -127,7 +128,6 @@ typedef UINT		uint;
 #include "Geomatries/ShadedTexture.h"
 #include "Geomatries/TextureRect.h"
 #include "Geomatries/AnimationRect.h"
-
 
 #include "Renders/IA/VertexBuffer.h"
 #include "Renders/IA/IndexBuffer.h"

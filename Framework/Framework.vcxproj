@@ -201,6 +201,7 @@
     <ClCompile Include="Utilities\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Renders\Resources\OutlineBuffer.h" />
     <ClInclude Include="Systems\FontClass.h" />
     <ClInclude Include="Game\Button.h" />
     <ClInclude Include="Game\UI\Details_windows.h" />

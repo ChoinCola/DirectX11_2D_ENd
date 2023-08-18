@@ -99,7 +99,7 @@ std::vector<Vector2>* FontClass::uvInit(float x, float y, float xoffset, float y
 }
 
 D3DXSTRING FontClass::MakeString
-(const std::wstring string, const Vector3 position, const Color color, const Vector3 stringsize, const int sorting)
+(const std::wstring string, const Vector3 position, const Color color, const Vector3 stringsize, const int sorting, const int outline)
 {
 	D3DXSTRING* result = new D3DXSTRING;
 	
@@ -153,7 +153,7 @@ D3DXSTRING FontClass::MakeString
 			// 나온결과값을 문장 에 기입한다.
 			result->string.push_back(
 				new TextureRect(result->Endposition + Offset, 
-				terticespos, uv, result->size, 0.0f,result->color, Fontpng));
+				terticespos, uv, result->size, 0.0f,result->color, Fontpng, outline));
 
 			result->Endposition.x += value->second->width / 18 * result->size.x + StringOffset;
 		}

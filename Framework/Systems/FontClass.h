@@ -49,7 +49,7 @@ public:
 	std::vector<Vector2>* uvInit(float x, float y, float xoffset, float yoffset);	// uv좌표 잡아줌.
 	D3DXSTRING MakeString															// 문장 제작함수
 	(const std::wstring string, const Vector3 position,
-	const Color color, const Vector3 stringsize, const int sorting = 0);
+	const Color color, const Vector3 stringsize, const int sorting = 0, const int outline = 0);
 
 private:
 							

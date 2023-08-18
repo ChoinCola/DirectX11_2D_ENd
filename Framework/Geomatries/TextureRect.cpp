@@ -63,7 +63,7 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 
 TextureRect::TextureRect
 (Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size, float rotation, 
-Color path, Texture2D* Fontpng, bool OutLine)
+Color path, Texture2D* Fontpng, uint OutLine)
 	: position(position), size(size), rotation(rotation)
 {	// 텍스트 출력용
 	{
@@ -120,12 +120,16 @@ Color path, Texture2D* Fontpng, bool OutLine)
 		il = new InputLayout();
 		il->Create(TextureVertexTexture::descs, TextureVertexTexture::count, vs->GetBlob());
 	}
-
+	// OutlineShader
+	{
+		ot = new OutlineBuffer();
+		ot->SetTextureSize(Vector2(Fontpng->GetWidth(),Fontpng->GetHeight()));
+		ot->SetOutlineCount(OutLine);
+	}
 	// World Buffer
 	{
 		wb = new WorldBuffer();
 	}
-
 	// srv
 	{
 		srv = Fontpng->GetSRV();
@@ -242,8 +246,14 @@ void TextureRect::Render()
 	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	vs->SetShader();
-	ps->SetShader();
+
+	if (ot)
+		ot->SetPSBuffer(1);
+	ps->SetShader();	
+
 	wb->SetVSBuffer(0);
+
+
 
 	if (srv)
 		DC->PSSetShaderResources(0, 1, &srv);
