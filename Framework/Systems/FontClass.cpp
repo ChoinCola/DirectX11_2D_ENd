@@ -6,18 +6,16 @@ FontClass::FontClass()
 {
 	// 기본 설정
 	StringSize = Vector3{ 11.f,11.f,0 };	// 기본 문자 사이즈
-	StringOffset = 2.f;						// 기본 문자 간격
+	StringOffset = 0.5;						// 기본 문자 간격
 
-	assert(SetFont(
-		L"../Framework/GameAsset/Fontfile/Font2_0.png", // WSTRING으로 해야함,Texture2D이기 때문,
-		"..\\Framework\\GameAsset\\Fontfile\\Font2.fnt")); // string으로 해야함, 라이브러리가 string으로 읽기때문,
+	assert(SetFont("..\\Framework\\GameAsset\\Fontfile\\Base_Font.fnt")); // string으로 해야함, 라이브러리가 string으로 읽기때문,
 }
 
 FontClass::~FontClass()
 {
 }
 
-bool FontClass::SetFont(std::wstring pngFile, char* fntfile)
+bool FontClass::SetFont(char* fntfile)
 {
 	// 폰트 파일 제작 전 기입해야할 데이터배열 전부 초기화
 	{
@@ -26,7 +24,7 @@ bool FontClass::SetFont(std::wstring pngFile, char* fntfile)
 	}
 
 	// 폰트 png파일 로드
-	Fontpng = new Texture2D(pngFile);
+
 	
 	// xml파일 데이터 열기위한 변수
 	tinyxml2::XMLDocument doc;
@@ -41,17 +39,26 @@ bool FontClass::SetFont(std::wstring pngFile, char* fntfile)
 	{
 		// xml파일의 font 안의 chars로 접속한 결과를 pNode에 전달. ( 이 데이터는 각 문자의 기입데이터를 보관한다. )
 		tinyxml2::XMLElement *pNode = doc.FirstChildElement("font")->FirstChildElement("chars");
+
 		// xml파일의 font 안의 common로 접속한 결과를 Imagesize에 전달. ( 이 데이터는 이미지의 사이즈 를 보관한다. )
 		tinyxml2::XMLElement *Imagesize = doc.FirstChildElement("font")->FirstChildElement("common");
 
+		// xml파일의 font 안의 file로 접속한 결과를 Imagename에 전달. ( 이 데이터는 이미지의 사이즈 를 보관한다. )
+		tinyxml2::XMLElement* pname = doc.FirstChildElement("font")->FirstChildElement("pages")->FirstChildElement("page");
+		const char* def = pname->Attribute("file");
+		std::wstring Imagename(strlen(def), L' ');
+		std::mbstowcs(&Imagename[0], def, strlen(def));			// 이미지 이름이 char[]형식 이기에 형변환 한다.
+
+		Fontpng = new Texture2D(LFont + Imagename);
 		// 단 한개라도 긁어오지 못했을 경우, 코드실행이 불가하기에 터트린다.
-		if (pNode == nullptr || Imagesize == nullptr) {
+
+		if (pNode == nullptr || Imagesize == nullptr || Fontpng == nullptr) {
 			std::cerr << "Error finding chars element." << std::endl;
 			return false;
 		}
 		// png파일의 전체 사이즈를 받아온다. ( Texture2D데이터를 보관하는 Fontpng에서도 긁어올수 있음. 참고 )
 		fontImagesize = { (float)Imagesize->IntAttribute("scaleW"), (float)Imagesize->IntAttribute("scaleH") };
-
+		fontsinglesize = Imagesize->IntAttribute("lineHeight");
 		// 입력되어있는 모든 문자열을 검사하여 전부 map에 넣어준다.
 		for (tinyxml2::XMLElement* element = pNode->FirstChildElement("char"); 
 			element != nullptr; element = element->NextSiblingElement("char")) {
@@ -70,16 +77,16 @@ bool FontClass::SetFont(std::wstring pngFile, char* fntfile)
 	return true;
 }
 
-std::vector<Vector3>* FontClass::SizeInit(float width, float height)
+std::vector<Vector3>* FontClass::RectInit(float xoffset, float yoffset, float xwidth, float yheight, float size)
 {
-	//maxx 18, maxy 18 가장큰 한글 폰트의 사이즈를 맥스 18로 잡고 나누어서 offset을 잡는다.
-	std::vector<Vector3>* result = new std::vector<Vector3>;
+	// 이미지 사이즈 만큼만 전개해야한다.
+	std::vector<Vector3>* result = new std::vector<Vector3>();
 
-	 //TextureRect에 들어가는 값을 Vector로 보관하여 던져줘야 한다.
-	result->push_back(Vector3(+0.0f			, +0.0f			, 0));
-	result->push_back(Vector3(+width / 18	, +height / 18	, 0));
-	result->push_back(Vector3(+width / 18	, +0.0f			, 0));
-	result->push_back(Vector3(+0.0f			, +height / 18	, 0));
+	// TextureRect에 들어가는 값을 Vector로 보관하여 던져줘야 한다.
+	result->push_back(Vector3(-xwidth / size / 2, -yheight / size, 0));// 좌하단
+	result->push_back(Vector3(+xwidth / size / 2, +yheight / size, 0));// 우상단
+	result->push_back(Vector3(+xwidth / size / 2, -yheight / size, 0));// 우하단
+	result->push_back(Vector3(-xwidth / size / 2, +yheight / size, 0));// 좌상단
 
 	return result;
 }
@@ -103,19 +110,17 @@ D3DXSTRING FontClass::MakeString
 {
 	D3DXSTRING* result = new D3DXSTRING;
 	
-	// 오류체크, 만약 Fontpng가 실행되지 않았을 경우,
-	if (Fontpng == nullptr) { 
-	// 폰트 를 다시 잡아준다.
-	SetFont(L"../Framework/GameAsset/Fontfile/Font2_0.png", // WSTRING으로 해야함,Texture2D이기 때문,
-			"..\\Framework\\GameAsset\\Fontfile\\Font2.fnt");
-	}
+	// 오류체크, 만약 Fontpng가 실행되지 않았을 경우, 폰트 를 다시 잡아준다.
+	if (Fontpng == nullptr)
+		SetFont("..\\Framework\\GameAsset\\Fontfile\\Base_Font.fnt");
 
 	// 반환값에 문장의 전반 데이터를 기입.
 	result->Startposition = result->Endposition = position;
 	result->size = stringsize;
 	result->color = color;
 
-	for (auto def : string) {
+	for (int i = 0; i < string.size(); i++) {
+		auto def = string[i];
 		if (def != NULL) {
 
 			// 스페이스바 입력시 띄어쓰기
@@ -126,40 +131,50 @@ D3DXSTRING FontClass::MakeString
 
 			// 개행문자. 엔터입력시 밑으로
 			if (def == '\n') {
-				result->Endposition.y -= result->size.y * 1.8;
+				result->Endposition.y -= result->size.y ;
 				result->Endposition.x = result->Startposition.x;
 				continue;
 			}
-
+			
 			// map배열에서 해당되는 문자의 ASCII 코드를 찾아온다. 
 			auto value = charators.find((int)def);
-
-			// offset을 잡을 위치값.
-			std::vector<Vector3>* terticespos;
-			terticespos = SizeInit(value->second->width, value->second->height);
 
 			// uv의 기준값. 문자의 x위치에 전체 이미지를 나눠주어 전체이미지가 1일경우 x의 값을 구한다. 가로세로길이, y도 같은 방식으로 도출
 			std::vector<Vector2>* uv = 
 			uvInit(value->second->x / fontImagesize.x, value->second->y / fontImagesize.y,
 					value->second->width / fontImagesize.x, value->second->height / fontImagesize.y);
 
-			// 한글과 영어의 Offset위치가 다르기 떄문에 한글일경우, 추가 offset을 준다.
+			std::vector<Vector3>* frect =
+				RectInit(value->second->xoffset, value->second->yoffset, value->second->width, value->second->height, fontsinglesize);
+
+
+			// 문자 사이즈를 백분율하여, 일정한 사이즈로 키워줄 수 있게 한다.
+			float Charsizex = value->second->width*2 / fontsinglesize;
 			Vector3 Offset;
-			if(value->first >= 40000)
-				Offset = Vector3(0,value->second->yoffset,0);
-			else
-				Offset = Vector3(0, 0, 0);
+			// y를 음수처리하는 이유는 uv 좌표상, y가 반대이기 때문, BMFont 프로그램이 구형이라 offset 좌표가 0,0이 좌상단임.
+			Offset = Vector3(value->second->xoffset / 2, -value->second->yoffset / 2, 0);
+
+			Vector3 fontsize = Vector3(value->second->width / fontsinglesize * result->size.x, 
+			value->second->height / fontsinglesize * result->size.y, 0);
 
 			// 나온결과값을 문장 에 기입한다.
-			result->string.push_back(
-				new TextureRect(result->Endposition + Offset, 
-				terticespos, uv, result->size, 0.0f,result->color, Fontpng, outline));
+			// 한글과 영어의 Offset위치가 다르기 떄문에 추가 offset을 다르게 준다.
+				// 데이터 기입부
+				// 
+			// 문자가 한글이고 바로 전 문자가 영문일경우, 한글 문자를 더 뒤로 띄워야한다.
 
-			result->Endposition.x += value->second->width / 18 * result->size.x + StringOffset;
+			result->string.push_back(
+				new TextureRect(result->Endposition + Offset, uv, frect, fontsize, 0.0f, result->color, Fontpng));
+			// 다음문자가 입력되기 위해서 사이즈만큼 우측으로 이동.
+
+			// 문자가 영어 -> 한글로 넘어갈때 offset문제가 발생. 그래서 그부분만 처리함. 한글의 가장 작은 유니코드 = 4352
+			if (string[i + 1] != NULL && string[i + 1] >= 4352 && string[i] < 4352)
+				result->Endposition.x += fontsize.x * 3.0 - Offset.x / fontsinglesize * result->size.x; // 여기만 조금 만지면 끝
+			else
+				result->Endposition.x += fontsize.x * 1.5 - Offset.x / fontsinglesize * result->size.x; // 여기만 조금 만지면 끝
 		}
 	}
 
-	
 	switch (sorting)
 	{
 		case RIGHT : // 이 문장은 시작위치 기준 왼쪽으로 발산합니다.
@@ -170,7 +185,7 @@ D3DXSTRING FontClass::MakeString
 				if (def->GetPosition().y < result->Startposition.y) // 엔터가 입력되었을 경우,
 					sortvector.x = sortvectorsizex; // x를 문장길이 기본 으로 초기화
 
-				Vector3 charX = Vector3(def->GetRect().x / 4 - StringOffset, 0, 0);
+				Vector3 charX = Vector3(def->GetRect().x / 3.8, 0, 0);
 
 				def->SetPosition(def->GetPosition() - sortvector); // 현재 위치의 단어 길이만큼을 쭉 밀어버림.
 				sortvector -= charX;
@@ -180,13 +195,13 @@ D3DXSTRING FontClass::MakeString
 		}
 		case MIDDLE : 	// 이 문장은 시작위치 가 문장의 중앙입니다.
 		{
-			float sortvectorsizex = (result->Endposition.x - result->Startposition.x) / 2; // 전체 문장 길이의 반
+			float sortvectorsizex = ( result->Endposition.x - result->Startposition.x ) / 2; // 전체 문장 길이의 반
 			Vector3 sortvector = { sortvectorsizex, 0, 0 };
 			for (auto def : result->string) {
 				if (def->GetPosition().y < result->Startposition.y) // 엔터가 입력되었을 경우,
 					sortvector.x = sortvectorsizex; // x를 문장길이의 기본의 반절 로 초기화
 
-				Vector3 charX = Vector3(def->GetRect().x / 4 - StringOffset, 0, 0);
+				Vector3 charX = Vector3(def->GetRect().x / 3.8, 0, 0);
 			
 				def->SetPosition(def->GetPosition() - sortvector); // 현재 위치의 단어 길이만큼을 쭉 밀어버림.
 				sortvector -= charX;

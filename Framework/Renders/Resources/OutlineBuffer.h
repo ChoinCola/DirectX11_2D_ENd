@@ -7,8 +7,10 @@ public:
 	OutlineBuffer()
 		: ShaderBuffer(&data, sizeof(Data))
 	{
+		ZeroMemory(&data, sizeof(data));				// 사용 메모리 초기화.
 		data.textureSize = Values::ZeroVec2;
-		data.OutlineCount = 1;
+		data.OutlineCount = 0;
+		data.dummy = NULL;
 	}
 
 	void SetTextureSize(Vector2 size)
@@ -16,17 +18,17 @@ public:
 		data.textureSize = size;
 	}
 
-	void SetOutlineCount(uint outlinecount)
+	void SetOutlineCount(const int outlinecount)
 	{
 		data.OutlineCount = outlinecount;
 	}
 
-	uint* GetOutlineCountPtr() { return &data.OutlineCount; }
+	int* GetOutlineCountPtr() { return &data.OutlineCount; }
 
 	struct Data
 	{
 		Vector2 textureSize;
-		uint OutlineCount;
+		int OutlineCount;
 		int dummy;
 	};
 private:

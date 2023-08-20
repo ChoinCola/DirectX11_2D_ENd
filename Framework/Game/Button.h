@@ -17,17 +17,22 @@ public:
 
 	void Push() { Push_now ? Push_now = false : Push_now = true; };
 	bool GetPush() { return Push_now; };
+	bool GetPress() { return Press; };
+
 	bool GetUP() { return UP; };
 	std::wstring GetName() { return Button_name; };
 	Vector3 GetSize() { return Size; };
 	Vector3 GetPosition() { return Mark_Default_Position; };
 	bool GetRender() { return Render_now; };
 	void SetRender() { Render_now ? Render_now = false : Render_now = true; };
+	void SetPosition(const Vector3 position) { Mark_Default_Position = position; };
 
 protected:
 	bool Render_now;
-	bool Push_now;
-	bool UP;
+	bool Push_now; // 눌려있으면 true
+	bool Press; // 눌렸을때 단 한번만 반환하고 다시 true로 전환.
+	bool Press_b; // 눌렸을때 단 한번만 반환하고 다시 true로 전환.
+	bool UP; // 올라와있으면 true
 
 	std::wstring Button_name;
 

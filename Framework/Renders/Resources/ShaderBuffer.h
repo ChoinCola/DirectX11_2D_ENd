@@ -20,11 +20,17 @@ public:
 		DC->PSSetConstantBuffers(slot, 1, &buffer);
 	}
 
+	void SetCSBuffer(uint slot)
+	{
+		MapData();
+		DC->CSSetConstantBuffers(slot, 1, &buffer);
+	}
 protected:
 	// GPU 쪽에서 사용하는 데이터를 CPU 쪽에서 생성하고 수정할 수 있도록 제공하는 버퍼
 	ShaderBuffer(void* data, uint dataSize)
 		:data(data), dataSize(dataSize)
 	{
+		
 		desc.Usage = D3D11_USAGE_DYNAMIC;				// 버퍼 사용 용도
 		desc.ByteWidth = dataSize;						// 버퍼 크기
 		desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;	// 바인딩 대상

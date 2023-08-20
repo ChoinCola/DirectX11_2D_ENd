@@ -81,11 +81,14 @@ void Character::Damage_Chack()
 
 void Character::Follow(Item& st, const float xsk, const float ysk)
 {
+	
 	auto delta = Time::Delta();
+
 	static double my = 0;
+	float randomValue = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 
 	if (my >= 360) my = 0;
-	else my += (1 * delta) * 10;
+	else my += (randomValue * delta) * 10;
 
 	if (front) {
 		st.Getaniator()->SetCurrentAnimClip(L"IdleR");

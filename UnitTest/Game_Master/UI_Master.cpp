@@ -34,7 +34,6 @@ void UI_Master::Chack_Collision()
 	{
 		for (auto def_B : *Button_list.Get())
 		{
-			
 			// 오류판정
 			if (def_B == nullptr)
 				continue;
@@ -45,18 +44,18 @@ void UI_Master::Chack_Collision()
 				def_B->GetPosition().y + def_B->GetSize().y / 2 >= Mposition.y &&
 				def_B->GetRender()) // AABB
 			{
-				if(BOn_Object == false) BOn_Object += true;
+				if(BOn_Object == false) BOn_Object = true;
 				
-				if (mouse.Get()->GetMouse()->Get()->Down(0))
+				if (mouse.Get()->GetMouse()->Get()->Down(0)) // 충돌상태에서 마우스가 내려간다면 눌림
 				{
 					def_B->Push();
 				}
-				else if (!mouse.Get()->GetMouse()->Get()->Press(0) && def_B->GetPush())
+				else if (!mouse.Get()->GetMouse()->Get()->Press(0) && def_B->GetPush()) 
 				{
-					def_B->Push();
+					def_B->Push(); // 충돌상태에서 마우스가 내려가있지 않고, 버튼이 눌려있다면, 눌림상태 해제
 				}
 			}
-			else if (def_B->GetPush()) def_B->Push();
+			else if (def_B->GetPush()) def_B->Push(); // 충돌중이지 않을때 눌려있다면, 눌림상태를 해제
 		}
 	}
 
@@ -73,7 +72,7 @@ void UI_Master::Chack_Collision()
 				def_B->GetPosition().y - def_B->GetSize().y / 2 <= Mposition.y &&
 				def_B->GetPosition().y + def_B->GetSize().y / 2 >= Mposition.y) // AABB
 			{
-				if (UOn_Object == false) UOn_Object += true;
+				if (UOn_Object == false) UOn_Object = true;
 				if (mouse.Get()->GetMouse()->Get()->Down(0))
 				{
 					def_B->SetOPEN();

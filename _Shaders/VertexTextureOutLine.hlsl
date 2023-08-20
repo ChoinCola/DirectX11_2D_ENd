@@ -1,87 +1,100 @@
 struct VertexInput
 {
-    float4 position : POSITION0;
-    float2 uv : TEXCOORD0;
+    float4 position : POSITION0; // 정점 위치 "position"이라는 변수가 "POSITION0" 스트림의 위치에 대한 정보를 저장한다
+    float2 uv : TEXCOORD0; // uv 좌표
+    float4 color : COLOR0;
 };
 
 struct PixelInput
 {
-    float4 position : SV_POSITION0;
-    float2 uv : TEXCOORD0;
+    float4 position : SV_POSITION0; // 픽셀 위치     픽셀의 위치를 나타내는 시스템 값을 의미
+    float2 uv : TEXCOORD0; // 텍스트 픽셀 색상
+    float4 color : COLOR0;
 };
 
-cbuffer WorldBuffer : register(b0)  // 0 ~ 127
+// cbuffer : 상수 버퍼 레지스터
+// 상수 버퍼 레지스터 b0에 할당된 월드 행렬을 저장하는 상수 버퍼
+cbuffer WorldBuffer : register(b0) // 0 ~ 127
 {
     matrix _world;
 }
 
+// 상수 버퍼 레지스터 b1에 할당된 뷰, 프로젝션 행렬을 저장하는 상수 버퍼
 cbuffer VPBuffer : register(b1)
 {
     matrix _view;
     matrix _projection;
 }
 
+cbuffer OutlineBuffer : register(b1)
+{
+    float2 _imageSize;
+    int _OutlineCount;
+}
+
+// 정점 셰이더 함수
+// 입력으로 VertexInput을 받고 PixelInput 구조체를 반환
 PixelInput VS(VertexInput input)
 {
     PixelInput output;
     
-    output.position = mul(input.position, _world);
-    output.position = mul(output.position, _view);
-    output.position = mul(output.position, _projection);
+    output.position = mul(input.position, _world); // 정점 위치에 월드 행렬을 곱함
+    output.position = mul(output.position, _view); // 결과에 뷰 행렬을 곱함
+    output.position = mul(output.position, _projection); // 결과에 프로젝션 행렬을 곱함
     
     output.uv = input.uv;
+    output.color = input.color;
+    
     return output;
 }
 
-Texture2D _sourceTex : register(t0);
-SamplerState _samp : register(s0);
+Texture2D _sourceTex : register(t0); // 텍스처 데이터를 저장
+SamplerState _samp : register(s0); // 샘플링하는 방법을 지정
 
+// 픽셀 셰이더 함수
+// 입력으로 PixelInput 구조체를 받고, float4 형태의 픽셀 색상을 반환
 float4 PS(PixelInput input) : SV_Target
 {
-    float4 color = _sourceTex.Sample(_samp, (float2) input.uv);
-    float3 greyScale = 0;
-    
-    // Line
-    {
-        if(input.uv.x < .01f || input.uv.x > .99f || input.uv.y < .01f || input.uv.y > .99f)
-            return float4(1, 1, 1, 1);
+    float4 color = float4(input.color.rgb, _sourceTex.Sample(_samp, input.uv).a);
+    // 아웃라인을 필요로 하고, 
+    // 자기자신의 uv좌표의 a값이 0이라면.(원래 표시되지 말아야할 부분이면)
+        // 주변 픽셀들 전부 검사
+    //float2 arr[8] =
+    //{
+    //    float2(-1, +1), float2(+0, +1), float2(+1, +1),
+    //        float2(-1, +0), /* 기준 정점 */float2(+1, +0),
+    //        float2(-1, -1), float2(+0, -1), float2(+1, -1)
+    //};
         
-        if(input.uv.x < .51f && input.uv.x > .49f)
-            return float4(1, 1, 1, 1);
-        
-        if(input.uv.y < .51f && input.uv.y > .49f)
-            return float4(1, 1, 1, 1);
-    }
-    
-    {
-        if(input.uv.x < .5f && input.uv.y < .5f)
-        {
-            color = _sourceTex.Sample(_samp, float2(input.uv.x * 2.0f, input.uv.y * 2.0f));
-            greyScale = dot(color.rgb, float3(.299f, .587f, .114f));
+    //for (int j = 0; j < _OutlineCount; j++)
+    //{
+    //    for (int i = 0; i < 8; i++)
+    //    {
+    //        float x = input.uv.x + arr[i].x / _imageSize.x * j;
+    //        float y = input.uv.y + arr[i].y / _imageSize.y * j;
+    //        float2 uv = float2(x, y);
             
-            color = float4(greyScale, 1);
-        }
-        else if (input.uv.x >= .5f && input.uv.y < .5f)
-        {
-            color = _sourceTex.Sample(_samp, float2((input.uv.x - .5f) * 2.f, input.uv.y * 2.f));
-            float r, g, b;
-            r = dot(color.rgb, float3(.393f, .769f, .189f));
-            g = dot(color.rgb, float3(.349f, .686f, .168f));
-            b = dot(color.rgb, float3(.272f, .534f, .131f));
+    //        //float4 uvcolor =
+    //        //_sourceTex.Sample(_samp, uv) ? _sourceTex.Sample(_samp, uv) : float4(0, 0, 0, 0);
+    //        //    // 주변 픽샐 중 한개라도 uv가 0이 아닌게 발견이 되면?
+    //        //if (uvcolor.rgba)
+    //        //{
+    //        //    bool colorch = (color.rgb != uvcolor.r &&
+    //        //                color.g != uvcolor.g &&
+    //        //                color.b != uvcolor.b);
             
-            greyScale = float3(r, g, b);
-            color = float4(greyScale, 1);
-        }
-        else if (input.uv.x < .5f && input.uv.y >= .5f)
-        {
-            color = _sourceTex.Sample(_samp, float2(input.uv.x * 2.0f, (input.uv.y - .5f) * 2.0f));
-        }
-        else if (input.uv.x >= .5f && input.uv.y >= .5f)
-        {
-            return float4(.425f, .754f, .134f, 1);
-        }
-    }
-    
+    //        //    if (!uvcolor.a && colorch)
+    //        //    {
+    //        //        if ((input.color.rgb == float3(0, 0, 0))) // 검정인경우
+    //        //            color = float4(1, 1, 1, 1); // 흰색으로 칠해버림
+    //        //        else
+    //        //            color = float4(0, 0, 0, 1); // 검정으로 칠해버림
+                
+    //        //        return color;
+    //        //    }
+    //        //}
+    //    }
+    //}
     return color;
 }
 
@@ -115,9 +128,4 @@ cbuffer = Constance Buffer : 상수 버퍼
 - 셰이더에서 사용하는 전역 변수를 저장하는데 사용
 - 각 상수 버퍼 레지스터에는 한 개의 상수 버퍼만 할당할 수 있음
 - 상수 버퍼 내부에는 여러 개의 변수를 선언할 수 있다.
-
-Sampler : 샘플러
-- 텍스처에서 픽셀 값을 가져오는 방법을 정의하는 객체
-- 텍스처 샘플링은 텍스처 이미지에 대한 텍셀 값을 계산하는 작업
-  (텍셀 : 텍스처의 픽셀 값)
 */

@@ -91,9 +91,8 @@ void Game_Master::Render()
 	for (auto def : *UI_list.Get()) {
 		def->Render();
 		}
-	for (auto def : *Button_list.Get()) {
+	for (auto def : *Button_list.Get())
 		def->Render();
-		}
 	mouse.Get()->Render();
 }
 

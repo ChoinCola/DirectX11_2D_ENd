@@ -43,10 +43,11 @@ private:
 public:
 	void SetSize(Vector3 size) { this->StringSize = size; }							// 문자 사이즈 변경.
 	void Setoffset(float offset)  { this->StringOffset = offset; }					// 위 아래 오프셋 변경
-	bool SetFont(std::wstring pngFile, char* fntfile);								// 폰트파일 재설정
+	bool SetFont(char* fntfile);								// 폰트파일 재설정
 
-	std::vector<Vector3>* SizeInit(float width, float height);						// offset위치 잡아줌.
 	std::vector<Vector2>* uvInit(float x, float y, float xoffset, float yoffset);	// uv좌표 잡아줌.
+	std::vector<Vector3>* RectInit(float x, float y, float xwidth, float ywidth, float size);	// Rect전개 잡아줌.
+
 	D3DXSTRING MakeString															// 문장 제작함수
 	(const std::wstring string, const Vector3 position,
 	const Color color, const Vector3 stringsize, const int sorting = 0, const int outline = 0);
@@ -60,6 +61,7 @@ private:
 	Vector2 fontImagesize;
 	Vector3 StringSize;
 	int charCount;
+	int fontsinglesize;
 	float StringOffset;
 };
 /*

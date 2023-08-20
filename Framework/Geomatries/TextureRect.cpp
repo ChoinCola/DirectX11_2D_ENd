@@ -62,8 +62,8 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 }
 
 TextureRect::TextureRect
-(Vector3 position, std::vector<Vector3>* terticespos, std::vector<Vector2>* uv, Vector3 size, float rotation, 
-Color path, Texture2D* Fontpng, uint OutLine)
+(Vector3 position, std::vector<Vector2>* uv, std::vector<Vector3>* RectSize ,Vector3 size, float rotation, 
+Color path, Texture2D* Fontpng)
 	: position(position), size(size), rotation(rotation)
 {	// 텍스트 출력용
 	{
@@ -74,10 +74,15 @@ Color path, Texture2D* Fontpng, uint OutLine)
 	{	// 텍스트 출력용 VertexTexture형식
 		Textvertices.assign(4, TextureVertexTexture());
 
-		Textvertices[0].position = verticesLocalPosition[0] = (*terticespos)[0];
-		Textvertices[1].position = verticesLocalPosition[1] = (*terticespos)[1];
-		Textvertices[2].position = verticesLocalPosition[2] = (*terticespos)[2];
-		Textvertices[3].position = verticesLocalPosition[3] = (*terticespos)[3];
+		//Textvertices[0].position = verticesLocalPosition[0] = (*RectSize)[0];
+		//Textvertices[1].position = verticesLocalPosition[1] = (*RectSize)[1];
+		//Textvertices[2].position = verticesLocalPosition[2] = (*RectSize)[2];
+		//Textvertices[3].position = verticesLocalPosition[3] = (*RectSize)[3];
+
+		Textvertices[0].position = Vector3(-0.5f, -0.5f, 0.0f); // 좌하단
+		Textvertices[1].position = Vector3(+0.5f, +0.5f, 0.0f); // 우상단
+		Textvertices[2].position = Vector3(+0.5f, -0.5f, 0.0f); // 우하단
+		Textvertices[3].position = Vector3(-0.5f, +0.5f, 0.0f); // 좌상단
 
 		Textvertices[0].uv = (*uv)[0];
 		Textvertices[1].uv = (*uv)[1];
@@ -85,7 +90,6 @@ Color path, Texture2D* Fontpng, uint OutLine)
 		Textvertices[3].uv = (*uv)[3];
 
 		for(auto& def : Textvertices) {
-			def.Outline = OutLine;
 			def.color = path;
 		}
 	}
@@ -115,17 +119,18 @@ Color path, Texture2D* Fontpng, uint OutLine)
 		ps->Create(ShaderPath + L"FontVertexTexture.hlsl", "PS");
 	}
 
+	{
+		ot = new OutlineBuffer();
+		ot->SetTextureSize(Vector2(Fontpng->GetHeight(),Fontpng->GetWidth()));
+		ot->SetOutlineCount(2);
+	}
+
 	// InputLayout
 	{
 		il = new InputLayout();
 		il->Create(TextureVertexTexture::descs, TextureVertexTexture::count, vs->GetBlob());
 	}
-	// OutlineShader
-	{
-		ot = new OutlineBuffer();
-		ot->SetTextureSize(Vector2(Fontpng->GetWidth(),Fontpng->GetHeight()));
-		ot->SetOutlineCount(OutLine);
-	}
+
 	// World Buffer
 	{
 		wb = new WorldBuffer();
@@ -246,10 +251,10 @@ void TextureRect::Render()
 	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	vs->SetShader();
-
-	if (ot)
-		ot->SetPSBuffer(1);
 	ps->SetShader();	
+
+	if(ot)
+		ot->SetPSBuffer(2);
 
 	wb->SetVSBuffer(0);
 

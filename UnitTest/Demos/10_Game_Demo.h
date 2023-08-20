@@ -13,6 +13,7 @@ public:
 private:
 	Game_Master* GM = nullptr;
 	MousePointer* mp = nullptr;
+	Ready_Ui* RU = nullptr;
 	Card_Demo* cd = nullptr;
 	Character_Master* CM = nullptr;
 	UI_Master* UM = nullptr;

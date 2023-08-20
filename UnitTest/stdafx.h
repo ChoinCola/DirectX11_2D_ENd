@@ -9,6 +9,7 @@
 #include "Game_Master/IGame_Master.h"
 #include "Game_Master/Game_Master.h"
 
+#include "UI/Ready_Ui.h"
 #include "UI/Card_UI.h"
 
 #include "Character/Character_Demo.h"

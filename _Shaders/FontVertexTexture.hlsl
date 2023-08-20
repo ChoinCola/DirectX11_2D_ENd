@@ -26,7 +26,7 @@ cbuffer VPBuffer : register(b1)
 	matrix _projection;
 }
 
-cbuffer OutlineBuffer : register(b1)
+cbuffer OutlineBuffer : register(b2)
 {
     float2 _imageSize;
     int _OutlineCount;
@@ -55,41 +55,44 @@ SamplerState _samp : register(s0); // 샘플링하는 방법을 지정
 // 입력으로 PixelInput 구조체를 받고, float4 형태의 픽셀 색상을 반환
 float4 PS(PixelInput input) : SV_Target
 {
-    float4 color = float4(1,1,1,1);
+    float4 color = float4(input.color.rgb, _sourceTex.Sample(_samp, input.uv).a);
+    float4 ChackColor;
 
-    // 아웃라인을 필요로 하고, 
-    // 자기자신의 uv좌표의 a값이 0이라면.(원래 표시되지 말아야할 부분이면)
-        // 주변 픽셀들 전부 검사
+    if (_OutlineCount != 0)
+    {
+        if (color.r + color.g + color.b >= (float) 1.5)
+            ChackColor = float4(0, 0, 0, 1);
+        else
+            ChackColor = float4(1, 1, 1, 1);
+    
         float2 arr[8] =
         {
-            float2(-1, +1), float2(+0, +1), float2(+1, +1),
-            float2(-1, +0), /* 기준 정점 */  float2(+1, +0),
-            float2(-1, -1), float2(+0, -1), float2(+1, -1)
+            float2(-.1, +.1), float2(+.0, +.1), float2(+.1, +.1),
+            float2(-.1, +.0), /* 기준 정점 */    float2(+.1, +.0),
+            float2(-.1, -.1), float2(+.0, -.1), float2(+.1, -.1)
         };
         
-        for (int j = 0; j < _OutlineCount; j++)
+        for (int Otline = 0; Otline < _OutlineCount; Otline++)
         {
             for (int i = 0; i < 8; i++)
             {
-                float x = input.uv.x + arr[i].x / _imageSize.x * j;
-                float y = input.uv.y + arr[i].y / _imageSize.y * j;
+                float x = input.uv.x + arr[i].x * Otline / _imageSize.x * _OutlineCount;
+                float y = input.uv.y + arr[i].y * Otline / _imageSize.y * _OutlineCount;
                 float2 uv = float2(x, y);
-            
-                // 주변 픽샐 중 한개라도 uv가 0이 아닌게 발견이 되면?
-            if (!_sourceTex.Sample(_samp, uv).a)
-            {
-                //if (input.color.rgb == float3(0, 0, 0)) // 검정인경우
-                //    color = float4(1, 1, 1, 1); // 흰색으로 칠해버림
-                //else // 아닐경우
-                color = float4(0, 0, 0, 1); // 검정으로 칠해버림
+                float4 chackdef = _sourceTex.Sample(_samp, uv);
                 
-                return color;
+                if (chackdef.r != ChackColor.r &&
+                chackdef.g != ChackColor.g &&
+                chackdef.b != ChackColor.b &&
+                _sourceTex.Sample(_samp, input.uv).a <= 0.4)
+                {
+                    color.rgba = float4(ChackColor.rgb, 1); // 외곽선 검정처리
+                    return color;
+                }
             }
         }
-        }   
-    
-    color = float4(input.color.rgb, 1);
-	return color;
+    }
+    return color;
 }
 
 /*

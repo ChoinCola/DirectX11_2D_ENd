@@ -10,11 +10,11 @@ Card_Demo::Card_Demo()
 
 	Cardinfo = new Card_UI(
 	Vector3(640, 500, 0),
-	L"Tsdf바바",
+	L"abcdefghijklmnopqrstuvwxyz",
 	0,
 	Card_unit_count,
 	&upgrade,
-	L"Tsdf바바\n엔터를쳤다.\n스 페 이 스 바 쳤 다."
+	L"Tsdfjjjjjj바바\n엔터를쳤다.\n스 페 이 스 바 쳤 다."
 	);
 
 	UI_list.Get()->push_back(Cardinfo);
