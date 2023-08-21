@@ -17,6 +17,8 @@ Game_Master::Game_Master()
 
 	UI_list.Create();
 	Button_list.Create();
+	
+	Ready_UI_list.Create();
 }
 
 Game_Master::~Game_Master()
@@ -74,6 +76,8 @@ void Game_Master::Update()
 		def->Update();
 	for (auto def : *Button_list.Get())
 		def->Update();
+	//for (auto def : *Ready_UI_list.Get())
+	//	def->Update();
 	mouse.Get()->Update();
 }
 
@@ -93,6 +97,8 @@ void Game_Master::Render()
 		}
 	for (auto def : *Button_list.Get())
 		def->Render();
+	//for (auto def : *Ready_UI_list.Get())
+	//	def->Render();
 	mouse.Get()->Render();
 }
 

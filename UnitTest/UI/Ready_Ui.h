@@ -8,17 +8,22 @@ public:
 	void Update();
 
 private:
-	int moneycount;
-	int money_Max;
-	std::vector<Texture2D*> Gold;
+	int Goldcount;
+	int Gold_Max;
+	std::vector<UI_Obejct*> Gold;
 
+	int LevelUpCost;
 	int Levelcount;
 	int Level_Max;
-	std::vector<Texture2D*> Level;
+	std::vector<UI_Obejct*> Level;
 
 	Vector3 Buttonoffset;
-	Vector3 BaseButtonposition;
+	Vector3 LBaseposition;
+	Vector3 RBaseposition;
 	Vector3 Buttonsize;
+
+	Vector3 Level_UI_size;
+	Vector3 Gold_UI_size;
 
 	// 상점 새로고침 버튼
 	Button* ReButton = nullptr;

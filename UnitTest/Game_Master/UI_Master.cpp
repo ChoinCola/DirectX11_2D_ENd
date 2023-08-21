@@ -24,7 +24,7 @@ void UI_Master::Render()
 
 void UI_Master::Chack_Collision()
 {
-	D3DXVECTOR3 Mposition = mouse.Get()->GetMouse()->Get()->GetPosition();
+	D3DXVECTOR3 Mposition = mouse.Get()->GetMousePointer()->GetPosition();
 
 	bool BOn_Object = 0;
 	bool UOn_Object = 0;

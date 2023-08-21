@@ -19,12 +19,11 @@ class MousePointer
 public:
 	MousePointer(Vector3 size = { 50,50,0 });
 	~MousePointer();
-
 	void Update();
 	void Render();
-
 	int GetMosueState() { return Mouse_state; };
 	void SetMouseState(int def) { Mouse_state = def; };
+	AnimationRect* GetMousePointer() { return animRect; };
 	SingletonBase<Mouse>* GetMouse() { return &Mouse; };
 
 protected:

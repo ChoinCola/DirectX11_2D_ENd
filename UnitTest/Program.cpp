@@ -34,10 +34,11 @@ void Program::Destroy()
 
 void Program::Update()
 {
+	Camera::Get()->Update();
+	
 	for (IObject* obj : objs)
 		obj->Update();
 
-	Camera::Get()->Update();
 }
 
 void Program::Render()

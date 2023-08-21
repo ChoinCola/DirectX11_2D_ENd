@@ -145,12 +145,14 @@ typedef UINT		uint;
 #include "Systems/Camera.h"
 
 #include "Game/UI/ProgressBar.h"
+#include "Game/UI/UI_Obejct.h"
 #include "Game/HPBar.h"
 
 #include "Game/Item.h"
 #include "Game/Character.h"
 #include "Game/Button.h"
 #include "Game/MousePointer.h"
+
 
 #define WinMaxWidth 1280
 #define WinMaxHeight 720

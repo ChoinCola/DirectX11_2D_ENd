@@ -62,7 +62,7 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 }
 
 TextureRect::TextureRect
-(Vector3 position, std::vector<Vector2>* uv, std::vector<Vector3>* RectSize ,Vector3 size, float rotation, 
+(Vector3 position, std::vector<Vector2>* uv,Vector3 size, float rotation, 
 Color path, Texture2D* Fontpng)
 	: position(position), size(size), rotation(rotation)
 {	// 텍스트 출력용
@@ -73,11 +73,6 @@ Color path, Texture2D* Fontpng)
 	// vertices
 	{	// 텍스트 출력용 VertexTexture형식
 		Textvertices.assign(4, TextureVertexTexture());
-
-		//Textvertices[0].position = verticesLocalPosition[0] = (*RectSize)[0];
-		//Textvertices[1].position = verticesLocalPosition[1] = (*RectSize)[1];
-		//Textvertices[2].position = verticesLocalPosition[2] = (*RectSize)[2];
-		//Textvertices[3].position = verticesLocalPosition[3] = (*RectSize)[3];
 
 		Textvertices[0].position = Vector3(-0.5f, -0.5f, 0.0f); // 좌하단
 		Textvertices[1].position = Vector3(+0.5f, +0.5f, 0.0f); // 우상단

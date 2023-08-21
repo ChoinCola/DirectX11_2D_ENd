@@ -11,4 +11,6 @@ protected:
 
 	SingletonBase<std::list<ICard_UI*>> UI_list;
 	SingletonBase<std::list<Button*>> Button_list;
+
+	SingletonBase<std::list<UI_Obejct*>> Ready_UI_list; 
 };

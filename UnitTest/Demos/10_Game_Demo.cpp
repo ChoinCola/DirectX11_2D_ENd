@@ -23,15 +23,14 @@ void Game_Demo::Destroy()
 void Game_Demo::Update()
 {
 	GM->Update();
-	CM->Update();
 	UM->Update();
 	RU->Update();
+	CM->Update();
 }
 
 void Game_Demo::Render()
 {
 	GM->Render();
-
 }
 
 void Game_Demo::PostRender()

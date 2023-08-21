@@ -164,7 +164,7 @@ D3DXSTRING FontClass::MakeString
 			// 문자가 한글이고 바로 전 문자가 영문일경우, 한글 문자를 더 뒤로 띄워야한다.
 
 			result->string.push_back(
-				new TextureRect(result->Endposition + Offset, uv, frect, fontsize, 0.0f, result->color, Fontpng));
+				new TextureRect(result->Endposition + Offset, uv, fontsize, 0.0f, result->color, Fontpng));
 			// 다음문자가 입력되기 위해서 사이즈만큼 우측으로 이동.
 
 			// 문자가 영어 -> 한글로 넘어갈때 offset문제가 발생. 그래서 그부분만 처리함. 한글의 가장 작은 유니코드 = 4352

@@ -45,6 +45,7 @@
     <ClCompile Include="Game\Button.cpp" />
     <ClCompile Include="Game\HPBar.cpp" />
     <ClCompile Include="Systems\FontClass.cpp" />
+    <ClCompile Include="Game\UI\UI_Obejct.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Systems\Graphics.h" />
@@ -96,5 +97,6 @@
     <ClInclude Include="Game\HPBar.h" />
     <ClInclude Include="Systems\FontClass.h" />
     <ClInclude Include="Renders\Resources\OutlineBuffer.h" />
+    <ClInclude Include="Game\UI\UI_Obejct.h" />
   </ItemGroup>
 </Project>

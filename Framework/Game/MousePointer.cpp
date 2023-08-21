@@ -25,6 +25,8 @@ MousePointer::MousePointer(Vector3 size)
 
 		SAFE_DELETE(idle);
 	}
+
+	
 #pragma endregion
 }
 
@@ -36,20 +38,26 @@ MousePointer::~MousePointer()
 
 void MousePointer::Update()
 {	
+	Vector3 pos;
+	Camera::Get()->UnProjection(&pos, Mouse::Get()->GetPosition(), Values::Identity);
+	Vector3 Setvalue;
 	switch (Mouse_state)
+
 	{
 	case(IDLE) :
 	{
 		animator->SetCurrentAnimClip(L"Idle");
-		animRect->SetPosition(Mouse.Get()->GetPosition().x + animRect->GetSize().x / 7,
-							  Mouse.Get()->GetPosition().y - animRect->GetSize().y / 4);
+		Setvalue = Vector3(animRect->GetSize().x / 7, -animRect->GetSize().y / 4, 0);
+		//animRect->SetPosition(Mouse.Get()->GetPosition().x + animRect->GetSize().x / 7,
+		//					  Mouse.Get()->GetPosition().y - animRect->GetSize().y / 4);
 		break;
 	}
 	case(ON_OBJECT) :
 	{
 		animator->SetCurrentAnimClip(L"On_object");
-		animRect->SetPosition(Mouse.Get()->GetPosition().x + animRect->GetSize().x / 5, 
-							  Mouse.Get()->GetPosition().y - animRect->GetSize().y / 2.5);
+		/*animRect->SetPosition(Mouse.Get()->GetPosition().x + animRect->GetSize().x / 5, 
+							  Mouse.Get()->GetPosition().y - animRect->GetSize().y / 2.5);*/
+		Setvalue = Vector3(+animRect->GetSize().x / 5, -animRect->GetSize().y / 2.5, 0);
 		break;
 	}
 	case(ON_CHARACTER):
@@ -68,6 +76,7 @@ void MousePointer::Update()
 		break;
 	}
 
+	animRect->SetPosition(pos + Setvalue);
 	animator->Update();
 	animRect->Update();
 }
