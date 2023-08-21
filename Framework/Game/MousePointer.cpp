@@ -5,7 +5,7 @@ MousePointer::MousePointer(Vector3 size)
 {
 	animRect = new AnimationRect(Mouse.Get()->GetPosition(),size);
 	animator = new Animator();
-
+	Worldposition = D3DXVECTOR3(0, 0, 0);
 	Mouse_state = IDLE;
 #pragma region Animation
 	{
@@ -38,8 +38,8 @@ MousePointer::~MousePointer()
 
 void MousePointer::Update()
 {	
-	Vector3 pos;
-	Camera::Get()->UnProjection(&pos, Mouse::Get()->GetPosition(), Values::Identity);
+	Camera::Get()->UnProjection(&Worldposition, Mouse::Get()->GetPosition(), Values::Identity);
+
 	Vector3 Setvalue;
 	switch (Mouse_state)
 
@@ -76,7 +76,7 @@ void MousePointer::Update()
 		break;
 	}
 
-	animRect->SetPosition(pos + Setvalue);
+	animRect->SetPosition(Worldposition + Setvalue);
 	animator->Update();
 	animRect->Update();
 }

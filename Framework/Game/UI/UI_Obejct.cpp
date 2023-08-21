@@ -2,12 +2,12 @@
 #include "UI_Obejct.h"
 
 UI_Obejct::UI_Obejct(Vector3 position, Vector3 size, float rotation, std::wstring Objectname, std::wstring ONfile, std::wstring OFFfile)
-	: Objectname(Objectname), ONOFF(false), NowRender(true)
+	: position(position), size(size),Objectname(Objectname), ONOFF(false), NowRender(true)
 {
 	// 기본은 꺼져있는 상태로 시작한다.
 	// 렌더는 기본값은 언제나 true
-	ONObject = new TextureRect(position, size, rotation, LUI + L"UI_Obejct/" + ONfile);
-	OFFObject = new TextureRect(position, size, rotation, LUI + L"UI_Obejct/" + OFFfile);
+	ONObject = new TextureRect(position, size, rotation, LUI + L"UI_Object/" + ONfile);
+	OFFObject = new TextureRect(position, size, rotation, LUI + L"UI_Object/" + OFFfile);
 
 }
 
@@ -19,6 +19,9 @@ UI_Obejct::~UI_Obejct()
 
 void UI_Obejct::Update()
 {
+	ONObject->SetPosition(position);
+	OFFObject->SetPosition(position);
+
 	ONObject->Update();
 	OFFObject->Update();
 }
@@ -36,6 +39,5 @@ void UI_Obejct::Render()
 
 void UI_Obejct::SetPosition(Vector3 position)
 {
-	ONObject->SetPosition(position);
-	OFFObject->SetPosition(position);
+	this->position = position;
 }

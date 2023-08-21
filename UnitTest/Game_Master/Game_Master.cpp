@@ -60,6 +60,15 @@ void Game_Master::Chack_ALL_LIST()
 			}
 			cout << endl;
 		}
+
+		if (Ready_UI_list.Get() != nullptr) {
+			cout << String::ToString(L"Ready_UI_list") << endl;
+			for (auto def : *Ready_UI_list.Get()) {
+				cout << String::ToString(def->GetName()) << endl;
+				cout << String::ToString(def->GetPosition()) << endl;
+			}
+			cout << endl;
+		}
 	}
 }
 
@@ -76,8 +85,8 @@ void Game_Master::Update()
 		def->Update();
 	for (auto def : *Button_list.Get())
 		def->Update();
-	//for (auto def : *Ready_UI_list.Get())
-	//	def->Update();
+	for (auto def : *Ready_UI_list.Get())
+		def->Update();
 	mouse.Get()->Update();
 }
 
@@ -97,8 +106,8 @@ void Game_Master::Render()
 		}
 	for (auto def : *Button_list.Get())
 		def->Render();
-	//for (auto def : *Ready_UI_list.Get())
-	//	def->Render();
+	for (auto def : *Ready_UI_list.Get())
+		def->Render();
 	mouse.Get()->Render();
 }
 

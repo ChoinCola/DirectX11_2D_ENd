@@ -77,20 +77,6 @@ bool FontClass::SetFont(char* fntfile)
 	return true;
 }
 
-std::vector<Vector3>* FontClass::RectInit(float xoffset, float yoffset, float xwidth, float yheight, float size)
-{
-	// 이미지 사이즈 만큼만 전개해야한다.
-	std::vector<Vector3>* result = new std::vector<Vector3>();
-
-	// TextureRect에 들어가는 값을 Vector로 보관하여 던져줘야 한다.
-	result->push_back(Vector3(-xwidth / size / 2, -yheight / size, 0));// 좌하단
-	result->push_back(Vector3(+xwidth / size / 2, +yheight / size, 0));// 우상단
-	result->push_back(Vector3(+xwidth / size / 2, -yheight / size, 0));// 우하단
-	result->push_back(Vector3(-xwidth / size / 2, +yheight / size, 0));// 좌상단
-
-	return result;
-}
-
 std::vector<Vector2>* FontClass::uvInit(float x, float y, float xoffset, float yoffset)
 {
 	// uv좌표를 잡아서, 전체 글자 png중 필요한 글자 한개의 uv좌표를 지정한다.
@@ -143,10 +129,6 @@ D3DXSTRING FontClass::MakeString
 			std::vector<Vector2>* uv = 
 			uvInit(value->second->x / fontImagesize.x, value->second->y / fontImagesize.y,
 					value->second->width / fontImagesize.x, value->second->height / fontImagesize.y);
-
-			std::vector<Vector3>* frect =
-				RectInit(value->second->xoffset, value->second->yoffset, value->second->width, value->second->height, fontsinglesize);
-
 
 			// 문자 사이즈를 백분율하여, 일정한 사이즈로 키워줄 수 있게 한다.
 			float Charsizex = value->second->width*2 / fontsinglesize;

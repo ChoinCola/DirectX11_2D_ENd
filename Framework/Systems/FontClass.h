@@ -46,7 +46,6 @@ public:
 	bool SetFont(char* fntfile);								// 폰트파일 재설정
 
 	std::vector<Vector2>* uvInit(float x, float y, float xoffset, float yoffset);	// uv좌표 잡아줌.
-	std::vector<Vector3>* RectInit(float x, float y, float xwidth, float ywidth, float size);	// Rect전개 잡아줌.
 
 	D3DXSTRING MakeString															// 문장 제작함수
 	(const std::wstring string, const Vector3 position,

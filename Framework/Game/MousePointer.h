@@ -23,11 +23,12 @@ public:
 	void Render();
 	int GetMosueState() { return Mouse_state; };
 	void SetMouseState(int def) { Mouse_state = def; };
-	AnimationRect* GetMousePointer() { return animRect; };
+	D3DXVECTOR3* GetMousePointer() { return &Worldposition; };
 	SingletonBase<Mouse>* GetMouse() { return &Mouse; };
 
 protected:
 	std::wstring MouseName;
+	D3DXVECTOR3 Worldposition;
 	SingletonBase<Mouse> Mouse;
 	AnimationRect* animRect = nullptr;
 	Animator* animator = nullptr;
