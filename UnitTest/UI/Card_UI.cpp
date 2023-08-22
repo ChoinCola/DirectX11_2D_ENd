@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Card_UI.h"
 
-Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int CardUnitCount, std::list<int>* Card_Upgrade, std::wstring Cardstring)
+Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int CardUnitCount, std::list<int>* Card_Upgrade, std::wstring Cardstring, int* unitalldamage)
 	: ICard_UI()
 {
 	FontClass::Create();
@@ -245,6 +245,17 @@ Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int Car
 		new D3DXSTRING(FontClass::Get()->MakeString(Cardstring, pos, TextColor, { textsize, textsize, 1 },LEFT, 5));
 
 	}
+
+	{
+		Color TextColor{ 0.86, 0.68, 0.85, 1 };
+		float textsize = 50.0f;
+		Vector3 pos = Vector3(
+			CardInfo[0]->GetPosition().x - CardInfo[0]->GetSize().x / 2,
+			CardInfo[0]->GetPosition().y + CardInfo[0]->GetSize().y / 2 - Close_Button->GetSize().y / 2 - textsize, 1);
+		D3DCardDamage =
+			new D3DXNUMBER(FontClass::Get()->Makenumberbord(*unitalldamage, pos, TextColor, { textsize, textsize, 1 }, LEFT, 5));
+
+	}
 }
 
 Card_UI::~Card_UI()
@@ -265,6 +276,7 @@ void Card_UI::Render()
 			def->Render();
 
 		D3DCardInfostring->Render();
+		D3DCardDamage->Render();
 	}
 #pragma endregion
 

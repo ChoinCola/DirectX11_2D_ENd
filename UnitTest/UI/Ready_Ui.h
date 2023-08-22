@@ -23,8 +23,11 @@ private:
 	Vector3 RBaseposition;
 
 	Vector3 Buttonsize;
+	Vector3 Leveloffset;
 	Vector3 Level_UI_size;
 	Vector3 Gold_UI_size;
+
+	D3DXSTRING upcostp;
 
 	// 임시 라운드 진행 버튼
 	Button* defRoundButton = nullptr;
@@ -42,7 +45,7 @@ private:
 	Button* LockButton = nullptr;
 
 	// 카메라를 기준으로 Texture2D의 position을 수정해줌
-	Vector3 GetCMPosition(const Vector3 Basepositon, const Vector3 size, const Vector3 offset, const float x, const float y);
+	Vector3 GetCMPosition(const Vector3 Basepositon, const Vector3 size, const Vector3 offset, const float x, const float y, bool flipx = false);
 
 	// 지정된 Level최대값을 기준으로 Level을 상승시킴.
 	void LevelUP();

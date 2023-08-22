@@ -50,6 +50,9 @@ protected:
 	D3DXSTRING* D3DCardstring;
 	std::vector<TextureRect*> CardInfo;
 	D3DXSTRING* D3DCardInfostring;
+
+	D3DXNUMBER* D3DCardDamage;
+
 	Button* Close_Button;
 	Button* Buy_Button;
 	Button* Sell_Button;

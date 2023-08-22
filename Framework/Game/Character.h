@@ -18,6 +18,7 @@ public:
 	auto Getspeed()->float;
 	auto GetHP() { return HP; }
 	Item* GetItem() { return hand; }
+	auto Getdamage() { return damage; }
 	const std::wstring GetName() { return Character_Name; }
 	BoundingBox& Getcollision() { return *collision; }
 	std::list<Item*>& Get_hit_calculation() { return hit_calculation; }

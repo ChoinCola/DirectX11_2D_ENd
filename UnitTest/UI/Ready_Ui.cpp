@@ -10,8 +10,8 @@ Ready_Ui::Ready_Ui()
 	Buttonoffset = Buttonsize * 0.1;
 
 	Level_UI_size = Vector3(28, 50, 0);
-	Gold_UI_size = Vector3(50,50, 0);
-	Gold_Now_Max = Goldhavenow = 2;
+	Gold_UI_size = Vector3(30, 30, 0);
+	Gold_Now_Max = Goldhavenow = 9;
 
 	LevelUpCost = 0;
 	Level_Max = 6;
@@ -85,7 +85,7 @@ Ready_Ui::Ready_Ui()
 
 		UI_Obejct* gold = new UI_Obejct(
 		Vector3(0, 0, 0),
-		Buttonsize, 0.0,
+		Gold_UI_size, 0.0,
 		L"Gold_UI_" +std::to_wstring(def + 1),
 		L"Gold_on_patten.png",
 		L"Gold_off_patten.png");
@@ -119,6 +119,8 @@ Ready_Ui::Ready_Ui()
 	for (auto def : Level) {
 		Ready_UI_list.Get()->push_back(def); 
 	}
+	
+	
 
 #pragma endregion
 }
@@ -132,28 +134,36 @@ void Ready_Ui::Update()
 	LockButton->SetPosition		(GetCMPosition(LBaseposition, Buttonsize, Buttonoffset, 0.5, 1));
 
 	for (int i = 0; i < Gold.size(); i++) {
-		Gold[i]->SetPosition	(GetCMPosition(RBaseposition, Buttonsize, Buttonoffset, i + 2, 0.0));
-
-		if(!Gold[i]->GetRender() && i < Gold_Now_Max) // 지정된 gold가 렌더가 안되는데, 지금골드최대량보다 적을경우,
-			Gold[i]->SetRender(); // 렌더 시키게 바꾼다.
+		Gold[i]->SetPosition	(GetCMPosition(RBaseposition, Gold_UI_size, Gold_UI_size * 0.1, i + 1, -0.5, true));
 	};
 
-	for (int i = 0; i < Level.size(); i++) {
-		Level[i]->SetPosition	(GetCMPosition(LBaseposition, Level_UI_size, Vector3(0,0,0), i + 2, -0.1));
-	
+	int levelLastpos =  0;
+	for (levelLastpos = 0; levelLastpos < Level.size(); levelLastpos++) {
+		Level[levelLastpos]->SetPosition	(GetCMPosition(LBaseposition, Level_UI_size, Vector3(0, 0, 0), levelLastpos + 2, -0.1));
 	};
+
+	//upcostp = FontClass::Get()->MakeString(std::to_wstring(LevelUpCost), 
+	//GetCMPosition(LBaseposition, Level_UI_size, Vector3(0, 0, 0), levelLastpos + 3, -0.1),
+	//Color(0,0,0,1),
+	//Buttonsize,
+	//LEFT,
+	//1);
+
+	upcostp.Render();
 
 	LevelChack();
 	GoldChack();
 }
 
-Vector3 Ready_Ui::GetCMPosition(const Vector3 Basepositon, const Vector3 size, const Vector3 offset, const float x, const float y)
+Vector3 Ready_Ui::GetCMPosition(const Vector3 Basepositon, const Vector3 size, const Vector3 offset, const float x, const float y, bool flipx)
 {
 	Vector3 result;
 
+	float flip;
+	flipx ? flip = -1 : flip = 1;
 	result = Basepositon + Camera::Get()->GetPosition() +
-	Vector3(size.x * x, size.y * y, 0) +
-	Vector3(offset.x * (x-1), offset.y * (y-1), 0);
+	(Vector3(size.x * x * flip, size.y * y, 0) +
+	Vector3(offset.x * (x-1) * flip, offset.y * (y-1), 0)) ;
 
 	return result;
 }
@@ -232,7 +242,7 @@ void Ready_Ui::GoldUP()
 
 void Ready_Ui::GoldChack()
 {
-	for (int i = 0; i < Gold.size(); i++) // Gold 벡터를 전체 순회한다.
+	for (int i = Gold.size()-1; i >= 0; i--) // Gold 벡터를 전체 순회한다.
 	{
 		if (!Gold[i]->GetONOFF() && i <= Goldhavenow)
 			// 만약, Gold가 Off이고, Goldhavenow보다 작거나 같으면,
@@ -242,10 +252,10 @@ void Ready_Ui::GoldChack()
 			Gold[i]->SetONOFF(); // 해당되는 레벨을 꺼줌.
 
 		if (!Gold[i]->GetRender() && i <= Gold_Now_Max)
-			// 만약, Gold가 Off이고, Gold_Now_Max보다 작거나 같으면,
+			// 만약, Gold의 Render가 Off이고, Gold_Now_Max보다 작거나 같으면,
 			Gold[i]->SetRender(); //해당되는 골드를 렌더시킴
 		else if (Gold[i]->GetRender() && i > Gold_Now_Max)
-			// 만약, GOld가 ON이고, Gold_Now_Max보다 크면,
+			// 만약, GOld의 Render가 ON이고, Gold_Now_Max보다 크면,
 			Gold[i]->SetRender(); // 해당되는 골드를 렌더시키지 않음.
 	}
 }

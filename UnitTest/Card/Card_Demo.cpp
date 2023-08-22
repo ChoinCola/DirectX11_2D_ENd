@@ -8,13 +8,17 @@ Card_Demo::Card_Demo()
 
 	int Card_unit_count = Card_Unit.size();
 
+	for (auto def : Card_Unit)
+		alldamage += def->Getdamage();
+
 	Cardinfo = new Card_UI(
 	Vector3(640, 500, 0),
 	L"abcdefghijklmnopqrstuvwxyz",
 	0,
 	Card_unit_count,
 	&upgrade,
-	L"Tsdfjjjjjj바바\n엔터를쳤다.\n스 페 이 스 바 쳤 다."
+	L"Tsdfjjjjjj바바\n엔터를쳤다.\n스 페 이 스 바 쳤 다.",
+	&alldamage
 	);
 
 	UI_list.Get()->push_back(Cardinfo);

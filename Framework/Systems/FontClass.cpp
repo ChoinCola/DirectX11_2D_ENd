@@ -151,9 +151,9 @@ D3DXSTRING FontClass::MakeString
 
 			// 문자가 영어 -> 한글로 넘어갈때 offset문제가 발생. 그래서 그부분만 처리함. 한글의 가장 작은 유니코드 = 4352
 			if (string[i + 1] != NULL && string[i + 1] >= 4352 && string[i] < 4352)
-				result->Endposition.x += fontsize.x * 3.0 - Offset.x / fontsinglesize * result->size.x; // 여기만 조금 만지면 끝
+				result->Endposition.x += fontsize.x * 3.0 - Offset.x / fontsinglesize * result->size.x;
 			else
-				result->Endposition.x += fontsize.x * 1.5 - Offset.x / fontsinglesize * result->size.x; // 여기만 조금 만지면 끝
+				result->Endposition.x += fontsize.x * 1.5 - Offset.x / fontsinglesize * result->size.x; 
 		}
 	}
 
@@ -194,5 +194,123 @@ D3DXSTRING FontClass::MakeString
 		default: // 이 문장은 시작위치 기준 오른쪽으로 발산합니다.
 			break;
 	}
+	return *result;
+}
+
+D3DXNUMBER FontClass::Makenumberbord(const int number, const Vector3 position, const Color color, const Vector3 stringsize, const int sorting, const int outline)
+{
+	D3DXNUMBER* result = new D3DXNUMBER;
+	std::wstring wsnumber = std::to_wstring(number);
+
+	// 오류체크, 만약 Fontpng가 실행되지 않았을 경우, 폰트 를 다시 잡아준다.
+	if (Fontpng == nullptr)
+		SetFont("..\\Framework\\GameAsset\\Fontfile\\Base_Font.fnt");
+
+	// 반환값에 문장의 전반 데이터를 기입.
+	result->Startposition = result->Endposition = position;
+	result->size = stringsize;
+	result->color = color;
+
+	// 넘버패드를 안말들었을 경우, 만듬
+	if(numberpad.empty()) {
+		for (int i = 0; i <10; i++) {
+			std::wstring def = std::to_wstring(i);
+				// map배열에서 해당되는 숫자의 유니 코드를 찾아온다. 
+			auto value = charators.find((int)def[0]);
+
+			// uv의 기준값. 문자의 x위치에 전체 이미지를 나눠주어 전체이미지가 1일경우 x의 값을 구한다. 가로세로길이, y도 같은 방식으로 도출
+			std::vector<Vector2>* uv =
+				uvInit(value->second->x / fontImagesize.x, value->second->y / fontImagesize.y,
+					value->second->width / fontImagesize.x, value->second->height / fontImagesize.y);
+
+			// 문자 사이즈를 백분율하여, 일정한 사이즈로 키워줄 수 있게 한다.
+			float Charsizex = value->second->width * 2 / fontsinglesize;
+			Vector3 Offset;
+			// y를 음수처리하는 이유는 uv 좌표상, y가 반대이기 때문, BMFont 프로그램이 구형이라 offset 좌표가 0,0이 좌상단임.
+			Offset = Vector3(value->second->xoffset / 2, -value->second->yoffset / 2, 0);
+
+			Vector3 fontsize = Vector3(value->second->width / fontsinglesize * result->size.x,
+				value->second->height / fontsinglesize * result->size.y, 0);
+			TextureRect* numpaddef = new TextureRect(Offset, uv, fontsize, 0.0f, result->color, Fontpng);
+
+			numberpad.insert(std::make_pair(def[0], numpaddef));
+			// 넘버페드에 숫자를 입력함.
+		}
+
+		std::wstring def = L"-";
+		// map배열에서 해당되는 숫자의 유니 코드를 찾아온다. 
+		auto value = charators.find((int)def[0]);
+
+		// uv의 기준값. 문자의 x위치에 전체 이미지를 나눠주어 전체이미지가 1일경우 x의 값을 구한다. 가로세로길이, y도 같은 방식으로 도출
+		std::vector<Vector2>* uv =
+			uvInit(value->second->x / fontImagesize.x, value->second->y / fontImagesize.y,
+				value->second->width / fontImagesize.x, value->second->height / fontImagesize.y);
+
+		// 문자 사이즈를 백분율하여, 일정한 사이즈로 키워줄 수 있게 한다.
+		float Charsizex = value->second->width * 2 / fontsinglesize;
+		Vector3 Offset;
+		// y를 음수처리하는 이유는 uv 좌표상, y가 반대이기 때문, BMFont 프로그램이 구형이라 offset 좌표가 0,0이 좌상단임.
+		Offset = Vector3(value->second->xoffset / 2, -value->second->yoffset / 2, 0);
+
+		Vector3 fontsize = Vector3(value->second->width / fontsinglesize * result->size.x,
+			value->second->height / fontsinglesize * result->size.y, 0);
+		TextureRect* numpaddef = new TextureRect(Offset, uv, fontsize, 0.0f, result->color, Fontpng);
+
+		numberpad.insert(std::make_pair(def[0], numpaddef));
+		// 넘버페드에 -를 입력함.
+	}
+
+	// 입력받은 숫자를 확인함.
+	for (int i = 0; i < wsnumber.size(); i++)
+	{
+		TextureRect* numberdef = new TextureRect(*numberpad.find(wsnumber[i])->second);
+		numberdef->SetPosition(numberdef->GetPosition() + result->Endposition);
+		numberdef->Update();
+
+		Vector3 Offset;
+		// y를 음수처리하는 이유는 uv 좌표상, y가 반대이기 때문, BMFont 프로그램이 구형이라 offset 좌표가 0,0이 좌상단임.
+
+		result->numstring.push_back(numberdef);
+		result->Endposition.x += result->size.x;
+	}
+
+	switch (sorting)
+	{
+	case RIGHT: // 이 문장은 시작위치 기준 왼쪽으로 발산합니다.
+	{
+		float sortvectorsizex = (result->Endposition.x - result->Startposition.x); // 전체 문장 길이
+		Vector3 sortvector = { sortvectorsizex, 0, 0 };
+		for (auto def : result->numstring) {
+			if (def->GetPosition().y < result->Startposition.y) // 엔터가 입력되었을 경우,
+				sortvector.x = sortvectorsizex; // x를 문장길이 기본 으로 초기화
+
+			Vector3 charX = Vector3(def->GetRect().x / 3.8, 0, 0);
+
+			def->SetPosition(def->GetPosition() - sortvector); // 현재 위치의 단어 길이만큼을 쭉 밀어버림.
+			sortvector -= charX;
+			// 다음에 왼쪽으로 미는 값은 방금 민 글자의 x사이즈 만큼 줄어들어야 한다.
+		}
+		break;
+	}
+	case MIDDLE: 	// 이 문장은 시작위치 가 문장의 중앙입니다.
+	{
+		float sortvectorsizex = (result->Endposition.x - result->Startposition.x) / 2; // 전체 문장 길이의 반
+		Vector3 sortvector = { sortvectorsizex, 0, 0 };
+		for (auto def : result->numstring) {
+			if (def->GetPosition().y < result->Startposition.y) // 엔터가 입력되었을 경우,
+				sortvector.x = sortvectorsizex; // x를 문장길이의 기본의 반절 로 초기화
+
+			Vector3 charX = Vector3(def->GetRect().x / 3.8, 0, 0);
+
+			def->SetPosition(def->GetPosition() - sortvector); // 현재 위치의 단어 길이만큼을 쭉 밀어버림.
+			sortvector -= charX;
+			// 다음에 왼쪽으로 미는 값은 방금 민 글자의 x사이즈 만큼 줄어들어야 한다.
+		}
+		break;
+	}
+	default: // 이 문장은 시작위치 기준 오른쪽으로 발산합니다.
+		break;
+	}
+
 	return *result;
 }
