@@ -34,6 +34,7 @@ void Game_Master::Chack_ALL_LIST()
 				cout << String::ToString(def->GetName()) << endl;
 				cout << String::ToString(def->Getcollision().GetPosition()) << endl;
 			}
+			cout << endl;
 
 			cout << String::ToString(L"Item_list") << endl;
 			for (auto def : *Item_list.Get()) {
@@ -41,6 +42,7 @@ void Game_Master::Chack_ALL_LIST()
 				cout << String::ToString(def->Getcollision().GetPosition()) << endl;
 
 			}
+			cout << endl;
 		}
 
 		if (Button_list.Get() != nullptr) {

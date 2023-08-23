@@ -23,15 +23,15 @@ public:
 
 struct D3DXNUMBER
 {
-	D3DXVECTOR3 Startposition;			// 숫자판
-	D3DXVECTOR3 Endposition;			// 숫자판 종료 포지션
-	Color color;						// 숫자 색상
-	Vector3 size;						// 숫자 크기
-	int nvectorsize;					// 번호판 사이즈 ( 구조상 넘어가면 표시불가 )
-	int sortType;						// 정렬기준이 좌측 중앙 우측인지
-	int num;							// 들어있는 숫자
-	std::vector<TextureRect*> numstring;	// 숫자 벡터
-	std::map<wchar_t, TextureRect*>* numberpad;// 넘버페드 벡터
+	D3DXVECTOR3 Startposition;					// 숫자판
+	D3DXVECTOR3 Endposition;					// 숫자판 종료 포지션
+	Color color;								// 숫자 색상
+	Vector3 size;								// 숫자 크기
+	int nvectorsize;							// 번호판 사이즈 ( 구조상 넘어가면 표시불가 )
+	int sortType;								// 정렬기준이 좌측 중앙 우측인지
+	int num;									// 들어있는 숫자
+	std::vector<TextureRect*> numstring;		// 숫자 벡터
+	std::map<wchar_t, TextureRect*>* numberpad;	// 넘버페드 벡터
 
 public:
 	void Update() { for (auto def : numstring) def->Update(); } // 숫자 위치좌표 갱신
@@ -39,7 +39,7 @@ public:
 
 	void Changer_Number(int num) {
 		std::wstring numdef = std::to_wstring(num);
-		for (int i = 0; i < numstring.size(); i++)
+		for (uint i = 0; i < numstring.size(); i++)
 		{
 			while (true) {
 				if (numstring.size() <= numdef.size()) { // 사이즈가 크거나 같으면 뒤로 빼버린다.

@@ -6,7 +6,7 @@ class TextureRect
 public:
 	TextureRect(Vector3 position, Vector3 size, float rotation, Color path, Vector2 flip = { 0,0 });
 	TextureRect(Vector3 position, std::vector<Vector2>* uv, Vector3 size,
-	float rotation, Color path, Texture2D* Fontpng); // 문자 출력용 생성자
+	float rotation, Color path, ID3D11ShaderResourceView* Fontpng, Vector2 Imagesize); // 문자 출력용 생성자
 	TextureRect(Vector3 position, Vector3 size, float rotation, wstring path, Vector2 flip = { 0,0 });
 	TextureRect(Vector3 position, Vector3 size, float rotation, Vector2 flip = { 0,0 });
 	~TextureRect();

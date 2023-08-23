@@ -63,7 +63,7 @@ TextureRect::TextureRect(Vector3 position, Vector3 size, float rotation, Color p
 
 TextureRect::TextureRect
 (Vector3 position, std::vector<Vector2>* uv,Vector3 size, float rotation, 
-Color path, Texture2D* Fontpng)
+Color path, ID3D11ShaderResourceView* Fontpng, Vector2 Imagesize)
 	: position(position), size(size), rotation(rotation)
 {	// 텍스트 출력용
 	{
@@ -116,7 +116,7 @@ Color path, Texture2D* Fontpng)
 
 	{
 		ot = new OutlineBuffer();
-		ot->SetTextureSize(Vector2(Fontpng->GetHeight(),Fontpng->GetWidth()));
+		ot->SetTextureSize(Imagesize);
 		ot->SetOutlineCount(2);
 	}
 
@@ -132,7 +132,7 @@ Color path, Texture2D* Fontpng)
 	}
 	// srv
 	{
-		srv = Fontpng->GetSRV();
+		srv = Fontpng;
 	}
 }
 

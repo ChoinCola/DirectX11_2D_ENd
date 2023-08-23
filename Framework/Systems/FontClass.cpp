@@ -18,10 +18,7 @@ FontClass::~FontClass()
 bool FontClass::SetFont(char* fntfile)
 {
 	// 폰트 파일 제작 전 기입해야할 데이터배열 전부 초기화
-	{
-		SAFE_DELETE(Fontpng);
-		charators.clear();
-	}
+
 
 	// 폰트 png파일 로드
 
@@ -47,31 +44,54 @@ bool FontClass::SetFont(char* fntfile)
 		tinyxml2::XMLElement* pname = doc.FirstChildElement("font")->FirstChildElement("pages")->FirstChildElement("page");
 		const char* def = pname->Attribute("file");
 		std::wstring Imagename(strlen(def), L' ');
-		std::mbstowcs(&Imagename[0], def, strlen(def));			// 이미지 이름이 char[]형식 이기에 형변환 한다.
 
-		Fontpng = new Texture2D(LFont + Imagename);
-		// 단 한개라도 긁어오지 못했을 경우, 코드실행이 불가하기에 터트린다.
+		if (SRV::Get()->GetSRV(String::ToString(Imagename)) == nullptr)
+		{
+			std::mbstowcs(&Imagename[0], def, strlen(def));			// 이미지 이름이 char[]형식 이기에 형변환 한다.
 
-		if (pNode == nullptr || Imagesize == nullptr || Fontpng == nullptr) {
-			std::cerr << "Error finding chars element." << std::endl;
-			return false;
+			//Fontpng = new Texture2D(LFont + Imagename);
+			// 단 한개라도 긁어오지 못했을 경우, 코드실행이 불가하기에 터트린다.
+
+			if (pNode == nullptr || Imagesize == nullptr || srv == nullptr) {
+				std::cerr << "Error finding chars element." << std::endl;
+				return false;
+			}
+			// png파일의 전체 사이즈를 받아온다. ( Texture2D데이터를 보관하는 Fontpng에서도 긁어올수 있음. 참고 )
+			fontImagesize = { (float)Imagesize->IntAttribute("scaleW"), (float)Imagesize->IntAttribute("scaleH") };
+			fontsinglesize = Imagesize->IntAttribute("lineHeight");
+			
+			// 입력되어있는 모든 문자열을 검사하여 전부 map에 넣어준다.
+			for (tinyxml2::XMLElement* element = pNode->FirstChildElement("char"); 
+				element != nullptr; element = element->NextSiblingElement("char")) {
+				CharFont* def = new CharFont();
+				int id = element->IntAttribute("id");
+				def->x = element->IntAttribute("x");
+				def->y = element->IntAttribute("y");
+				def->width = element->IntAttribute("width");
+				def->height = element->IntAttribute("height");
+				def->xoffset = element->IntAttribute("xoffset");
+				def->yoffset = element->IntAttribute("yoffset");
+				def->xadvance = element->IntAttribute("xadvance");
+				charators.insert(std::make_pair(id, def));
+			}
+
+			{
+				HRESULT hr = D3DX11CreateShaderResourceViewFromFile
+				(
+					DEVICE,
+					(LFont + Imagename).c_str(),
+					nullptr,
+					nullptr,
+					&srv,
+					nullptr
+				);
+				CHECK(hr);
+				SRV::Get()->AddSRV(String::ToString(Imagename), srv);
+			}
 		}
-		// png파일의 전체 사이즈를 받아온다. ( Texture2D데이터를 보관하는 Fontpng에서도 긁어올수 있음. 참고 )
-		fontImagesize = { (float)Imagesize->IntAttribute("scaleW"), (float)Imagesize->IntAttribute("scaleH") };
-		fontsinglesize = Imagesize->IntAttribute("lineHeight");
-		// 입력되어있는 모든 문자열을 검사하여 전부 map에 넣어준다.
-		for (tinyxml2::XMLElement* element = pNode->FirstChildElement("char"); 
-			element != nullptr; element = element->NextSiblingElement("char")) {
-			CharFont* def = new CharFont();
-			int id = element->IntAttribute("id");
-			def->x = element->IntAttribute("x");
-			def->y = element->IntAttribute("y");
-			def->width = element->IntAttribute("width");
-			def->height = element->IntAttribute("height");
-			def->xoffset = element->IntAttribute("xoffset");
-			def->yoffset = element->IntAttribute("yoffset");
-			def->xadvance = element->IntAttribute("xadvance");
-			charators.insert(std::make_pair(id, def));
+		else
+		{
+			srv = SRV::Get()->GetSRV(String::ToString(Imagename));
 		}
 	}
 	return true;
@@ -97,7 +117,7 @@ D3DXSTRING FontClass::MakeString
 	D3DXSTRING* result = new D3DXSTRING;
 	
 	// 오류체크, 만약 Fontpng가 실행되지 않았을 경우, 폰트 를 다시 잡아준다.
-	if (Fontpng == nullptr)
+	if (srv == nullptr)
 		SetFont("..\\Framework\\GameAsset\\Fontfile\\Base_Font.fnt");
 
 	// 반환값에 문장의 전반 데이터를 기입.
@@ -146,7 +166,7 @@ D3DXSTRING FontClass::MakeString
 			// 문자가 한글이고 바로 전 문자가 영문일경우, 한글 문자를 더 뒤로 띄워야한다.
 
 			result->string.push_back(
-				new TextureRect(result->Endposition + Offset, uv, fontsize, 0.0f, result->color, Fontpng));
+				new TextureRect(result->Endposition + Offset, uv, fontsize, 0.0f, result->color, srv, fontImagesize));
 			// 다음문자가 입력되기 위해서 사이즈만큼 우측으로 이동.
 
 			// 문자가 영어 -> 한글로 넘어갈때 offset문제가 발생. 그래서 그부분만 처리함. 한글의 가장 작은 유니코드 = 4352
@@ -203,7 +223,7 @@ D3DXNUMBER FontClass::Makenumberbord(const int number, const Vector3 position, c
 	std::wstring wsnumber = std::to_wstring(number);
 
 	// 오류체크, 만약 Fontpng가 실행되지 않았을 경우, 폰트 를 다시 잡아준다.
-	if (Fontpng == nullptr)
+	if (srv == nullptr)
 		SetFont("..\\Framework\\GameAsset\\Fontfile\\Base_Font.fnt");
 
 	// 반환값에 문장의 전반 데이터를 기입.
@@ -231,7 +251,7 @@ D3DXNUMBER FontClass::Makenumberbord(const int number, const Vector3 position, c
 
 			Vector3 fontsize = Vector3(value->second->width / fontsinglesize * result->size.x,
 				value->second->height / fontsinglesize * result->size.y, 0);
-			TextureRect* numpaddef = new TextureRect(Offset, uv, fontsize, 0.0f, result->color, Fontpng);
+			TextureRect* numpaddef = new TextureRect(Offset, uv, fontsize, 0.0f, result->color, srv, fontImagesize);
 
 			numberpad.insert(std::make_pair(def[0], numpaddef));
 			// 넘버페드에 숫자를 입력함.
@@ -254,14 +274,14 @@ D3DXNUMBER FontClass::Makenumberbord(const int number, const Vector3 position, c
 
 		Vector3 fontsize = Vector3(value->second->width / fontsinglesize * result->size.x,
 			value->second->height / fontsinglesize * result->size.y, 0);
-		TextureRect* numpaddef = new TextureRect(Offset, uv, fontsize, 0.0f, result->color, Fontpng);
+		TextureRect* numpaddef = new TextureRect(Offset, uv, fontsize, 0.0f, result->color, srv, fontImagesize);
 
 		numberpad.insert(std::make_pair(def[0], numpaddef));
 		// 넘버페드에 -를 입력함.
 	}
 
 	// 입력받은 숫자를 확인함.
-	for (int i = 0; i < wsnumber.size(); i++)
+	for (uint i = 0; i < wsnumber.size(); i++)
 	{
 		TextureRect* numberdef = new TextureRect(*numberpad.find(wsnumber[i])->second);
 		numberdef->SetPosition(numberdef->GetPosition() + result->Endposition);
