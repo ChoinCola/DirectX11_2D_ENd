@@ -1,0 +1,2665 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'DirectX::TEX_ALPHA_MODE'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/DirectXTex/DirectXTex.h"
+                },
+                "region": {
+                  "startLine": 135,
+                  "startColumn": 22,
+                  "endLine": 135,
+                  "endColumn": 22
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?SetAlphaMode@TexMetadata@DirectX@@QAAXW4TEX_ALPHA_MODE@2@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'DirectX::TEX_DIMENSION'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/DirectXTex/DirectXTex.h"
+                },
+                "region": {
+                  "startLine": 139,
+                  "startColumn": 44,
+                  "endLine": 139,
+                  "endColumn": 65
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?IsVolumemap@TexMetadata@DirectX@@QBA_NXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXFLOAT16::value' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 92,
+                  "startColumn": 5,
+                  "endLine": 92,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXFLOAT16@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXFLOAT16::value"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR2::x' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 124,
+                  "startColumn": 5,
+                  "endLine": 124,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR2@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR2::x"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR2::y' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 124,
+                  "startColumn": 5,
+                  "endLine": 124,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR2@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR2::y"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR4::w' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 273,
+                  "startColumn": 5,
+                  "endLine": 273,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR4@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR4::w"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR4::y' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 273,
+                  "startColumn": 5,
+                  "endLine": 273,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR4@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR4::y"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR4::z' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 273,
+                  "startColumn": 5,
+                  "endLine": 273,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR4@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR4::z"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR4::x' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 273,
+                  "startColumn": 5,
+                  "endLine": 273,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR4@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR4::x"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXQUATERNION::w' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 462,
+                  "startColumn": 5,
+                  "endLine": 462,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXQUATERNION@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXQUATERNION::w"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXQUATERNION::y' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 462,
+                  "startColumn": 5,
+                  "endLine": 462,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXQUATERNION@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXQUATERNION::y"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXQUATERNION::z' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 462,
+                  "startColumn": 5,
+                  "endLine": 462,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXQUATERNION@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXQUATERNION::z"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXQUATERNION::x' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 462,
+                  "startColumn": 5,
+                  "endLine": 462,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXQUATERNION@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXQUATERNION::x"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXPLANE::c' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 508,
+                  "startColumn": 5,
+                  "endLine": 508,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXPLANE@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXPLANE::c"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXPLANE::a' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 508,
+                  "startColumn": 5,
+                  "endLine": 508,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXPLANE@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXPLANE::a"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXPLANE::b' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 508,
+                  "startColumn": 5,
+                  "endLine": 508,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXPLANE@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXPLANE::b"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXPLANE::d' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 508,
+                  "startColumn": 5,
+                  "endLine": 508,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXPLANE@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXPLANE::d"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXCOLOR::a' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 549,
+                  "startColumn": 5,
+                  "endLine": 549,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXCOLOR@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXCOLOR::a"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXCOLOR::r' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 549,
+                  "startColumn": 5,
+                  "endLine": 549,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXCOLOR@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXCOLOR::r"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXCOLOR::b' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 549,
+                  "startColumn": 5,
+                  "endLine": 549,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXCOLOR@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXCOLOR::b"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXCOLOR::g' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+                },
+                "region": {
+                  "startLine": 549,
+                  "startColumn": 5,
+                  "endLine": 549,
+                  "endColumn": 5
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXCOLOR@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXCOLOR::g"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXFLOAT16::value' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 14,
+                  "endLine": 27,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXFLOAT16@@QAE@M@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXFLOAT16::value"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR2::y' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 94,
+                  "startColumn": 14,
+                  "endLine": 94,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR2@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR2::y"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR4::w' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 532,
+                  "startColumn": 14,
+                  "endLine": 532,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR4@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR4::w"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR4::y' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 532,
+                  "startColumn": 14,
+                  "endLine": 532,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR4@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR4::y"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXVECTOR4::z' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 532,
+                  "startColumn": 14,
+                  "endLine": 532,
+                  "endColumn": 14
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXVECTOR4@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXVECTOR4::z"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXQUATERNION::w' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 1081,
+                  "startColumn": 17,
+                  "endLine": 1081,
+                  "endColumn": 17
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXQUATERNION@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXQUATERNION::w"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXQUATERNION::y' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 1081,
+                  "startColumn": 17,
+                  "endLine": 1081,
+                  "endColumn": 17
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXQUATERNION@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXQUATERNION::y"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXQUATERNION::z' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 1081,
+                  "startColumn": 17,
+                  "endLine": 1081,
+                  "endColumn": 17
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXQUATERNION@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXQUATERNION::z"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXPLANE::c' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 1254,
+                  "startColumn": 12,
+                  "endLine": 1254,
+                  "endColumn": 12
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXPLANE@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXPLANE::c"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXPLANE::b' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 1254,
+                  "startColumn": 12,
+                  "endLine": 1254,
+                  "endColumn": 12
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXPLANE@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXPLANE::b"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXPLANE::d' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 1254,
+                  "startColumn": 12,
+                  "endLine": 1254,
+                  "endColumn": 12
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXPLANE@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXPLANE::d"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXCOLOR::a' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 1389,
+                  "startColumn": 12,
+                  "endLine": 1389,
+                  "endColumn": 12
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXCOLOR@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXCOLOR::a"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXCOLOR::b' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 1389,
+                  "startColumn": 12,
+                  "endLine": 1389,
+                  "endColumn": 12
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXCOLOR@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXCOLOR::b"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "level": "warning",
+          "message": {
+            "text": "'D3DXCOLOR::g' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+                },
+                "region": {
+                  "startLine": 1389,
+                  "startColumn": 12,
+                  "endLine": 1389,
+                  "endColumn": 12
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0D3DXCOLOR@@QAE@PBUD3DXFLOAT16@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "D3DXCOLOR::g"
+          }
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'ImGuiInputSource'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/ImGui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 1089,
+                  "startColumn": 9,
+                  "endLine": 1089,
+                  "endColumn": 26
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiContext@@QAE@PAUImFontAtlas@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'ImGuiNavLayer'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/ImGui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 1110,
+                  "startColumn": 9,
+                  "endLine": 1110,
+                  "endColumn": 20
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiContext@@QAE@PAUImFontAtlas@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'ImGuiNavForward'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/ImGui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 1123,
+                  "startColumn": 9,
+                  "endLine": 1123,
+                  "endColumn": 33
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0ImGuiContext@@QAE@PAUImFontAtlas@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'ImGuiInputReadMode'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/ImGui/imgui_internal.h"
+                },
+                "region": {
+                  "startLine": 1557,
+                  "startColumn": 29,
+                  "endLine": 1557,
+                  "endColumn": 29
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?IsNavInputPressed@ImGui@@YA_NHW4ImGuiInputReadMode@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'FMOD_RESULT'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/FMOD/inc/fmod.hpp"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 248,
+                  "endLine": 36,
+                  "endColumn": 323
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?Memory_Initialize@FMOD@@YA?AW4FMOD_RESULT@@PAXHP6GPAXIIPBD@ZP6GPAX0II1@ZP6GX0I1@ZI@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'FMOD_DEBUG_MODE'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/FMOD/inc/fmod.hpp"
+                },
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 24,
+                  "endLine": 38,
+                  "endColumn": 24
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?Debug_Initialize@FMOD@@YA?AW4FMOD_RESULT@@IW4FMOD_DEBUG_MODE@@P6G?AW42@IPBDH11@Z1@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'FMOD_THREAD_TYPE'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/FMOD/inc/fmod.hpp"
+                },
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 24,
+                  "endLine": 41,
+                  "endColumn": 24
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?Thread_SetAttributes@FMOD@@YA?AW4FMOD_RESULT@@W4FMOD_THREAD_TYPE@@_JHI@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "'VertexTile::index' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Renders/Resources/VertexTypes.h"
+                },
+                "region": {
+                  "startLine": 55,
+                  "startColumn": 2,
+                  "endLine": 55,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0VertexTile@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "VertexTile::index"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "'OutlineBuffer::Data::dummy' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Renders/Resources/OutlineBuffer.h"
+                },
+                "region": {
+                  "startLine": 33,
+                  "startColumn": 2,
+                  "endLine": 33,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Data@OutlineBuffer@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "OutlineBuffer::Data::dummy"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "'OutlineBuffer::Data::OutlineCount' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Renders/Resources/OutlineBuffer.h"
+                },
+                "region": {
+                  "startLine": 33,
+                  "startColumn": 2,
+                  "endLine": 33,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Data@OutlineBuffer@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "OutlineBuffer::Data::OutlineCount"
+          }
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'tinyxml2::XMLError'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/tinyxml/tinyxml2.h"
+                },
+                "region": {
+                  "startLine": 1164,
+                  "startColumn": 3,
+                  "endLine": 1164,
+                  "endColumn": 18
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?IntValue@XMLAttribute@tinyxml2@@QBEHXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'tinyxml2::XMLElement::ElementClosingType'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/tinyxml/tinyxml2.h"
+                },
+                "region": {
+                  "startLine": 1677,
+                  "startColumn": 9,
+                  "endLine": 1677,
+                  "endColumn": 16
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?ClosingType@XMLElement@tinyxml2@@QBE?AW4ElementClosingType@12@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "열거형 형식 'tinyxml2::Whitespace'이(가) 범위가 지정되지 않았습니다. 'enum'(Enum.3) 대신 'enum class'를 사용하세요."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/tinyxml/tinyxml2.h"
+                },
+                "region": {
+                  "startLine": 1792,
+                  "startColumn": 9,
+                  "endLine": 1792,
+                  "endColumn": 16
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "?WhitespaceMode@XMLDocument@tinyxml2@@QBE?AW4Whitespace@2@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "'ShadedBuffer::Data::Selection' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Geomatries/ShadedTexture.h"
+                },
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 2,
+                  "endLine": 19,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Data@ShadedBuffer@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ShadedBuffer::Data::Selection"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "'CollisionBuffer::Data::isOn' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Utilities/BoundingBox.h"
+                },
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 2,
+                  "endLine": 38,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Data@CollisionBuffer@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "CollisionBuffer::Data::isOn"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "'ProgressBuffer::Data::percent' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Game/UI/ProgressBar.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 2,
+                  "endLine": 13,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Data@ProgressBuffer@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ProgressBuffer::Data::percent"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "'ProgressBuffer::Data::type' 변수가 초기화되지 않았습니다. 항상 멤버 변수를 초기화하세요(type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Game/UI/ProgressBar.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 2,
+                  "endLine": 13,
+                  "endColumn": 2
+                }
+              },
+              "logicalLocations": [
+                {
+                  "decoratedName": "??0Data@ProgressBuffer@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ProgressBuffer::Data::type"
+          }
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.29.30151.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX86\\x86\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00DBD1C0 -il C:\\Users\\dhtmd\\AppData\\Local\\Temp\\_CL_a6620f36ast -typedil -f Utilities\\Animator.cpp -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1929 -D_MSC_FULL_VER=192930151 -D_MSC_BUILD=0 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -GR -D_CPPRTTI -I C:\\Users\\dhtmd\\Source\\Repos\\ChoinCola\\DirectX11_2D_ENd\\Framework\\ -I C:\\Users\\dhtmd\\Source\\Repos\\ChoinCola\\DirectX11_2D_ENd\\_Libraries\\ -nologo -W 3 -diagnostics:column -Ot -DCODE_ANALYSIS -DWIN32 -D_DEBUG -D_LIB -D_UNICODE -DUNICODE -EHs -D_CPPUNWIND -EHc -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -MDd -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -permissive -Zc:wchar_t -Zc:forScope -YcFramework.h -FpC:\\Users\\dhtmd\\Source\\Repos\\ChoinCola\\DirectX11_2D_ENd\\\\.Temp\\Framework\\Framework.pch -FoC:\\Users\\dhtmd\\Source\\Repos\\ChoinCola\\DirectX11_2D_ENd\\\\.Temp\\Framework\\Animator.obj -FdC:\\Users\\dhtmd\\Source\\Repos\\ChoinCola\\DirectX11_2D_ENd\\\\.Out\\Framework\\Framework.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\dhtmd\\Source\\Repos\\ChoinCola\\DirectX11_2D_ENd\\Framework -analyze:rulesetdirectory ;C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Include -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\include -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\include -external:I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -external:I C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Include -I C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Include",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/DirectXTex/DirectXTex.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "8da9a4e3b97cb790d86f7bc48e39c349"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "82ce5a00a790b72f94fff0f2e02f191c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3DX10math.inl"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "59e5ce27aafc8cc8324b7f665978e70d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/ImGui/imgui_internal.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "d481b7291608cbbe5bb87d089694b276"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/FMOD/inc/fmod.hpp"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "7949bebba91219e6c97f46a878ce465a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Renders/Resources/VertexTypes.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "853b7b8a6d12ac066184c51204e7af02"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Renders/Resources/OutlineBuffer.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "5ff19dcff5417e4e84e6b8352f8d8dcf"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/_Libraries/tinyxml/tinyxml2.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "c5fb2cf68bc1feca6e90eeedd5203fb1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Geomatries/ShadedTexture.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "253ebc634401a2db87a56f4b6da263b2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Utilities/BoundingBox.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "4f6c5e9c64422e74650a2918340c1dda"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Game/UI/ProgressBar.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "388b8f7c953cee70ad6cf164c9e634f8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Systems/FontClass.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "75f7a292718a479d91352ad76cbda978"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Systems/FontClass.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "3e58212cc0fd58e68a4f21465970878b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/framework.h"
+          },
+          "hashes": {
+            "md5": "1e84a812d3786a029f984d2b7ee435c4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/directxtex/directxtex.inl"
+          },
+          "hashes": {
+            "md5": "2a0513620ca3a8ed2e74c0dd0af77d7f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3dx10.h"
+          },
+          "hashes": {
+            "md5": "3cfe370161ad17552d61dcdc01c47ccd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3d10.h"
+          },
+          "hashes": {
+            "md5": "63e1ca4e354d9cd47c4df3ee4b965bd5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3dx10core.h"
+          },
+          "hashes": {
+            "md5": "7f4f3aa318325d25467e7a5883c25122"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3dx10tex.h"
+          },
+          "hashes": {
+            "md5": "3efb7597eedd88d3e10de101d506ebfa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3dx10mesh.h"
+          },
+          "hashes": {
+            "md5": "e8a7afff5aa83c08d633593daedbc45b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3dx10async.h"
+          },
+          "hashes": {
+            "md5": "a86e005be78a9268c9e64a0a89e16ef6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3dx11async.h"
+          },
+          "hashes": {
+            "md5": "96b77116f07167d726c39706a238d5ac"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3dx11.h"
+          },
+          "hashes": {
+            "md5": "39b3cc335e951bd472bcfb4503d2f645"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3d11.h"
+          },
+          "hashes": {
+            "md5": "97cc6cca53aac7e9094d7add368c7824"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3dx11core.h"
+          },
+          "hashes": {
+            "md5": "a7e4e3ce762ccec1d8c209123689686e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/program files (x86)/microsoft directx sdk (june 2010)/include/d3dx11tex.h"
+          },
+          "hashes": {
+            "md5": "fb4eca913a8785e260e7249437b23247"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/imgui/imgui.h"
+          },
+          "hashes": {
+            "md5": "d1e62a75db7ac80f14fbd9680bd544c6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/imgui/imconfig.h"
+          },
+          "hashes": {
+            "md5": "ee192ebf2b0a05e2b9f2f2c010e707f7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/imgui/imstb_textedit.h"
+          },
+          "hashes": {
+            "md5": "713649a8d63b5b625c1147b33001b7d9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/imgui/imgui_impl_dx11.h"
+          },
+          "hashes": {
+            "md5": "c97cf0b6e45deac3b511cca778aca1a4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/imgui/imgui_impl_win32.h"
+          },
+          "hashes": {
+            "md5": "e7d64f4c96e45acc38d6a26ee8fa9ef2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/fmod/inc/fmod_common.h"
+          },
+          "hashes": {
+            "md5": "16fef74e3b02cf05f62ff63ac7bfce15"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/fmod/inc/fmod_codec.h"
+          },
+          "hashes": {
+            "md5": "8c19e79b392bc9de0e82e82f0ac76416"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/fmod/inc/fmod_dsp.h"
+          },
+          "hashes": {
+            "md5": "269eac2b3ce76b23f83f1502192e6e67"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/fmod/inc/fmod_dsp_effects.h"
+          },
+          "hashes": {
+            "md5": "e0cd1cf5c5a2e9ef1ba1ccf8708d89ae"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/fmod/inc/fmod_output.h"
+          },
+          "hashes": {
+            "md5": "79207b0106e8919c8bcf666ab8ac91b1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/_libraries/fmod/inc/fmod.h"
+          },
+          "hashes": {
+            "md5": "be68af66e3b0ff89332a5013dd07e3cc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/interfaces/iobject.h"
+          },
+          "hashes": {
+            "md5": "9d21a4197f77ebb6005dd52ed6ec885c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/utilities/singletonbase.h"
+          },
+          "hashes": {
+            "md5": "c68aba04cd0d4217f5d49981a0f0294d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/graphics.h"
+          },
+          "hashes": {
+            "md5": "04a5ce9cab5f5d66b9ddb4d9af0d51e8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/keyboard.h"
+          },
+          "hashes": {
+            "md5": "fc0276c8248f2bcbd09fd86a06c78880"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/mouse.h"
+          },
+          "hashes": {
+            "md5": "8112f631c666bc9e14deedcf260c8cc6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/time.h"
+          },
+          "hashes": {
+            "md5": "46afdda7381ca8dfa2ae349f04eb9512"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/sounds.h"
+          },
+          "hashes": {
+            "md5": "abe38c4adffd712de47af6e735702b1c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/srv.h"
+          },
+          "hashes": {
+            "md5": "2f61577f941a033ed7c245fa04f72510"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/text.h"
+          },
+          "hashes": {
+            "md5": "5e9cb07813d43b50f840b20f9f9825a8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/utilities/gui.h"
+          },
+          "hashes": {
+            "md5": "df6b2b43cf310322d71e50bf6419a617"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/utilities/directhelper.h"
+          },
+          "hashes": {
+            "md5": "61631d10326a16285d284429388d3af5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/ia/indexbuffer.h"
+          },
+          "hashes": {
+            "md5": "1298ca66eef835f37569ca2424252452"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/ia/vertexbuffer.h"
+          },
+          "hashes": {
+            "md5": "f2eef7373eb3ed558d8f50dc48c37282"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/ia/inputlayout.h"
+          },
+          "hashes": {
+            "md5": "7995dfc018ed1ae32550e47c07f37c94"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/resources/shaderbuffer.h"
+          },
+          "hashes": {
+            "md5": "bcaf407491353923efd27abe4a121700"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/resources/globalbuffer.h"
+          },
+          "hashes": {
+            "md5": "18a52636486d3da94186008d70317754"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/resources/texture2d.h"
+          },
+          "hashes": {
+            "md5": "3b1a6344e3afbf82b0597b6ef4cc5448"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/shaders/ishader.h"
+          },
+          "hashes": {
+            "md5": "e8d854a47c12a581d4b39060e91fd265"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/shaders/vertexshader.h"
+          },
+          "hashes": {
+            "md5": "6d33b0b068f9774dc4eceec636000cce"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/shaders/pixelshader.h"
+          },
+          "hashes": {
+            "md5": "4f0de2f7732dbb227f8870b6a7642878"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/utilities/animator.h"
+          },
+          "hashes": {
+            "md5": "1316666d3bb0f8a3af677695337f3b2e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/texturerect.h"
+          },
+          "hashes": {
+            "md5": "f616afb935a3493adc3420ceb1bb00c3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/animationrect.h"
+          },
+          "hashes": {
+            "md5": "c00cef5a0742033127e5ad6a208ceafa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/states.h"
+          },
+          "hashes": {
+            "md5": "df401f428216fdc5aa629a947cde7d71"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/utilities/string.h"
+          },
+          "hashes": {
+            "md5": "e115ed725ed7bf4b18d0af462502588f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/utilities/path.h"
+          },
+          "hashes": {
+            "md5": "1efa55f016db979efbf5b32c449ff21a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/camera.h"
+          },
+          "hashes": {
+            "md5": "c257ea4f12c5e63da0ee8adcde220df4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/utilities/ui.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "30a6c1cfa5faadbb11e4669fe0c3d0ea"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/ui/ui_obejct.h"
+          },
+          "hashes": {
+            "md5": "68dbdd8e5481f9e19f45d2f1b56810c0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/hpbar.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "ba7701364e8647157243d5aaa42538b4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/item.h"
+          },
+          "hashes": {
+            "md5": "890c7c8d3859b2842828a5c08ce807a1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/character.h"
+          },
+          "hashes": {
+            "md5": "e71191253e39ba19bf80dba1f8d3eca7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/button.h"
+          },
+          "hashes": {
+            "md5": "b7b8899455d19d2dfdde71e617653e03"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/mousepointer.h"
+          },
+          "hashes": {
+            "md5": "f23c9132ff167fa67d55ac9be001d5aa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/button.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "a8ecf5556c9865511a6c9e33dd0c91fe"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/ui/details_windows.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "9d9a404a34c2d150da92b1f5ef8afe4b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/ui/details_windows.h"
+          },
+          "hashes": {
+            "md5": "e2c52a343960e378541e87d1ecda3c6d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/framework.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "41a73947dcb0ff5a483f13aec298b9f6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Game/Character.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "4c535d45a3f33b8b1ca1a2e3e698ff65"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Game/UI/ProgressBar.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "47247797325cdc3aa507340f297a09e3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/animationrect.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "9d382db1381ad9ead5a0517e93da5e2f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/blurtexture.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "4577c0f4c125f403aa6fd3cfee9694d5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/blurtexture.h"
+          },
+          "hashes": {
+            "md5": "e501bd978ff11e67c1ec6e5e12df4d74"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/rect.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "8303a908ce2d87c9cd693325776d1ca3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/rect.h"
+          },
+          "hashes": {
+            "md5": "9b97bfb6ac4c8b66584781f9ae7cd5b0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/shadedtexture.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "958c966974a7e35643e549d4b49b60a8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/texturerect.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "6b2dff06890a5b23227e5e3cd4f3ad7f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/tile/tile.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "55d1ecc2e5ad8fdcda82d3f040a35413"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/tile/tile.h"
+          },
+          "hashes": {
+            "md5": "7938e9da44afb6a6da8622dbbd40380d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Geomatries/Tile/TileMap.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "14d74c2634f1797cb24390baa6b33f13"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/tile/tilemap.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "bae90aa981a4529b6e81c1f72b338dda"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/tile/tileset.h"
+          },
+          "hashes": {
+            "md5": "5b2643459de251406690e09cfede60b7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/geomatries/tile/tileset.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "a54fd103fa99fe96562d848736d5d9c3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Game/Item.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "acb1ac949559eb6934346d9e6187ce06"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/mousepointer.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "2f3e64503ecf75a4dfde72f12d290ff9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/hpbar.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "61199e373103eea67a972a3afa64bbc0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/ia/indexbuffer.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "27b0e4d2b2a3c01052d3be59b49abb29"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Renders/IA/InputLayout.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "91f7950dfef46304be69d3d6b880956b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/ia/vertexbuffer.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "c59d9f9d7303362462fd107652f1fbd6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Renders/Resources/Texture2D.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "9667ad27d9901cbd4f9a1b43ea04e333"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/resources/vertextypes.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "87855c8ffa9f02893629fc1645e759a9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Renders/Shaders/IShader.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "ed1d0e015af6a6702cf2afbca654911b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/shaders/pixelshader.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "27489cda04cfb721f80ca21b3ff00f1b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/shaders/vertexshader.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "a0046503c65ff61e19c3fbd420334d75"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/renders/states.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "77e8d87e09c7c7f2e480e60a4f7b836f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/camera.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "9f249628823cbdfeaef72a43f31c91c8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Systems/Graphics.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "f915b423e02d9c0b8b9846d58e4203af"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Systems/Keyboard.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "d122a4927aa0de721a6eef62e23f22b5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Systems/Mouse.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "ef830ad519cf66d0c4bf9734639f2464"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/sounds.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "5673cbd707e9958ca10e681d263bd640"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/srv.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "423080f12a38a485df39135be4d5bda5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Systems/Text.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "680b8d15005355e36b215cd07df9c234"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/time.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "a6e3598d8f2d0313c30be44901eaeb89"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/dhtmd/Source/Repos/ChoinCola/DirectX11_2D_ENd/Framework/Systems/Window.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "d918585b3f7e35fad4530c760440747f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/systems/window.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "84660694ba73ef513f9e766edbc59c27"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/game/ui/ui_obejct.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "63a5b4f661f42e75dc61a975b8049e97"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/dhtmd/source/repos/choincola/directx11_2d_end/framework/utilities/animator.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "4e9d7d71e8cd67ccf05b8dc0048e25eb"
+          }
+        }
+      ]
+    }
+  ]
+}

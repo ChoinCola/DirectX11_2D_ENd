@@ -38,6 +38,18 @@ public:
 	void SetPosition(const Vector3 def) { position = def; }
 	void SetRotation(const float rotation) { this->rotation = rotation; }
 	void SetSize(const Vector3 Size) { this->size = Size; }
+	void SetTextvertices(std::vector<Vector2> uv) {
+		for(int i = 0; i < 4; i++)
+			Textvertices[i].uv = uv[i];
+		SAFE_DELETE(vb);
+		vb = new VertexBuffer();
+		vb->Create(Textvertices, D3D11_USAGE_DYNAMIC);
+	};
+	void Setvertices(std::vector<Vector2> uv) {
+		for (int i = 0; i < 4; i++)
+			vertices[i].uv = uv[i];
+	};
+
 
 	const Vector3 GetRect() {	// 문자 사이즈 보려고 만듬.
 	return Vector3(Textvertices[2].position.x * size.x, 

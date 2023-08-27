@@ -43,7 +43,7 @@ protected:
 
 	int CardBrood;
 	int CardUnitCount;
-
+	int* unitalldamage;
 	bool Closenow;
 
 	std::vector<TextureRect*> Card;
@@ -57,4 +57,3 @@ protected:
 	Button* Buy_Button;
 	Button* Sell_Button;
 };
-

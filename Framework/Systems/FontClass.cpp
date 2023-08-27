@@ -43,12 +43,10 @@ bool FontClass::SetFont(char* fntfile)
 		// xml파일의 font 안의 file로 접속한 결과를 Imagename에 전달. ( 이 데이터는 이미지의 사이즈 를 보관한다. )
 		tinyxml2::XMLElement* pname = doc.FirstChildElement("font")->FirstChildElement("pages")->FirstChildElement("page");
 		const char* def = pname->Attribute("file");
-		std::wstring Imagename(strlen(def), L' ');
+		std::wstring Imagename(def, def + strlen(def));
 
 		if (SRV::Get()->GetSRV(String::ToString(Imagename)) == nullptr)
 		{
-			std::mbstowcs(&Imagename[0], def, strlen(def));			// 이미지 이름이 char[]형식 이기에 형변환 한다.
-
 			//Fontpng = new Texture2D(LFont + Imagename);
 			// 단 한개라도 긁어오지 못했을 경우, 코드실행이 불가하기에 터트린다.
 
@@ -124,7 +122,6 @@ D3DXSTRING FontClass::MakeString
 	result->Startposition = result->Endposition = position;
 	result->size = stringsize;
 	result->color = color;
-
 	for (int i = 0; i < string.size(); i++) {
 		auto def = string[i];
 		if (def != NULL) {
@@ -226,39 +223,18 @@ D3DXNUMBER FontClass::Makenumberbord(const int number, const Vector3 position, c
 	if (srv == nullptr)
 		SetFont("..\\Framework\\GameAsset\\Fontfile\\Base_Font.fnt");
 
+	result->srv = this->srv;
 	// 반환값에 문장의 전반 데이터를 기입.
 	result->Startposition = result->Endposition = position;
-	result->size = stringsize;
+	//result->size = stringsize;
 	result->color = color;
+	result->srvsize = fontImagesize;
 
+#pragma region uv맵 만들기
 	// 넘버패드를 안말들었을 경우, 만듬
-	if(numberpad.empty()) {
-		for (int i = 0; i <10; i++) {
-			std::wstring def = std::to_wstring(i);
-				// map배열에서 해당되는 숫자의 유니 코드를 찾아온다. 
-			auto value = charators.find((int)def[0]);
-
-			// uv의 기준값. 문자의 x위치에 전체 이미지를 나눠주어 전체이미지가 1일경우 x의 값을 구한다. 가로세로길이, y도 같은 방식으로 도출
-			std::vector<Vector2>* uv =
-				uvInit(value->second->x / fontImagesize.x, value->second->y / fontImagesize.y,
-					value->second->width / fontImagesize.x, value->second->height / fontImagesize.y);
-
-			// 문자 사이즈를 백분율하여, 일정한 사이즈로 키워줄 수 있게 한다.
-			float Charsizex = value->second->width * 2 / fontsinglesize;
-			Vector3 Offset;
-			// y를 음수처리하는 이유는 uv 좌표상, y가 반대이기 때문, BMFont 프로그램이 구형이라 offset 좌표가 0,0이 좌상단임.
-			Offset = Vector3(value->second->xoffset / 2, -value->second->yoffset / 2, 0);
-
-			Vector3 fontsize = Vector3(value->second->width / fontsinglesize * result->size.x,
-				value->second->height / fontsinglesize * result->size.y, 0);
-			TextureRect* numpaddef = new TextureRect(Offset, uv, fontsize, 0.0f, result->color, srv, fontImagesize);
-
-			numberpad.insert(std::make_pair(def[0], numpaddef));
-			// 넘버페드에 숫자를 입력함.
-		}
-
-		std::wstring def = L"-";
-		// map배열에서 해당되는 숫자의 유니 코드를 찾아온다. 
+	for (int i = 0; i <10; i++) {
+		std::wstring def = std::to_wstring(i);
+			// map배열에서 해당되는 숫자의 유니 코드를 찾아온다. 
 		auto value = charators.find((int)def[0]);
 
 		// uv의 기준값. 문자의 x위치에 전체 이미지를 나눠주어 전체이미지가 1일경우 x의 값을 구한다. 가로세로길이, y도 같은 방식으로 도출
@@ -272,26 +248,47 @@ D3DXNUMBER FontClass::Makenumberbord(const int number, const Vector3 position, c
 		// y를 음수처리하는 이유는 uv 좌표상, y가 반대이기 때문, BMFont 프로그램이 구형이라 offset 좌표가 0,0이 좌상단임.
 		Offset = Vector3(value->second->xoffset / 2, -value->second->yoffset / 2, 0);
 
-		Vector3 fontsize = Vector3(value->second->width / fontsinglesize * result->size.x,
+		result->size = Vector3(value->second->width / fontsinglesize * result->size.x,
 			value->second->height / fontsinglesize * result->size.y, 0);
-		TextureRect* numpaddef = new TextureRect(Offset, uv, fontsize, 0.0f, result->color, srv, fontImagesize);
 
-		numberpad.insert(std::make_pair(def[0], numpaddef));
-		// 넘버페드에 -를 입력함.
+		result->numberpad.insert(std::make_pair(def[0], uv));
+		// 넘버페드에 숫자를 입력함.
 	}
+
+	std::wstring def = L"-";
+	// map배열에서 해당되는 숫자의 유니 코드를 찾아온다. 
+	auto value = charators.find((int)def[0]);
+
+	// uv의 기준값. 문자의 x위치에 전체 이미지를 나눠주어 전체이미지가 1일경우 x의 값을 구한다. 가로세로길이, y도 같은 방식으로 도출
+	std::vector<Vector2>* uv =
+		uvInit(value->second->x / fontImagesize.x, value->second->y / fontImagesize.y,
+			value->second->width / fontImagesize.x, value->second->height / fontImagesize.y);
+
+	// 문자 사이즈를 백분율하여, 일정한 사이즈로 키워줄 수 있게 한다.
+	float Charsizex = value->second->width * 2 / fontsinglesize;
+	Vector3 Offset;
+	// y를 음수처리하는 이유는 uv 좌표상, y가 반대이기 때문, BMFont 프로그램이 구형이라 offset 좌표가 0,0이 좌상단임.
+	Offset = Vector3(value->second->xoffset / 2, -value->second->yoffset / 2, 0);
+
+	result->size = Vector3(value->second->width / fontsinglesize * result->size.x,
+		value->second->height / fontsinglesize * result->size.y, 0);
+
+	result->numberpad.insert(std::make_pair(def[0], uv));
+	// 넘버페드에 -를 입력함.
+#pragma endregion
 
 	// 입력받은 숫자를 확인함.
 	for (uint i = 0; i < wsnumber.size(); i++)
 	{
-		TextureRect* numberdef = new TextureRect(*numberpad.find(wsnumber[i])->second);
-		numberdef->SetPosition(numberdef->GetPosition() + result->Endposition);
+		TextureRect* numberdef =
+		new TextureRect(result->Endposition, result->numberpad.find(wsnumber[i])->second,
+		stringsize, 0.0, result->color, result->srv, result->srvsize);
 		numberdef->Update();
 
-		Vector3 Offset;
 		// y를 음수처리하는 이유는 uv 좌표상, y가 반대이기 때문, BMFont 프로그램이 구형이라 offset 좌표가 0,0이 좌상단임.
 
 		result->numstring.push_back(numberdef);
-		result->Endposition.x += result->size.x;
+		result->Endposition.x += stringsize.x;
 	}
 
 	switch (sorting)

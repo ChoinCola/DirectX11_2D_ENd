@@ -30,8 +30,11 @@ struct D3DXNUMBER
 	int nvectorsize;							// 번호판 사이즈 ( 구조상 넘어가면 표시불가 )
 	int sortType;								// 정렬기준이 좌측 중앙 우측인지
 	int num;									// 들어있는 숫자
+
+	Vector2 srvsize;
+	ID3D11ShaderResourceView* srv;				// 이미지맵
 	std::vector<TextureRect*> numstring;		// 숫자 벡터
-	std::map<wchar_t, TextureRect*>* numberpad;	// 넘버페드 벡터
+	std::map<wchar_t, std::vector<Vector2>*> numberpad;	// 넘버페드 벡터
 
 public:
 	void Update() { for (auto def : numstring) def->Update(); } // 숫자 위치좌표 갱신
@@ -39,26 +42,27 @@ public:
 
 	void Changer_Number(int num) {
 		std::wstring numdef = std::to_wstring(num);
-		for (uint i = 0; i < numstring.size(); i++)
-		{
-			while (true) {
-				if (numstring.size() <= numdef.size()) { // 사이즈가 크거나 같으면 뒤로 빼버린다.
-					Endposition.x -= (*numstring.end())->GetSize().x;	//Endposition을 계산해준다.
-					numstring.pop_back();
-				}
-				break;
+
+		while (true) {
+			if (numstring.size() > numdef.size()) { // 사이즈가 크면 뒤로 빼버린다.
+				Endposition.x -= (*numstring.end())->GetSize().x;	//Endposition을 계산해준다.
+				TextureRect* back = *numstring.end();
+				numstring.pop_back();
 			}
-			
-			if(i >= numdef.size()) { // 사이즈 위치에 포지션 가져와서 박아줌.
-				TextureRect* numberdef = new TextureRect(*numberpad->find(numdef[i])->second);
-				numberdef->SetPosition(numstring[i]->GetPosition());
-				numstring[i] = numberdef;
+
+			break;
+		}
+
+		for (uint i = 0; i < numdef.size(); i++)
+		{
+			if(i >= numstring.size()) { // 사이즈 위치에 포지션 가져와서 박아줌.
+				TextureRect* numberdef = new TextureRect(Endposition, numberpad.find(numdef[i])->second,
+					size, 0.0, color, srv, srvsize);
+				numstring.push_back(numberdef);
+				Endposition += Vector3(size.x, 0, 0);
 			}
 			else {					// 포지션 빼줌.
-				TextureRect* numberdef = new TextureRect(*numberpad->find(numdef[i])->second);
-				numberdef->SetPosition(Endposition + Vector3(size.x,0,0));
-				numstring.push_back(numberdef);
-				Endposition += Vector3(size.x,0,0);
+				numstring[i]->SetTextvertices(*numberpad.find(numdef[i])->second);
 			}
 		}
 	}
@@ -127,8 +131,7 @@ public:
 
 private:
 							
-	std::map<int, CharFont*> charators;												// xml파일 긁어온 데이터 저장 map
-	std::map<wchar_t, TextureRect*> numberpad;
+	std::map<int, CharFont*> charators;												// xml파일 긁어온 데이터 저장 ma
 
 	Texture2D* Fontpng = nullptr;
 	ID3D11ShaderResourceView* srv;
