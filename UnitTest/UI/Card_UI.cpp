@@ -253,7 +253,7 @@ Card_UI::Card_UI(Vector3 position, std::wstring CardName, int CardBrood, int Car
 			CardInfo[0]->GetPosition().x - CardInfo[0]->GetSize().x / 2,
 			CardInfo[0]->GetPosition().y + CardInfo[0]->GetSize().y / 2 - Close_Button->GetSize().y / 2 - textsize, 1);
 		D3DCardDamage =
-			new D3DXNUMBER(FontClass::Get()->Makenumberbord(12030, pos, TextColor, { textsize, textsize, 1 }, LEFT, 5));
+			new D3DXNUMBER(FontClass::Get()->Makenumberbord(-12030, pos, TextColor, { textsize, textsize, 1 }, LEFT, 5));
 	}
 }
 
