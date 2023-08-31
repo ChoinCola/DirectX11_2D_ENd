@@ -240,7 +240,7 @@ D3DXNUMBER FontClass::Makenumberbord(const int number, const Vector3 position, c
 		// uv의 기준값. 문자의 x위치에 전체 이미지를 나눠주어 전체이미지가 1일경우 x의 값을 구한다. 가로세로길이, y도 같은 방식으로 도출
 		std::vector<Vector2>* uv =
 			uvInit(value->second->x / fontImagesize.x, value->second->y / fontImagesize.y,
-				value->second->width / fontImagesize.x, value->second->height / fontImagesize.y);z
+				value->second->width / fontImagesize.x, value->second->height / fontImagesize.y);
 
 		// 문자 사이즈를 백분율하여, 일정한 사이즈로 키워줄 수 있게 한다.
 		float Charsizex = value->second->width * 2 / fontsinglesize;
@@ -250,7 +250,7 @@ D3DXNUMBER FontClass::Makenumberbord(const int number, const Vector3 position, c
 
 		result->size = Vector3(value->second->width / fontsinglesize,
 			value->second->height / fontsinglesize, 0);
-
+		// pair좌표에 size와 uv를 같이 넣어야 하나?
 		result->numberpad.insert(std::make_pair(def[0], uv));
 		// 넘버페드에 숫자를 입력함.
 	}
@@ -284,7 +284,7 @@ D3DXNUMBER FontClass::Makenumberbord(const int number, const Vector3 position, c
 	{
 		TextureRect* numberdef =
 		new TextureRect(result->Endposition, result->numberpad.find(wsnumber[i])->second,
-		Vector3(result->size.x * stringsize.x, result->size.y * stringsize.y, 0), 
+			defsize,
 		0.0, result->color, result->srv, result->srvsize);
 		numberdef->Update();
 
